@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- para qye se la pagina se ajuste al dispositivo-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widrh = device-width, initial-scale-1.0">
+     <!-- colocar un mejor nombre -->
+    <title>ordena objetos</title>
+    <style>
+        body{
+            /* cambiar la fuente de letra*/
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        /* Aqui es el area del juego*/
+        .game-area{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        /* aqui es donde avn los objetos del juego*/
+        .object {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aliceblue;
+            cursor: grab; /*cambiamos a un amanita el mouse*/
+        }
+        message{
+            font-size: 20px;
+            color:chartreuse;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Juego Terapéutico: Ordena los Objetos del Más Liviano al Más Pesado</h1>
+        <p>Arrastra y suelta los objetos en el orden correcto.</p>
+
+        <!-- Área de juego donde se mostrarán los objetos -->
+        <div class="game-area" id="gameArea">
+            <div class="object" draggable="true" id="item1">20kg</div>
+            <div class="object" draggable="true" id="item2">10kg</div>
+            <div class="object" draggable="true" id="item3">30kg</div>
+        </div>
+
+        <!-- Botón para verificar el resultado -->
+        <button id="checkOrden">Verificar Orden</button>
+
+        <!-- Mensaje de feedback -->
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        // Aquí irá el código JavaScript para la funcionalidad
+        const ordenCorrecto = ['item2','item1','item3']
+        // aqui es donde se pone la solucion
+        //debemos mejorar esto, escalable y soluciones segun el novel
+        let draggable = null;
+
+        //funcion para arrastrar objketos
+        document.querySelectorAll('.object').forEach(item =>{
+            item.addEventListener('dragstart',function(e){
+                dragedItem = this;//guardar el objeto arrastardo
+            });
+            item.addEventListener('dragover',function(e){
+                e.preventDefault();
+            });
+            item.addEventListener('drop',function(e){
+                e.preventDefault();
+                if(dragedItem !== this){
+                    //intercambiar objetos arrastrados
+                    let temp = this.innerHTML;
+                    this.innerHTML = dragedItem.innerHTML;
+                    dragedItem.innerHTML = temp;
+                    // intercambiar los ids tambien para que mantenga seguimineto
+                    let tempId = this.id;
+                    this.id = dragedItem.id;
+                    dragedItem.id=tempId;
+                }
+            })
+        })
+
+        //funcion de verificacion de orden correcto
+        document.getElementById('checkOrden').addEventListener('click', function(){
+            const currentOrder = [];
+            document.querySelectorAll('.object').forEach(item =>{
+                currentOrder.push(item.id);
+            });
+
+            //comparacion del orden con la respuesta correcta
+            if(JSON.stringify(currentOrder)=== JSON.stringify(ordenCorrecto)){
+                document.getElementById('message').innerHTML = "bien hecho"
+                document.getElementById('message').style.color= "green";
+                
+            }else{
+                document.getElementById('message').innerHTML = "Intenta de nuevo :c"
+                document.getElementById('message').style.color= "red"; 
+            }
+        })
+    </script>
+</body>
+
+</html>
