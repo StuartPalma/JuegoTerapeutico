@@ -48,14 +48,14 @@
         <p>Arrastra y suelta los objetos en el orden correcto.</p>
 
         <!-- Área de juego donde se mostrarán los objetos -->
+         <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
         <div class="game-area" id="gameArea">
-            <div class="object" draggable="true" id="item1">10000kg</div>
-            <div class="object" draggable="true" id="item2">10kg</div>
-            <div class="object" draggable="true" id="item3">30kg</div>
+            <div class="object" draggable="true" id="item1" data-weight="1">pluma</div>
+            <div class="object" draggable="true" id="item2" data-weight="2">mesa</div>
+            <div class="object" draggable="true" id="item3" data-weight="3">Refrigerador</div>
         </div>
 
-        <!-- Botón para verificar el resultado -->
-        <button id="checkOrden">Verificar Orden</button>
+
 
         <!-- Mensaje de feedback -->
         <div class="message" id="message"></div>
@@ -63,7 +63,7 @@
 
     <script>
         // Aquí irá el código JavaScript para la funcionalidad
-        const ordenCorrecto = ['item2','item1','item3']
+        
         // aqui es donde se pone la solucion
         //debemos mejorar esto, escalable y soluciones segun el novel
         let draggable = null;
@@ -92,22 +92,23 @@
         })
 
         //funcion de verificacion de orden correcto
-        document.getElementById('checkOrden').addEventListener('click', function(){
-            const currentOrder = [];
-            document.querySelectorAll('.object').forEach(item =>{
-                currentOrder.push(item.id);
+        function ordenCorrecto() {
+            const objeto = Array.from(document.querySelectorAll('.object'));
+            const peso = Object.map(obj => parseInt(obj.getAttribute('data-weight')));
+
+            const esCorrecta = peso.every((weight, index) => {
+                return index === 0 || weight >= peso[index - 1];
             });
 
-            //comparacion del orden con la respuesta correcta
-            if(JSON.stringify(currentOrder)=== JSON.stringify(ordenCorrecto)){
-                document.getElementById('message').innerHTML = "bien hecho"
-                document.getElementById('message').style.color= "green";
-                
-            }else{
-                document.getElementById('message').innerHTML = "Intenta de nuevo :c"
-                document.getElementById('message').style.color= "red"; 
+            const message = document.getElementById ('message');
+            if (esCorrecta){
+                message.innerHTML = "COrrecto "
+                message.style.color = "green"
+            }else {
+                message.innerHTML = "Intenta de nuevo "
+                message.style.color = "red"
             }
-        })
+        }
     </script>
 </body>
 
