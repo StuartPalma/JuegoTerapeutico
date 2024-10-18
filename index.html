@@ -3,7 +3,7 @@
 <head>
     <!-- para qye se la pagina se ajuste al dispositivo-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="widrh = device-width, initial-scale-1.0">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0">
      <!-- colocar un mejor nombre -->
     <title>ordena objetos</title>
     <style>
@@ -93,7 +93,7 @@
 
     <!-- crear ventanita ganadora-->
      <div id="ventanaGanadora" class="ganador">
-        <div class="contenido-ventana">\
+        <div class="contenido-ventana">;
             <span class="cerrar">&times;</span>
             <h2> ¡Felicidades! </h2>
             <p> Has ordenado correctamente</p>
@@ -155,12 +155,13 @@
     
             const message = document.getElementById('message');
             if (esCorrecta) {
+                message.innerHTML = '';
                abrirVentanaGanadora();
             } 
 
         }
         function abrirVentanaGanadora(){
-            const modal = document.getElementById('VentanaGanadora');
+            const modal = document.getElementById('ventanaGanadora');
             modal.style.display= 'block';
         }
 
