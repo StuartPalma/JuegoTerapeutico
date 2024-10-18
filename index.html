@@ -71,7 +71,7 @@
         //funcion para arrastrar objketos
         document.querySelectorAll('.object').forEach(item =>{
             item.addEventListener('dragstart',function(e){
-                dragedItem = this;//guardar el objeto arrastardo
+                draggedItem = this;//guardar el objeto arrastardo
             });
             item.addEventListener('dragover',function(e){
                 e.preventDefault(); //sirve para soltar el objeto
@@ -102,7 +102,7 @@
         //funcion de verificacion de orden correcto
         function ordenCorrecto() {
             const objeto = Array.from(document.querySelectorAll('.object'));
-            const peso = Object.map(obj => parseInt(obj.getAttribute('data-weight')));
+            const peso = objero.map(obj => parseInt(obj.getAttribute('data-weight')));
 
             const esCorrecta = peso.every((weight, index) => {
                 return index === 0 || weight >= peso[index - 1];
