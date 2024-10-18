@@ -62,62 +62,69 @@
     </div>
 
     <script>
-        // Aquí irá el código JavaScript para la funcionalidad
-        
-        // aqui es donde se pone la solucion
-        //debemos mejorar esto, escalable y soluciones segun el novel
-        let draggable = null;
-
-        //funcion para arrastrar objketos
-        document.querySelectorAll('.object').forEach(item =>{
-            item.addEventListener('dragstart',function(e){
-                draggedItem = this;//guardar el objeto arrastardo
+        let draggedItem = null; // Objeto que se está arrastrando
+    
+        // Habilitamos el arrastre y soltado en los objetos
+        document.querySelectorAll('.object').forEach(item => {
+            item.addEventListener('dragstart', function (e) {
+                draggedItem = this; // Guardamos el objeto arrastrado
+                setTimeout(() => this.style.visibility = 'hidden', 0); // Ocultar temporalmente el objeto
             });
-            item.addEventListener('dragover',function(e){
-                e.preventDefault(); //sirve para soltar el objeto
+    
+            item.addEventListener('dragend', function (e) {
+                setTimeout(() => this.style.visibility = 'visible', 0); // Volver a mostrar el objeto
+                draggedItem = null; // Limpiamos la referencia del objeto arrastrado
             });
+    
+            item.addEventListener('dragover', function (e) {
+                e.preventDefault(); // Permitir soltar el objeto aquí
+            });
+    
             item.addEventListener('drop', function (e) {
                 e.preventDefault(); // Evitar comportamiento por defecto
-
+    
                 if (draggedItem !== this) {
-                    // Intercambiamos los elementos arrastrados
-                    let tempHTML = this.innerHTML;
-                    let tempWeight = this.getAttribute('data-weight');
-                    let tempId = this.id;
-
+                    // Intercambiamos los objetos arrastrados
+                    const tempHTML = this.innerHTML;
+                    const tempWeight = this.getAttribute('data-weight');
+                    const tempId = this.id;
+    
+                    // Intercambiamos contenido y atributos
                     this.innerHTML = draggedItem.innerHTML;
                     this.setAttribute('data-weight', draggedItem.getAttribute('data-weight'));
                     this.id = draggedItem.id;
-
+    
                     draggedItem.innerHTML = tempHTML;
                     draggedItem.setAttribute('data-weight', tempWeight);
                     draggedItem.id = tempId;
                 }
-
+    
                 // Verificamos el orden automáticamente después de soltar
                 ordenCorrecto();
             });
         });
-
-        //funcion de verificacion de orden correcto
+    
+        // Función para verificar si los objetos están en el orden correcto
         function ordenCorrecto() {
-            const objeto = Array.from(document.querySelectorAll('.object'));
-            const peso = objero.map(obj => parseInt(obj.getAttribute('data-weight')));
-
-            const esCorrecta = peso.every((weight, index) => {
-                return index === 0 || weight >= peso[index - 1];
+            const objetos = Array.from(document.querySelectorAll('.object'));
+            const pesos = objetos.map(obj => parseInt(obj.getAttribute('data-weight')));
+    
+            // Verificar si los pesos están en orden ascendente
+            const esCorrecta = pesos.every((peso, index) => {
+                return index === 0 || peso >= pesos[index - 1];
             });
-
-            const message = document.getElementById ('message');
-            if (esCorrecta){
-                message.innerHTML = "COrrecto "
-                message.style.color = "green"
-            }else {
-                message.innerHTML = "Intenta de nuevo "
-                message.style.color = "red"
+    
+            const message = document.getElementById('message');
+            if (esCorrecta) {
+                message.innerHTML = "¡Correcto! Has ordenado los objetos correctamente.";
+                message.style.color = "green";
+            } else {
+                message.innerHTML = "El orden no es correcto. Inténtalo de nuevo.";
+                message.style.color = "red";
             }
         }
     </script>
+    
 </body>
 
 </html>
