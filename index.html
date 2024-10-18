@@ -74,20 +74,28 @@
                 dragedItem = this;//guardar el objeto arrastardo
             });
             item.addEventListener('dragover',function(e){
-                e.preventDefault();
+                e.preventDefault(); //sirve para soltar el objeto
             });
             item.addEventListener('drop',function(e){
                 e.preventDefault();
                 if(dragedItem !== this){
                     //intercambiar objetos arrastrados
-                    let temp = this.innerHTML;
-                    this.innerHTML = dragedItem.innerHTML;
-                    dragedItem.innerHTML = temp;
-                    // intercambiar los ids tambien para que mantenga seguimineto
+                    let tempHTML = this.innerHTML;
+                    let tempWeight = this.getAttribute('data-weight');
                     let tempId = this.id;
+                    
+                    
+                    this.innerHTML = dragedItem.innerHTML;
+                    this.setAttribute('data-weight', dragedItem.getAttribute('data-weight'));
+                    // intercambiar los ids tambien para que mantenga seguimineto
                     this.id = dragedItem.id;
+                    dragedItem.innerHTML = temp;
+                    dragedItem.setAttribute('data-weight', tempWeight);
+                                       
                     dragedItem.id=tempId;
                 }
+                ordenCorrecto();
+                
             })
         })
 
