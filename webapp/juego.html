@@ -5,23 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale=1.0">
      <!-- colocar un mejor nombre -->
-    <title>ordena objetos</title>
+    <title>Ordena objetos por pesos</title>
     <!-- estilos de la pagina-->
     <link rel="stylesheet" href="../styles/juego.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="titulo-principal">Juego Terapéutico: Ordena los Objetos del Más Liviano al Más Pesado</h1>
-        <p>Arrastra y suelta los objetos en el orden correcto.</p>
+        <h1 class="titulo-principal"> Ordena los Objetos del Más Liviano al Más Pesado</h1>
+        <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
 
         <!-- Área de juego donde se mostrarán los objetos -->
          <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
-        <div class="game-area" id="gameArea">
-            <div class="object" draggable="true" id="item1" data-weight="1">pluma</div>
-            <div class="object" draggable="true" id="item2" data-weight="3">Refrigerador</div>
-            <div class="object" draggable="true" id="item3" data-weight="2">lapiz</div>
+        <div class="game-area" id="gameArea1">
+            <div class="object" draggable="true" id="item1" data-weight="1">Papel</div>
+            <div class="object" draggable="true" id="item2" data-weight="3">Cortina</div>
+            <div class="object" draggable="true" id="item3" data-weight="2">Globo</div>
+            <div class="object" draggable="true" id="item4" data-weight="4">Zapato</div>
+            <div class="object" draggable="true" id="item5" data-weight="5">Teléfono</div>
         </div>
-
+        <div class="game-area" id="gameArea2">
+            <div class="object" draggable="true" id="item1" data-weight="5">Cobija</div>
+            <div class="object" draggable="true" id="item2" data-weight="1">Esfero</div>
+            <div class="object" draggable="true" id="item3" data-weight="2">Almohada</div>
+            <div class="object" draggable="true" id="item4" data-weight="3">Pera</div>
+            <div class="object" draggable="true" id="item5" data-weight="4">Flauta</div>
+        </div>
+        <div class="game-area" id="gameArea3">
+            <div class="object" draggable="true" id="item1" data-weight="4">Tenedor</div>
+            <div class="object" draggable="true" id="item2" data-weight="3">Bolillo</div>
+            <div class="object" draggable="true" id="item3" data-weight="1">Alfiler</div>
+            <div class="object" draggable="true" id="item4" data-weight="5">Licuadora</div>
+            <div class="object" draggable="true" id="item5" data-weight="2">Grosella</div>
+        </div>
+        <div class="game-area" id="gameArea4">
+            <div class="object" draggable="true" id="item1" data-weight="2">Guantes</div>
+            <div class="object" draggable="true" id="item2" data-weight="3">Libreta</div>
+            <div class="object" draggable="true" id="item3" data-weight="1">Foco</div>
+            <div class="object" draggable="true" id="item4" data-weight="4">Guitarra</div>
+            <div class="object" draggable="true" id="item5" data-weight="5">Reloj</div>
+        </div>
+        <div class="game-area" id="gameArea">
+            <div class="object" draggable="true" id="item1" data-weight="5">Autobús</div>
+            <div class="object" draggable="true" id="item2" data-weight="1">Zarcillos</div>
+            <div class="object" draggable="true" id="item3" data-weight="3">Sandía</div>
+            <div class="object" draggable="true" id="item4" data-weight="2">Diadema</div>
+            <div class="object" draggable="true" id="item5" data-weight="4">Calabaza</div>
+        </div>
+        <div class="game-area" id="gameArea">
+            <div class="object" draggable="true" id="item1" data-weight="5">Taza</div>
+            <div class="object" draggable="true" id="item2" data-weight="2">Tijeras</div>
+            <div class="object" draggable="true" id="item3" data-weight="1">Algodón</div>
+            <div class="object" draggable="true" id="item4" data-weight="3">Cartera</div>
+            <div class="object" draggable="true" id="item5" data-weight="4">Kiwi</div>
+        </div>
+        <div class="game-area" id="gameArea">
+            <div class="object" draggable="true" id="item1" data-weight="1">Corbata</div>
+            <div class="object" draggable="true" id="item2" data-weight="3">Manzana</div>
+            <div class="object" draggable="true" id="item3" data-weight="2">Pincel</div>
+            <div class="object" draggable="true" id="item4" data-weight="5">Plancha</div>
+            <div class="object" draggable="true" id="item5" data-weight="4">Grapadora</div>
+        </div>
 
 
         <!-- Mensaje de feedback -->
@@ -79,6 +122,7 @@
                 ordenCorrecto();
             });
         });
+        // TODO: Verificar la victoria con los 7 conjuntos y un check cuando un conjunto esté bien ordenado.
     
         // Función para verificar si los objetos están en el orden correcto
         function ordenCorrecto() {
