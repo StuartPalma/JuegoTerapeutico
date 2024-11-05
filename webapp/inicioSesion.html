@@ -9,7 +9,7 @@
 <body>
     <div class="recuadro">
         <h1>Inicio de Sesion de Terapeuta</h1>
-        <form action="inicioSesion.php" method="POST">
+        <form id="loginForm">
             <label for="correo">Correo:</label>
             <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
             <br>
@@ -18,6 +18,30 @@
             <br>
             <input type="submit" value="Iniciar Sesion">
         </form>
-        </div>
+        <p id="error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            // Valores quemados para las credenciales
+            const correoValido = "alguien@ejemplo.com";
+            const contrasenaValida = "123456";
+
+            // Obtiene los datos del formulario
+            const correo = document.getElementById('correo').value;
+            const contrasena = document.getElementById('contrasena').value;
+
+            // Verifica las credenciales
+            if (correo === correoValido && contrasena === contrasenaValida) {
+                // Redirige a juego.html
+                window.location.href = "juego.html";
+            } else {
+                // Muestra un mensaje de error
+                document.getElementById('error').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>

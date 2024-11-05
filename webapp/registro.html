@@ -8,22 +8,50 @@
 </head>
 <body>
     <div class="recuadro">
-    <h1>Registro de Terapeuta</h1>
-    <form action="registro.php" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
-        <br>
-        <label for="apellido">Apellido:</label>
-        <input type="text" name="apellido" id="apellido" placeholder="Ej: Zapata" required>
-        <br>
-        <label for="correo">Correo:</label>
-        <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
-        <br>
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" name="contrasena" id="contrasena" required>
-        <br>
-        <input type="submit" value="Registrarse">
-    </form>
+        <h1>Registro de Terapeuta</h1>
+        <form id="registroForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
+            <br>
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" id="apellido" placeholder="Ej: Zapata" required>
+            <br>
+            <label for="correo">Correo:</label>
+            <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
+            <br>
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" name="contrasena" id="contrasena" required>
+            <br>
+            <input type="submit" value="Registrarse">
+        </form>
+        <p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión...</p>
     </div>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            // Obtiene los datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const correo = document.getElementById('correo').value;
+            const contrasena = document.getElementById('contrasena').value;
+
+            // Aquí puedes agregar lógica para almacenar los datos en el almacenamiento local o en una base de datos simulada
+            // Por ejemplo, usando localStorage (esto es solo un ejemplo y no es seguro para datos sensibles)
+            localStorage.setItem('nombre', nombre);
+            localStorage.setItem('apellido', apellido);
+            localStorage.setItem('correo', correo);
+            localStorage.setItem('contrasena', contrasena);
+
+            // Muestra un mensaje de éxito
+            document.getElementById('mensaje').style.display = 'block';
+
+            // Redirige a la página de inicio de sesión después de un breve retraso
+            setTimeout(function() {
+                window.location.href = "inicioSesion.html";
+            }, 2000); // 2 segundos de retraso
+        });
+    </script>
 </body>
 </html>
