@@ -92,12 +92,14 @@
 
         const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
 
-        function mostraritems(){
-            Items.forEach(item => item.style.display='none');
+        function mostraritems() {
+            Items.forEach(item => item.style.display = 'none');
 
-            const itemRandom = Items.sort(()=>0.5 - Math.random()).slice(0,7);
-
-            itemRandom.forEach(item => item.style.display = 'block')
+            const itemRandom = Items.sort(() => 0.5 - Math.random()).slice(0, 7).sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
+            itemRandom.forEach((item, index) => {
+                item.style.display = 'block';
+                document.getElementById(`bloque${index + 1}`).setAttribute('data-correct-position', item.getAttribute('data-weight'));
+            });
         }
 
         mostraritems();
@@ -114,7 +116,7 @@
                 draggedItem = null; // Limpiamos la referencia del objeto arrastrado
             });
     
-            const dropArea = document.getElementById('dropArea')
+            const dropArea = document.getElementById('dropArea');
             
             item.addEventListener('dragover', function (e) {
                 e.preventDefault(); // Permitir soltar el objeto aquí
@@ -147,18 +149,24 @@
     
         // Función para verificar si los objetos están en el orden correcto
         function ordenCorrecto() {
-            const objetosVisibles = Array.from(document.getElementById('dropArea').querySelectorAll('.object')).filter(obj => obj.style.display !== 'none' && obj.hasAttribute('data-weight'));
-            const pesos = objetosVisibles.map(obj => parseInt(obj.getAttribute('data-weight')));
-    
-            // Verificar si los pesos están en orden ascendente
-            const esCorrecta = pesos.every((peso, index) => {
-                return index === 0 || peso >= pesos[index - 1];
+            const bloques = Array.from(document.getElementById('dropArea').querySelectorAll('.object')).filter(obj => obj.style.display !== 'none' && obj.hasAttribute('data-weight'));
+            let correctos = 0;
+
+            bloques.forEach((bloque, index) => {
+                const correctWeight = bloque.getAttribute('data-correct-position');
+                const currentWeight = bloque.getAttribute('data-weight');
+                if (correctWeight && currentWeight && correctWeight === currentWeight) {
+                    correctos++;
+                    bloque.style.backgroundColor = 'lightgreen';
+                } else {
+                    bloque.style.backgroundColor = 'white';
+                }
             });
     
-            const message = document.getElementById('message');
-            if (esCorrecta && objetosVisibles.length === 7) {
+            // Si todos están correctos
+            if (correctos === 7) {
                 abrirVentanaGanadora();
-            } 
+            }
         }
 
         function abrirVentanaGanadora(){
