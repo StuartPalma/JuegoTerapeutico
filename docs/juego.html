@@ -13,6 +13,7 @@
     <div class="container">
         <h1 class="titulo-principal"> Ordena los Objetos del Más Liviano al Más Pesado</h1>
         <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
+        <p id="contador">movimientos: 0</p>
 
         <!-- Área de juego donde se mostrarán los objetos -->
          <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
@@ -84,11 +85,13 @@
             <span class="cerrar">&times;</span>
             <h2> ¡Felicidades! </h2>
             <p> Has ordenado correctamente</p>
+            <p id="totalMovimientos"></p>
         </div>
      </div>
 
      <script>
         let draggedItem = null; // Objeto que se está arrastrando
+        let movimiento = 0;//contador
 
         const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
 
@@ -126,6 +129,9 @@
                 e.preventDefault(); // Evitar comportamiento por defecto
     
                 if (draggedItem !== this) {
+                    //incremenatr el movimietno
+                    movimiento++;
+                    document.getElementById('contador').innerText= `Movimientos: ${movimiento}`;
                     // Intercambiamos los objetos arrastrados
                     const tempHTML = this.innerHTML;
                     const tempWeight = this.getAttribute('data-weight');
@@ -172,6 +178,7 @@
         function abrirVentanaGanadora(){
             const modal = document.getElementById('ventanaGanadora');
             modal.style.display= 'block';
+            document.getElementById('totalMovimientos').innerText= `total movimientos: ${movimiento}`;
         }
 
          // Cerrar el modal al hacer clic en la 'X'
