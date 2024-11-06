@@ -25,6 +25,7 @@ body{
     justify-content: center;
     background-color: aliceblue;
     cursor: grab; /*cambiamos a un amanita el mouse*/
+    font-weight: bold; /* Resaltar el peso */
 }
 .message{
     font-size: 20px;
