@@ -87,9 +87,21 @@
         </div>
      </div>
 
-    <script>
+     <script>
         let draggedItem = null; // Objeto que se está arrastrando
-    
+
+        const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
+
+        function mostraritems(){
+            Items.forEach(item => item.style.display='none');
+
+            const itemRandom = Items.sort(()=>0.5 - Math.random()).slice(0,7);
+
+            itemRandom.forEach(item => item.style.display = 'block')
+        }
+
+        mostraritems();
+
         // Habilitamos el arrastre y soltado en los objetos
         document.querySelectorAll('.object').forEach(item => {
             item.addEventListener('dragstart', function (e) {
@@ -102,6 +114,8 @@
                 draggedItem = null; // Limpiamos la referencia del objeto arrastrado
             });
     
+            const dropArea = document.getElementById('dropArea')
+            
             item.addEventListener('dragover', function (e) {
                 e.preventDefault(); // Permitir soltar el objeto aquí
             });
@@ -133,8 +147,8 @@
     
         // Función para verificar si los objetos están en el orden correcto
         function ordenCorrecto() {
-            const objetos = Array.from(document.querySelectorAll('.object'));
-            const pesos = objetos.map(obj => parseInt(obj.getAttribute('data-weight')));
+            const objetosVisibles = Array.from(document.getElementById('dropArea').querySelectorAll('.object')).filter(obj => obj.style.display !== 'none' && obj.hasAttribute('data-weight'));
+            const pesos = objetosVisibles.map(obj => parseInt(obj.getAttribute('data-weight')));
     
             // Verificar si los pesos están en orden ascendente
             const esCorrecta = pesos.every((peso, index) => {
@@ -142,12 +156,11 @@
             });
     
             const message = document.getElementById('message');
-            if (esCorrecta) {
-                //message.innerHTML = '';
-               abrirVentanaGanadora();
+            if (esCorrecta && objetosVisibles.length === 7) {
+                abrirVentanaGanadora();
             } 
-
         }
+
         function abrirVentanaGanadora(){
             const modal = document.getElementById('ventanaGanadora');
             modal.style.display= 'block';
