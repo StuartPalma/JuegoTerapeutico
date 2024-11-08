@@ -158,6 +158,11 @@
 
             item.addEventListener('touchend', function (e) {
                 setTimeout(() => this.style.visibility = 'visible', 0);
+                if (draggedItem !== this) {
+                    // Incrementar el movimiento al soltar
+                    movimiento++;
+                    document.getElementById('contador').innerText = `Movimientos: ${movimiento}`;
+                }
                 draggedItem = null;
             });
 
@@ -166,7 +171,8 @@
                 const touchLocation = e.targetTouches[0];
                 const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
                 if (element && element.classList.contains('object') && draggedItem !== element) {
-                    element.dispatchEvent(new Event('drop'));
+                    // Solo mover pero no incrementar movimiento
+                    element.dispatchEvent(new Event('dragover'));
                 }
             });
             
