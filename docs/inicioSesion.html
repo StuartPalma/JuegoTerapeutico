@@ -29,9 +29,11 @@
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault(); // Evita el envío del formulario
 
-            // Obtiene los datos del formulario
-            const correo = document.getElementById('correo').value;
+            // Obtiene los datos del formulario y elimina espacios innecesarios
+            const correo = document.getElementById('correo').value.trim();
             const contrasena = document.getElementById('contrasena').value;
+
+            console.log('Datos de inicio de sesión:', { correo, contrasena });
 
             try {
                 // Iniciar sesión con Firebase Authentication
