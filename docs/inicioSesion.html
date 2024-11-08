@@ -35,23 +35,24 @@
 
             console.log('Datos de inicio de sesión:', { correo, contrasena });
 
-            try {
-                // Iniciar sesión con Firebase Authentication
-                const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
-                console.log('Inicio de sesión exitoso:', userCredential.user);
-                // Redirige a juego.html si el inicio de sesión es exitoso
-                window.location.href = "juego.html";
-            } catch (error) {
-                let mensajeError = 'Error al iniciar sesión: ';
-                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                    mensajeError += 'Correo o contraseña incorrectos. Por favor, intenta de nuevo.';
-                } else {
-                    mensajeError += error.message;
-                }
-                console.error('Error al iniciar sesión:', error);
-                document.getElementById('error').innerText = mensajeError;
-                document.getElementById('error').style.display = 'block';
-            }
+            signInWithEmailAndPassword(auth, correo, contrasena)
+                .then((userCredential) => {
+                    console.log('Inicio de sesión exitoso:', userCredential.user);
+                    // Redirige a juego.html si el inicio de sesión es exitoso
+                    console.log('Redirigiendo a juego.html');
+                    window.location.href = "juego.html";
+                })
+                .catch((error) => {
+                    let mensajeError = 'Error al iniciar sesión: ';
+                    if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                        mensajeError += 'Correo o contraseña incorrectos. Por favor, intenta de nuevo.';
+                    } else {
+                        mensajeError += error.message;
+                    }
+                    console.error('Error al iniciar sesión:', error);
+                    document.getElementById('error').innerText = mensajeError;
+                    document.getElementById('error').style.display = 'block';
+                });
         });
     </script>
 </head>
