@@ -150,6 +150,26 @@
                 // Verificamos el orden automáticamente después de soltar
                 ordenCorrecto();
             });
+            // Eventos para dispositivos móviles
+            item.addEventListener('touchstart', function (e) {
+                draggedItem = this;
+                setTimeout(() => this.style.visibility = 'hidden', 0);
+            });
+
+            item.addEventListener('touchend', function (e) {
+                setTimeout(() => this.style.visibility = 'visible', 0);
+                draggedItem = null;
+            });
+
+            item.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+                const touchLocation = e.targetTouches[0];
+                const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+                if (element && element.classList.contains('object') && draggedItem !== element) {
+                    element.dispatchEvent(new Event('drop'));
+                }
+            });
+            
         });
         // TODO: Verificar la victoria con los 7 conjuntos y un check cuando un conjunto esté bien ordenado.
     
