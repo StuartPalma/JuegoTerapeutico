@@ -43,7 +43,7 @@
             <div class="object" draggable="true" id="item20" data-weight="30">Reloj</div>
         
             <div class="object" draggable="true" id="item21" data-weight="32">Autobús</div>
-            <div class="object" draggable="true" id="item22" data-weight="6">Zarcillos</div>
+            <div class="object" draggable="true" id="item22" data-weight="6">arcillos</div>
             <div class="object" draggable="true" id="item23" data-weight="17">Sandía</div>
             <div class="object" draggable="true" id="item24" data-weight="9">Diadema</div>
             <div class="object" draggable="true" id="item25" data-weight="22">Calabaza</div>
@@ -69,8 +69,8 @@
             <div class="object" draggable="true" id="bloque3" ></div>
             <div class="object" draggable="true" id="bloque4" ></div>
             <div class="object" draggable="true" id="bloque5" ></div>
-            <div class="object" draggable="true" id="bloque6" ></div>
-            <div class="object" draggable="true" id="bloque7" ></div>
+            <!--<div class="object" draggable="true" id="bloque6" ></div>
+            <div class="object" draggable="true" id="bloque7" ></div>-->
         </div>
         </div>
 
@@ -98,7 +98,7 @@
         function mostraritems() {
             Items.forEach(item => item.style.display = 'none');
 
-            const itemRandom = Items.sort(() => 0.5 - Math.random()).slice(0, 7).sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
+            const itemRandom = Items.sort(() => 0.5 - Math.random()).slice(0,5 ).sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
             itemRandom.forEach((item, index) => {
                 item.style.display = 'block';
                 document.getElementById(`bloque${index + 1}`).setAttribute('data-correct-position', item.getAttribute('data-weight'));
@@ -211,7 +211,7 @@
             });
     
             // Si todos están correctos
-            if (correctos === 7) {
+            if (correctos === 5) {
                 abrirVentanaGanadora();
             }
         }
