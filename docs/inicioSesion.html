@@ -35,7 +35,8 @@
 
             try {
                 // Iniciar sesión con Firebase Authentication
-                await signInWithEmailAndPassword(auth, correo, contrasena);
+                const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
+                console.log('Inicio de sesión exitoso:', userCredential.user);
                 // Redirige a juego.html si el inicio de sesión es exitoso
                 window.location.href = "juego.html";
             } catch (error) {
@@ -45,6 +46,7 @@
                 } else {
                     mensajeError += error.message;
                 }
+                console.error('Error al iniciar sesión:', error);
                 document.getElementById('error').innerText = mensajeError;
                 document.getElementById('error').style.display = 'block';
             }
