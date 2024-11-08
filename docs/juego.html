@@ -98,7 +98,15 @@
         function mostraritems() {
             Items.forEach(item => item.style.display = 'none');
 
-            const itemRandom = Items.sort(() => 0.5 - Math.random()).slice(0,5 ).sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
+            // Dividir los items en niveles de 5 objetos
+            const niveles = [];
+            for (let i = 0; i < Math.ceil(Items.length / 5); i++) {
+                niveles.push(Items.slice(i * 5, (i + 1) * 5));
+            }
+            // Seleccionar aleatoriamente un nivel
+            const nivelAleatorio = niveles[Math.floor(Math.random() * niveles.length)];
+
+            const itemRandom = nivelAleatorio.sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
             itemRandom.forEach((item, index) => {
                 item.style.display = 'block';
                 document.getElementById(`bloque${index + 1}`).setAttribute('data-correct-position', item.getAttribute('data-weight'));
