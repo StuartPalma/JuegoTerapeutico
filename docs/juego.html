@@ -154,26 +154,41 @@
             item.addEventListener('touchstart', function (e) {
                 draggedItem = this;
                 setTimeout(() => this.style.visibility = 'hidden', 0);
+                e.preventDefault();
             });
 
             item.addEventListener('touchend', function (e) {
                 setTimeout(() => this.style.visibility = 'visible', 0);
-                if (draggedItem !== this) {
+                if (draggedItem !== null) {
                     // Incrementar el movimiento al soltar
                     movimiento++;
                     document.getElementById('contador').innerText = `Movimientos: ${movimiento}`;
+                    // Encontrar el elemento debajo del toque final
+                    const touchLocation = e.changedTouches[0];
+                    const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+                    if (element && element.classList.contains('object') && element !== draggedItem) {
+                        // Intercambiamos los objetos arrastrados
+                        const tempHTML = element.innerHTML;
+                        const tempWeight = element.getAttribute('data-weight');
+                        const tempId = element.id;
+    
+                        // Intercambiamos contenido y atributos
+                        element.innerHTML = draggedItem.innerHTML;
+                        element.setAttribute('data-weight', draggedItem.getAttribute('data-weight'));
+                        element.id = draggedItem.id;
+    
+                        draggedItem.innerHTML = tempHTML;
+                        draggedItem.setAttribute('data-weight', tempWeight);
+                        draggedItem.id = tempId;
+                    }
                 }
                 draggedItem = null;
+                // Verificamos el orden automáticamente después de soltar
+                ordenCorrecto();
             });
 
             item.addEventListener('touchmove', function (e) {
                 e.preventDefault();
-                const touchLocation = e.targetTouches[0];
-                const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
-                if (element && element.classList.contains('object') && draggedItem !== element) {
-                    // Solo mover pero no incrementar movimiento
-                    element.dispatchEvent(new Event('dragover'));
-                }
             });
             
         });
