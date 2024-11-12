@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesion de Paciente</title>
+    <link rel="stylesheet" href="../styles/loginPaciente.css">
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+        const auth = getAuth();
+
+        // Iniciar sesión de forma anónima para poder interactuar con Firestore
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('loginForm').addEventListener('submit', async function(event) {
+                event.preventDefault(); // Evitar el envío del formulario
+
+                // Obtener el ID del paciente ingresado
+                const idPaciente = document.getElementById('idPaciente').value.trim();
+
+                try {
+                    if (auth.currentUser) {
+                        // Buscar el documento del paciente en Firestore
+                        const docRef = doc(db, "pacientes", idPaciente);
+                        const docSnap = await getDoc(docRef);
+
+                        if (docSnap.exists()) {
+                            // Si el paciente existe, redirigir al juego
+                            console.log('Inicio de sesión exitoso');
+                            // Redirige a la página de inicio de sesión después de un breve retraso
+                            setTimeout(function() {
+                                window.location.href = "juego.html";
+                            }, 3000); // 3 segundos de retraso
+                            //window.location.href = "juego.html";
+                        } else {
+                            alert('ID de paciente no encontrado. Por favor, verifica e intenta nuevamente.');
+                        }
+                    } else {
+                        alert('Usuario no autenticado. Por favor, intenta nuevamente.');
+                    }
+
+                // Muestra un mensaje de éxito
+                document.getElementById('mensaje').style.display = 'block';
+
+                
+
+                } catch (error) {
+                    console.error('Error al iniciar sesión del paciente:', error);
+                    alert('Error al iniciar sesión. Por favor, intenta nuevamente.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="contenedor_login">
+        <h1>Inicio de Sesión de Paciente</h1>
+        <form id="loginForm">
+            <label for="idPaciente">ID del Paciente:</label>
+            <input type="text" name="idPaciente" id="idPaciente" placeholder="Ej: 0123456789" pattern="\d{10}" title="Debe ser un número de 10 dígitos" required>
+            <br>
+            <input type="submit" value="Iniciar Sesión">
+        </form>
+        <p id="error" style="color: red; display: none;">ID de paciente incorrecto.</p>
+        <p id="mensaje" style="color: green; display: none;">Ingreso exitoso. Redirigiendo a la página de juego...</p>
+    </div>
+</body>
+</html>
