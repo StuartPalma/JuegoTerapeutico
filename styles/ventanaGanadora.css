@@ -1,0 +1,61 @@
+body {
+    /* Cambiar la fuente de letra */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: hsl(30, 90%, 70%);
+}
+
+.ganador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contenido-ventana {
+    background-color: antiquewhite;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.titulo-principal {
+    font-size: 30px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+#totalMovimientos {
+    font-size: 20px;
+    color: chartreuse;
+    margin-top: 10px;
+}
+
+.boton {
+    font-size: 20px;
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.925);
+    color: rgb(59, 54, 54);
+    border: black 2px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.boton:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
