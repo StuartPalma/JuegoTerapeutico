@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="titulo-principal"> Ordena los Objetos del Más Liviano al Más Pesado</h1>
+        <h1 class="titulo-principal"> Ordena los objetos del más liviano al más pesado</h1>
         <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
         <p id="contador">movimientos: 0</p>
 
@@ -62,7 +62,8 @@
         </div>
 
         <div class="game-area" id="dropArea" style="width: 100%; height: 200px; 
-        border: 2px dashed #ccc; margin-top: 20px; background-color: white; display: flex; justify-content: center; align-items: center;">
+        border: 2px dashed #ccc; margin-top: 20px; background-color: white; display: flex;
+         justify-content: center; align-items: center;">
             <p>Arrastra aquí las palabras</p>
             <div class="object" draggable="true" id="bloque1" ></div>
             <div class="object" draggable="true" id="bloque2" ></div>
@@ -79,15 +80,7 @@
         <div class="message" id="message"></div>
     </div>
 
-    <!-- crear ventanita ganadora-->
-     <div id="ventanaGanadora" class="ganador">
-        <div class="contenido-ventana">
-            <span class="cerrar">&times;</span>
-            <h2> ¡Felicidades! </h2>
-            <p> Has ordenado correctamente</p>
-            <p id="totalMovimientos"></p>
-        </div>
-     </div>
+
 
      <script>
         let draggedItem = null; // Objeto que se está arrastrando
@@ -210,11 +203,14 @@
             bloques.forEach((bloque, index) => {
                 const correctWeight = bloque.getAttribute('data-correct-position');
                 const currentWeight = bloque.getAttribute('data-weight');
-                if (correctWeight && currentWeight && correctWeight === currentWeight) {
+                if(!bloque.id.startsWith(`item`)){
+                    bloque.style.backgroundColor= 'white'
+                }
+                else if (correctWeight && currentWeight && correctWeight === currentWeight) {
                     correctos++;
                     bloque.style.backgroundColor = 'lightgreen';
                 } else {
-                    bloque.style.backgroundColor = 'white';
+                    bloque.style.backgroundColor = '#D53032';
                 }
             });
     
@@ -230,18 +226,7 @@
             document.getElementById('totalMovimientos').innerText= `total movimientos: ${movimiento}`;
         }
 
-         // Cerrar el modal al hacer clic en la 'X'
-         document.querySelector('.cerrar').addEventListener('click', () => {
-            document.getElementById('ventanaGanadora').style.display = 'none';
-        });
 
-        // Cerrar el modal si se hace clic fuera del contenido del modal
-        window.addEventListener('click', (event) => {
-            const modal = document.getElementById('ventanaGanadora');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
     </script>
     
 </body>
