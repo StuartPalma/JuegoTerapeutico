@@ -51,6 +51,15 @@
                         });
                         alert('Registro exitoso');
                         document.getElementById('registroForm').reset();
+                        // Muestra un mensaje de éxito
+                        document.getElementById('mensaje').style.display = 'block';
+
+                        // Redirige a la página de inicio de sesión después de un breve retraso
+                        setTimeout(function() {
+                            window.location.href = "idPaciente.html";
+                        }, 2000); // 2 segundos de retraso
+
+
                     } catch (error) {
                         console.error('Error al registrar al paciente:', error);
                         alert(`Error al registrar al paciente: ${error.message}`);
@@ -77,7 +86,7 @@
             <br>
             <label for="edad">Edad:</label>
             <input type="number" name="edad" id="edad" min="40" required>
-            <br>
+            <br><p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión de paciente...</p>
             <input type="submit" value="Registrar Paciente">
         </form>
         <p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión...</p>
