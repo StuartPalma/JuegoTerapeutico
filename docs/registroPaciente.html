@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar un paciente</title>
+    <link rel="stylesheet" href="../styles/registropaciente.css">
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+        const auth = getAuth();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('registroForm').addEventListener('submit', async function (event) {
+                event.preventDefault(); // Evitar envío del formulario
+
+                // Obtener los datos del formulario
+                const nombre = document.getElementById('nombre').value.trim();
+                const apellido = document.getElementById('apellido').value.trim();
+                const id = document.getElementById('id').value.trim();
+                const edad = parseInt(document.getElementById('edad').value.trim(), 10);
+
+                // Verificar que el usuario esté autenticado
+                if (auth.currentUser) {
+                    try {
+                        // Almacenar en Firestore
+                        await setDoc(doc(db, "pacientes", id), {
+                            nombre: nombre,
+                            apellido: apellido,
+                            id: id,
+                            edad: edad,
+                            registradoPor: auth.currentUser.uid // Guarda el UID del terapeuta que registra al paciente
+                        });
+                        alert('Registro exitoso');
+                        document.getElementById('registroForm').reset();
+                    } catch (error) {
+                        console.error('Error al registrar al paciente:', error);
+                        alert(`Error al registrar al paciente: ${error.message}`);
+                    }
+                } else {
+                    alert('El terapeuta no está autenticado. Por favor, inicie sesión antes de registrar a un paciente.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="conetnedor_registro">
+        <h1>Registro de Paciente</h1>
+        <form id="registroForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
+            <br>
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" id="apellido" placeholder="Ej: Zapata" required>
+            <br>
+            <label for="id">id:</label>
+            <input type="text" name="id" id="id" placeholder="Ej: 0123456789" pattern="\d{10}" title="Debe ser un número de 10 dígitos" required>
+            <br>
+            <label for="edad">edad:</label>
+            <input type="number" name="edad" id="edad" min="40" required>
+            <br>
+            <input type="submit" value="Registrar Paciente">
+        </form>
+        <p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión...</p>
+    </div>
+</body>
+</html>
