@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar un paciente</title>
+    <title>Registrar un terapeuta</title>
     <link rel="stylesheet" href="../styles/registropaciente.css">
     <!-- Firebase Configuration -->
     <script type="module">
@@ -72,10 +72,10 @@
             <label for="apellido">Apellido:</label>
             <input type="text" name="apellido" id="apellido" placeholder="Ej: Zapata" required>
             <br>
-            <label for="id">id:</label>
+            <label for="id">Cedula:</label>
             <input type="text" name="id" id="id" placeholder="Ej: 0123456789" pattern="\d{10}" title="Debe ser un número de 10 dígitos" required>
             <br>
-            <label for="edad">edad:</label>
+            <label for="edad">Edad:</label>
             <input type="number" name="edad" id="edad" min="40" required>
             <br>
             <input type="submit" value="Registrar Paciente">
