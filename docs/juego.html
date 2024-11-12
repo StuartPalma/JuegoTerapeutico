@@ -216,15 +216,11 @@
     
             // Si todos están correctos
             if (correctos === 5) {
-                abrirVentanaGanadora();
+                window.location.href= "ventanaGanadora.html";
             }
         }
 
-        function abrirVentanaGanadora(){
-            const modal = document.getElementById('ventanaGanadora');
-            modal.style.display= 'block';
-            document.getElementById('totalMovimientos').innerText= `total movimientos: ${movimiento}`;
-        }
+
 
 
     </script>
