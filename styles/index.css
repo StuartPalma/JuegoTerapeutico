@@ -1,5 +1,20 @@
+.back-color-primary{
+    background-color: white;
+}
+.back-color-secondary {
+    background-color: rgb(243,144,45);
+}
+.padding-50{
+    padding: 0px 0px;
+    margin: 0px;
+}
 body {
-    background-color: hsl(30, 90%, 70%);
+    background-color: white;
+    margin: 0px auto;
+}
+.barra{
+    height: 70px;
+    width: 100%;
 }
 
 .titulo-principal {
@@ -36,7 +51,8 @@ body {
     /* Aumenta ligeramente el tamaño del botón */
 }
 
-.recuadro {
+.login-recuadro {
+    display: inline-block;
     border: 2px solid black;
     padding: 20px;
     margin: 20px auto;
@@ -50,17 +66,29 @@ body {
     /* Añade una transición suave */
 }
 
-.recuadro:hover {
+.login-recuadro:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     /* Aumenta la sombra al hacer hover */
 }
-
 .titulo-recuadro {
+    display: inline-block;
     text-align: center;
-    width: 75%;
-    margin: 0 auto;
+    width: 45%;
+    margin: 0px auto;
     margin-bottom: 20px;
     border: 2px solid black;
     border-radius: 10px;
     background-color: white;
+}
+.imagen-index{
+
+}
+.bienvenida{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.titulo-login{
+    display: flex;
+    flex-direction: column;
 }

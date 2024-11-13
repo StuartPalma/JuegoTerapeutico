@@ -54,7 +54,7 @@ input[type="submit"]:hover {
     background-color: orangered;
 }
 
-.recuadro {
+.login-recuadro {
     border: 2px solid black;
     padding: 20px;
     margin: 20px auto;
@@ -64,6 +64,6 @@ input[type="submit"]:hover {
     transition: box-shadow 0.3s ease; /* Añade una transición suave */
 }
 
-.recuadro:hover {
+.login-recuadro:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Añade una sombra al hacer hover */
 }
