@@ -89,20 +89,19 @@
         const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
 
         function mostraritems() {
+            // Ocultar todos los items inicialmente
             Items.forEach(item => item.style.display = 'none');
 
-            // Dividir los items en niveles de 5 objetos
-            const niveles = [];
-            for (let i = 0; i < Math.ceil(Items.length / 5); i++) {
-                niveles.push(Items.slice(i * 5, (i + 1) * 5));
-            }
-            // Seleccionar aleatoriamente un nivel
-            const nivelAleatorio = niveles[Math.floor(Math.random() * niveles.length)];
+            // Seleccionar aleatoriamente 5 items de entre todos los disponibles
+            const itemsAleatorios = Items.sort(() => 0.5 - Math.random()).slice(0, 5);
 
-            const itemRandom = nivelAleatorio.sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
-            itemRandom.forEach((item, index) => {
+            // Mostrar los items seleccionados y asignar sus posiciones correctas
+            itemsAleatorios.forEach((item, index) => {
                 item.style.display = 'block';
                 document.getElementById(`bloque${index + 1}`).setAttribute('data-correct-position', item.getAttribute('data-weight'));
+                document.getElementById(`bloque${index + 1}`).innerHTML = item.innerHTML;
+                document.getElementById(`bloque${index + 1}`).setAttribute('data-weight', item.getAttribute('data-weight'));
+                document.getElementById(`bloque${index + 1}`).setAttribute('id', item.getAttribute('id'));
             });
         }
 
