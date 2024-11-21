@@ -5,6 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesion de Terapeuta</title>
     <link rel="stylesheet" href="../styles/inicioSesion.css">
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            // Obtiene los datos del formulario y elimina espacios innecesarios
+            const correo = document.getElementById('correo').value.trim();
+            const contrasena = document.getElementById('contrasena').value;
+
+            console.log('Datos de inicio de sesión:', { correo, contrasena });
+
+            signInWithEmailAndPassword(auth, correo, contrasena)
+                .then((userCredential) => {
+                    console.log('Inicio de sesión exitoso:', userCredential.user);
+                    // Redirige a juego.html si el inicio de sesión es exitoso
+                    console.log('Redirigiendo a juego.html');
+                    window.location.href = "paciente.html";
+                })
+                .catch((error) => {
+                    let mensajeError = 'Error al iniciar sesión: ';
+                    if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                        mensajeError += 'Correo o contraseña incorrectos. Por favor, intenta de nuevo.';
+                    } else {
+                        mensajeError += error.message;
+                    }
+                    console.error('Error al iniciar sesión:', error);
+                    document.getElementById('error').innerText = mensajeError;
+                    document.getElementById('error').style.display = 'block';
+                });
+        });
+    </script>
 </head>
 <body>
     <div class="recuadro">
@@ -20,28 +70,5 @@
         </form>
         <p id="error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita el envío del formulario
-
-            // Valores quemados para las credenciales
-            const correoValido = "alguien@ejemplo.com";
-            const contrasenaValida = "123456";
-
-            // Obtiene los datos del formulario
-            const correo = document.getElementById('correo').value;
-            const contrasena = document.getElementById('contrasena').value;
-
-            // Verifica las credenciales
-            if (correo === correoValido && contrasena === contrasenaValida) {
-                // Redirige a juego.html
-                window.location.href = "juego.html";
-            } else {
-                // Muestra un mensaje de error
-                document.getElementById('error').style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
