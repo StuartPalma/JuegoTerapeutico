@@ -1,4 +1,4 @@
-Juego Terapeútico EVOLOGIC
+Juego Terapeútico
 Este proyecto es un juego diseñado con fines terapéuticos, orientado a la ayuda a pacientes que padecen alzheimer, funcionando como un refuerxo para la mente del paciente ademas de buscar ser un soporte para las personas encardas del cuidado del paciente, con el fin de ayudarlo en el monitoreo de rendimiento y puedan sacar conclusiones de manera mas rapida y practica.
 
 Descripción
@@ -29,6 +29,9 @@ Licencia
 Este proyecto no posee licencias por el momento
 
 Contacto
-Para preguntas o sugerencias, puedes contactar a Stuartpalma a través de mi correo jhou2013x@hotmail,com o a Ariel Sanchez a traves de su correo ariel.sanchez@epn.edu.ec.
+Para preguntas o sugerencias, puedes contactar a:
+Stuart Palma a través del siguiente correo jhou2013x@hotmail.com,
+Ariel Sanchez a traves de su correo ariel.sanchez@epn.edu.ec.
+Andres Quillupangui a traves de su correo andres.quillupangui@epn.edu.ec
 
 Este archivo README proporciona una visión general del proyecto, instrucciones claras para la instalación y uso, y directrices para contribuir, facilitando así la colaboración y el entendimiento del propósito del Juego Terapeútico. ::contentReference[oaicite:1]{index=1}
