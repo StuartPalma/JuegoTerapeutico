@@ -95,13 +95,14 @@
             // Seleccionar aleatoriamente 5 items de entre todos los disponibles
             const itemsAleatorios = Items.sort(() => 0.5 - Math.random()).slice(0, 5);
 
-            // Mostrar los items seleccionados y asignar sus posiciones correctas
-            itemsAleatorios.forEach((item, index) => {
+            // Ordenar los items seleccionados por su peso para mantener el orden correcto
+            const itemRandom = itemsAleatorios.sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
+
+            // Mostrar los items seleccionados en la parte superior y asignar sus posiciones correctas
+            itemRandom.forEach((item, index) => {
                 item.style.display = 'block';
                 document.getElementById(`bloque${index + 1}`).setAttribute('data-correct-position', item.getAttribute('data-weight'));
-                document.getElementById(`bloque${index + 1}`).innerHTML = item.innerHTML;
-                document.getElementById(`bloque${index + 1}`).setAttribute('data-weight', item.getAttribute('data-weight'));
-                document.getElementById(`bloque${index + 1}`).setAttribute('id', item.getAttribute('id'));
+                document.getElementById(`bloque${index + 1}`).innerHTML = "";
             });
         }
 
