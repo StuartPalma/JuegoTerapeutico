@@ -1,10 +1,35 @@
+a {
+    text-decoration: none;
+}
+
 /* Framework */
+
 .back-color-primary {
     background-color: white;
 }
 
 .back-color-secondary {
-    background-color: rgb(241, 181, 123);
+    /*background-color: hsl(334, 59%, 8%);*/
+    background-color: hsl(20, 100%, 60%);
+    /*background-color: hsl(189, 66%, 8%);*/
+}
+
+.back-color-tertiary {
+    /*background-color: hsl(189, 66%, 8%);*/
+    background-color: hsl(0, 0%, 13%);
+}
+
+.back-color-cuaternary {
+    background-color: hsl(33, 88%, 66%);
+}
+
+/*Colores*/
+.color-primary {
+    color: hsl(0, 0%, 13%);
+}
+
+.color-secondary {
+    color: hsl(0, 0%, 100%);
 }
 
 .padding-0 {
@@ -21,18 +46,59 @@
 }
 
 /* Fuentes */
-.font-arial {
-    font-family: Arial, sans-serif;
+.font-berlin {
+    font-family: "Berlin Sans FB";
 }
 
 .font-impact {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.font-hartsfolk {
+    font-family: 'Hartsfolk';
+}
+
+.font-woliu {
+    font-family: 'Woliu Maners';
+}
+
+@font-face {
+    font-family: 'Hartsfolk';
+    src: url('../fonts/Hartsfolk.otf') format('truetype');
+}
+
+@font-face {
+    font-family: "Woliu Maners";
+    src: url('../fonts/Woliu Maners Demo.ttf') format('truetype');
+}
+
 /* Estilos */
 .ul-list-style-none {
     list-style: none;
 }
+
+/* Animaciones */
+@keyframes tambalear {
+    0% { transform: rotateY(180deg) translateX(0); }
+    25% { transform: rotateY(180deg) translateX(-10px); }
+    50% { transform: rotateY(180deg) translateX(10px); }
+    75% { transform: rotateY(180deg) translateX(-10px); }
+    100% { transform: rotateY(180deg) translateX(0); }
+}
+
+.tambalear {
+    animation: tambalear 2s infinite;
+}
+
+@keyframes tambalear-boton {
+    0% { transform: perspective(500px) rotateZ(0deg); }
+    25% { transform: perspective(500px) rotateZ(5deg); }
+    50% { transform: perspective(500px) rotateZ(0deg); }
+    75% { transform: perspective(500px) rotateZ(-5deg); }
+    100% { transform: perspective(500px) rotateZ(0deg); }
+}
+
+
 
 /* Clases propias */
 body {
@@ -69,6 +135,8 @@ a {
     width: 80%;
     height: 80%;
     object-fit: contain;
+    transform: rotateY(180deg);
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
 }
 
 .titulo-login {
@@ -95,11 +163,9 @@ a {
 }
 
 .titulo-principal {
-    font-size: 60px;
+    font-size: 45px;
     display: block;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: #333;
 }
 
 .terapeuta {
@@ -114,18 +180,17 @@ a {
     margin: 10px auto;
     padding: 10px 20px;
     font-weight: bold;
-    background-color: rgba(241, 191, 82, 0.925);
-    color: rgb(59, 54, 54);
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .boton:hover {
-    background-color: rgb(235, 164, 12);
+    background-color: hsl(20, 100%, 60%);
     /* Cambia el color de fondo al hacer hover */
     transform: scale(1.05);
     /* Aumenta ligeramente el tamaño del botón */
+    animation: tambalear-boton 0.5s infinite;
 }
 
 .login-recuadro {
@@ -175,16 +240,42 @@ a {
     margin: 0px 0px 5px 0px;
 }
 
-.imagen-footer {
+.footer-imagen {
     display: flex;
     height: 70px;
     object-fit: contain;
 }
 
-.imagen-footer img {
+.footer-imagen img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    align-items: flex-end;
 }
 
+.footer {
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-enlaces a {
+    text-decoration: none;
+    color: #442400;
+}
+
+.footer-enlaces a:hover {
+    color: hsl(125, 100%, 60%);
+}
+
+.footer-enlaces ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.footer-enlaces ul li {
+    display: inline;
+    margin: 0px 10px;
+}
+
+.footer-fondo {
+    margin: 10px 0px;
+}
