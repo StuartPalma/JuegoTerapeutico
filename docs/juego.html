@@ -14,6 +14,8 @@
         <h1 class="titulo-principal"> Ordena los objetos del más liviano al más pesado</h1>
         <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
         <p id="contador">movimientos: 0</p>
+        <p id="cronometro">Time: 00:00</p>
+        <button id="pausarBtn" onclick="pausarBoton()"></button>
 
         <!-- Área de juego donde se mostrarán los objetos -->
          <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
@@ -82,9 +84,23 @@
 
 
 
+    <div id="pausa" class="modal">
+        <div class="modal_content">
+            <h2>EL juego está en pausa</h2>
+            <p id="tiempo">Tiempo transcurrido: 00:00</p>
+            <button onclick="volverAlJuego()">Volver al Juego</button>
+            <button onclick="salirDelJuego()">Salir</button>
+        </div>
+    </div>
+
      <script>
         let draggedItem = null; // Objeto que se está arrastrando
         let movimiento = 0;//contador
+        let segundos =0;
+        let minutos = 0; // Minutos del cronómetro
+        let cronometroInterval; // Intervalo del cronómetro
+        let cronometroPausado = false; // Estado del cronómetro (pausado o no)
+        iniciarCronometro();
 
         const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
 
@@ -107,6 +123,7 @@
         }
 
         mostraritems();
+        
 
         // Habilitamos el arrastre y soltado en los objetos
         document.querySelectorAll('.object').forEach(item => {
@@ -191,6 +208,8 @@
             item.addEventListener('touchmove', function (e) {
                 e.preventDefault();
             });
+
+           
             
         });
         // TODO: Verificar la victoria con los 7 conjuntos y un check cuando un conjunto esté bien ordenado.
@@ -216,11 +235,95 @@
     
             // Si todos están correctos
             if (correctos === 5) {
+                limpiarCronometro();
                 window.location.href = "ventanaGanadora.html?movimientos=" + movimiento;
             }
         }
+        //cargar cornometro 
+        window.onload=function(){
+            if(localStorage.getItem('minutos')&& localStorage.getItem('segundos')){
+                minutos = parseInt(localStorage.getItem('minutos'),10);
+                segundos = parseInt(localStorage.getItem('segundos'),10);
+            }
+            iniciarCronometro();
+        }
 
+        //guardar el tiempo
+        function guardarTiempoenlocalstorage(){
+                    //guardar el tiempo 
+            localStorage.setItem('minutos', minutos);
+            localStorage.setItem('segundos', segundos);
+        }
 
+            //cronometro
+        function iniciarCronometro(){
+            if (cronometroInterval !== null){
+                clearInterval(cronometroInterval);
+            }
+            cronometroInterval = setInterval(()=>{
+                if(!cronometroPausado){
+                    segundos ++;
+                    if (segundos == 60){
+                        minutos++;
+                        segundos =0;
+                    }
+                    document.getElementById('cronometro').innerText = 
+                    `Tiempo: ${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+                    
+                    guardarTiempoenlocalstorage();
+
+                }
+                }, 1000)
+            }
+            
+            iniciarCronometro();
+
+        //detener cronometro 
+        function pausarCronometro(){
+            cronometroPausado=true;
+        }
+
+        //reanudar cronometro
+        function reanudarCronmetro(){
+            if(cronometroPausado==true){
+                cronometroPausado=false;
+            }
+        }
+
+        //limpiar Cronometro 
+        function limpiarCronometro(){
+            clearInterval(cronometroInterval);
+            cronometroInterval = null;
+            segundos = 0;
+            minutos=0;
+            document.getElementById("cronometro").innerText= 'Tiempo: 00:00';
+            //limpiar local storage
+            localStorage.removeItem('minutos');
+            localStorage.removeItem('segundos');
+        }
+
+        //boton de pausa
+        function pausarBoton (){
+            pausarCronometro();
+            //mostrar el mdoal de pausa
+            const modal = document.getElementById('pausa');
+            modal.style.display="flex";
+
+            //mostrar el tiempo 
+            document.getElementById('tiempo').innerText=
+            `Tiempo transcurrido: ${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        }
+
+        function volverAlJuego(){
+            const modal = document.getElementById('pausa');
+            modal.style.display= "none"
+            reanudarCronmetro()
+            
+        }
+        function salirDelJuego(){
+            limpiarCronometro();
+            window.location.href= "idPaciente.html"
+        }
 
 
     </script>
