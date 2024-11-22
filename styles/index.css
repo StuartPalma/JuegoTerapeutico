@@ -1,20 +1,97 @@
-.back-color-primary{
+/* Framework */
+.back-color-primary {
     background-color: white;
 }
+
 .back-color-secondary {
-    background-color: rgb(243,144,45);
+    background-color: rgb(241, 181, 123);
 }
-.padding-50{
-    padding: 0px 0px;
-    margin: 0px;
+
+.padding-0 {
+    padding: 0;
 }
+
+.margin-0 {
+    margin: 0;
+}
+
+/* Bordes */
+.border-1-black {
+    border: 1px solid black;
+}
+
+/* Fuentes */
+.font-arial {
+    font-family: Arial, sans-serif;
+}
+
+.font-impact {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* Estilos */
+.ul-list-style-none {
+    list-style: none;
+}
+
+/* Clases propias */
 body {
     background-color: white;
-    margin: 0px auto;
+    margin: 0px;
 }
-.barra{
+
+a {
+    text-decoration: none;
+}
+
+.barra {
     height: 70px;
     width: 100%;
+}
+
+.bienvenida {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-image: url("../img/Fondo nubes.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.imagen-index {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen-index img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.titulo-login {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.titulo-TASE {
+    font-size: 120px;
+    margin: 0px;
+}
+
+.titulo-recuadro {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .titulo-principal {
@@ -53,7 +130,6 @@ body {
 
 .login-recuadro {
     display: inline-block;
-    border: 2px solid black;
     padding: 20px;
     margin: 20px auto;
     width: 200px;
@@ -70,25 +146,45 @@ body {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     /* Aumenta la sombra al hacer hover */
 }
-.titulo-recuadro {
-    display: inline-block;
-    text-align: center;
-    width: 45%;
-    margin: 0px auto;
-    margin-bottom: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: white;
-}
-.imagen-index{
 
-}
-.bienvenida{
-    width: 100%;
+.barra-footer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
+    height: 140px;
 }
-.titulo-login{
+
+.informacion-footer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: ghostwhite;
+    font-size: 20px;
 }
+
+.informacion-footer h2 {
+    margin: 0px 0px 10px 30px;
+}
+
+.informacion-footer ul {
+}
+
+.informacion-footer ul li {
+    margin: 0px 0px 5px 0px;
+}
+
+.imagen-footer {
+    display: flex;
+    height: 70px;
+    object-fit: contain;
+}
+
+.imagen-footer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    align-items: flex-end;
+}
+
