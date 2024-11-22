@@ -15,7 +15,7 @@
         <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
         <p id="contador">movimientos: 0</p>
         <p id="cronometro">Time: 00:00</p>
-        <button id="pausarBtn" onclick="pausarBoton()"></button>
+        <button id="pausarBtn"></button>
 
         <!-- Área de juego donde se mostrarán los objetos -->
          <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
@@ -84,7 +84,7 @@
 
 
 
-    <div id="pausa" class="modal">
+    <div id="pausa" class="modal" style="display: none;" >
         <div class="modal_content">
             <h2>EL juego está en pausa</h2>
             <p id="tiempo">Tiempo transcurrido: 00:00</p>
@@ -246,6 +246,7 @@
                 segundos = parseInt(localStorage.getItem('segundos'),10);
             }
             iniciarCronometro();
+            document.getElementById('pausarBtn').addEventListener('click', pausarBoton);
         }
 
         //guardar el tiempo
@@ -303,15 +304,15 @@
         }
 
         //boton de pausa
-        function pausarBoton (){
+        function pausarBoton() {
             pausarCronometro();
-            //mostrar el mdoal de pausa
+            // Mostrar el modal de pausa
             const modal = document.getElementById('pausa');
-            modal.style.display="flex";
+            modal.style.display = "flex";
 
-            //mostrar el tiempo 
-            document.getElementById('tiempo').innerText=
-            `Tiempo transcurrido: ${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            // Mostrar el tiempo transcurrido en el modal
+            document.getElementById('tiempo').innerText =
+                `Tiempo transcurrido: ${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
         }
 
         function volverAlJuego(){
