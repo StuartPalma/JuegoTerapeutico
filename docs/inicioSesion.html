@@ -5,43 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesion de Terapeuta</title>
     <link rel="stylesheet" href="../styles/inicioSesion.css">
+    <link rel="stylesheet" href="../styles/framework.css">
 </head>
 <body>
-    <div class="recuadro">
-        <h1>Inicio de Sesion de Terapeuta</h1>
-        <form id="loginForm">
+<div>
+    <div class="recuadro font-berlin">
+        <div id="login-img">
+            <img src="../img/Login%20Persona.png" alt="">
+        </div>
+        <form id="login-form">
             <label for="correo">Correo:</label>
             <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
             <br>
             <label for="contrasena">Contraseña:</label>
             <input type="password" name="contrasena" id="contrasena" required>
             <br>
-            <input type="submit" value="Iniciar Sesion">
+            <input type="submit" value="Iniciar Sesión">
         </form>
         <p id="error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
     </div>
+</div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita el envío del formulario
+<script>
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío del formulario
 
-            // Valores quemados para las credenciales
-            const correoValido = "alguien@ejemplo.com";
-            const contrasenaValida = "123456";
+        // Valores quemados para las credenciales
+        const correoValido = "alguien@ejemplo.com";
+        const contrasenaValida = "123456";
 
-            // Obtiene los datos del formulario
-            const correo = document.getElementById('correo').value;
-            const contrasena = document.getElementById('contrasena').value;
+        // Obtiene los datos del formulario
+        const correo = document.getElementById('correo').value;
+        const contrasena = document.getElementById('contrasena').value;
 
-            // Verifica las credenciales
-            if (correo === correoValido && contrasena === contrasenaValida) {
-                // Redirige a juego.html
-                window.location.href = "juego.html";
-            } else {
-                // Muestra un mensaje de error
-                document.getElementById('error').style.display = 'block';
-            }
-        });
-    </script>
+        // Verifica las credenciales
+        if (correo === correoValido && contrasena === contrasenaValida) {
+            // Redirige a juego.html
+            window.location.href = "juego.html";
+        } else {
+            // Muestra un mensaje de error
+            document.getElementById('error').style.display = 'block';
+        }
+    });
+</script>
 </body>
 </html>
