@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Felicidades!</title>
     <link rel="stylesheet" href="../styles/ventanaGanadora.css">
+    <link rel="stylesheet" href="../styles/framework.css">
 </head>
 <body>
     <div class="ganador">
-        <div class="contenido-ventana">
-            <h2>¡Felicidades!</h2>
+        <div class="contenido-ventana font-berlin">
+            <h1 class="font-christmas-laugh">¡Felicidades!</h1>
             <p>Has ordenado correctamente</p>
             <p id="totalMovimientos"></p>
-            <button onclick="volverAlJuego()">Volver al juego</button>
+            <button class="boton" onclick="volverAlJuego()">Volver al juego</button>
+            <button class="boton back-color-secondary" onclick="volverAlTablero()">Volver al tablero </button>
         </div>
     </div>
 
@@ -24,6 +26,10 @@
 
         function volverAlJuego() {
             window.location.href = "juego.html"; // Cambia "index.html" por el nombre de tu archivo principal del juego
+        }
+
+        function volverAlTablero() {
+            window.location.href = "tablero.html"; // Cambia "index.html" por el nombre de tu archivo principal del juego
         }
     </script>
 </body>

@@ -9,8 +9,8 @@
     <!-- Firebase Configuration -->
     <script type="module">
         // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import {getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -27,14 +27,14 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
 
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Evita el envío del formulario
 
             // Obtiene los datos del formulario y elimina espacios innecesarios
             const correo = document.getElementById('correo').value.trim();
             const contrasena = document.getElementById('contrasena').value;
 
-            console.log('Datos de inicio de sesión:', { correo, contrasena });
+            console.log('Datos de inicio de sesión:', {correo, contrasena});
 
             signInWithEmailAndPassword(auth, correo, contrasena)
                 .then((userCredential) => {
@@ -58,6 +58,11 @@
     </script>
 </head>
 <body>
+<div class="recuadro-boton">
+        <button id="boton-r" class="boton-regresar border-none back-color-secondary">
+            <img src="../img/Flecha_blanca.png" alt="">
+            Regresar</button>
+</div>
 <div>
     <div class="recuadro font-berlin">
         <div id="login-img">
@@ -74,5 +79,13 @@
         </form>
         <p id="error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
     </div>
+</div>
+
+<script>
+    document.getElementById('boton-r').addEventListener('click', function () {
+        window.location.href = "../index.html";
+    });
+</script>
+
 </body>
 </html>
