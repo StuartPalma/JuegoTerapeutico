@@ -1,0 +1,66 @@
+body {
+    background-color: hsl(30, 90%, 70%);
+}
+
+.titulo-principal {
+    font-size: 60px;
+    display: block;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #333;
+}
+
+.terapeuta {
+    font-size: 20px;
+    text-align: left;
+    color: #333;
+}
+
+.boton {
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: rgba(241, 191, 82, 0.925);
+    color: rgb(59, 54, 54);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background-color: rgb(235, 164, 12);
+    /* Cambia el color de fondo al hacer hover */
+    transform: scale(1.05);
+    /* Aumenta ligeramente el tamaño del botón */
+}
+
+.recuadro {
+    border: 2px solid black;
+    padding: 20px;
+    margin: 20px auto;
+    width: 200px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Añade una sombra ligera */
+    transition: box-shadow 0.3s ease;
+    /* Añade una transición suave */
+}
+
+.recuadro:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    /* Aumenta la sombra al hacer hover */
+}
+
+.titulo-recuadro {
+    text-align: center;
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+}

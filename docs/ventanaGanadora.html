@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Felicidades!</title>
+    <link rel="stylesheet" href="../styles/ventanaGanadora.css">
+</head>
+<body>
+    <div class="ganador">
+        <div class="contenido-ventana">
+            <h2>¡Felicidades!</h2>
+            <p>Has ordenado correctamente</p>
+            <p id="totalMovimientos"></p>
+            <button onclick="volverAlJuego()">Volver al juego</button>
+        </div>
+    </div>
+
+    <script>
+        // Obtener el número de movimientos de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const movimientos = urlParams.get('movimientos');
+        document.getElementById('totalMovimientos').innerText = `Total movimientos: ${movimientos}`;
+
+        function volverAlJuego() {
+            window.location.href = "juego.html"; // Cambia "index.html" por el nombre de tu archivo principal del juego
+        }
+    </script>
+</body>
+</html>

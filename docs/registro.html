@@ -6,6 +6,63 @@
     <title>Registrarse</title>
     <link rel="stylesheet" href="../styles/registro.css">
     <link rel="stylesheet" href="../styles/framework.css">
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+
+        document.getElementById('registroForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            // Obtiene los datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const correo = document.getElementById('correo').value;
+            const contrasena = document.getElementById('contrasena').value;
+
+            try {
+                // Registra al usuario con Firebase Authentication
+                const credenciales = await createUserWithEmailAndPassword(auth, correo, contrasena);
+                const userId = credenciales.user.uid;
+
+                // Almacena los datos adicionales en Firestore
+                await setDoc(doc(db, 'terapeutas', userId), {
+                    nombre: nombre,
+                    apellido: apellido,
+                    correo: correo
+                });
+
+                // Muestra un mensaje de éxito
+                document.getElementById('mensaje').style.display = 'block';
+
+                // Redirige a la página de inicio de sesión después de un breve retraso
+                setTimeout(function() {
+                    window.location.href = "inicioSesion.html";
+                }, 2000); // 2 segundos de retraso
+
+            } catch (error) {
+                alert('Error al registrar: ' + error.message);
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="recuadro font-berlin color-primary">
@@ -22,37 +79,10 @@
             <br>
             <label for="contrasena">Contraseña:</label>
             <input type="password" name="contrasena" id="contrasena" required>
-            <br>
+            <br><p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión...</p>
             <input type="submit" value="Registrarse">
         </form>
-        <p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión...</p>
+
     </div>
-
-    <script>
-        document.getElementById('registro-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita el envío del formulario
-
-            // Obtiene los datos del formulario
-            const nombre = document.getElementById('nombre').value;
-            const apellido = document.getElementById('apellido').value;
-            const correo = document.getElementById('correo').value;
-            const contrasena = document.getElementById('contrasena').value;
-
-            // Aquí puedes agregar lógica para almacenar los datos en el almacenamiento local o en una base de datos simulada
-            // Por ejemplo, usando localStorage (esto es solo un ejemplo y no es seguro para datos sensibles)
-            localStorage.setItem('nombre', nombre);
-            localStorage.setItem('apellido', apellido);
-            localStorage.setItem('correo', correo);
-            localStorage.setItem('contrasena', contrasena);
-
-            // Muestra un mensaje de éxito
-            document.getElementById('mensaje').style.display = 'block';
-
-            // Redirige a la página de inicio de sesión después de un breve retraso
-            setTimeout(function() {
-                window.location.href = "inicioSesion.html";
-            }, 2000); // 2 segundos de retraso
-        });
-    </script>
 </body>
 </html>
