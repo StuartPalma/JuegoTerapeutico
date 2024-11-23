@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar un terapeuta</title>
+    <title>Registrarse</title>
     <link rel="stylesheet" href="../styles/registro.css">
+    <link rel="stylesheet" href="../styles/framework.css">
 </head>
 <body>
-    <div class="recuadro">
-        <h1>Registro de Terapeuta</h1>
-        <form id="registroForm">
+    <div class="recuadro font-berlin color-primary">
+        <h1 >Registro de Terapeuta</h1>
+        <form id="registro-form">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
             <br>
@@ -28,7 +29,7 @@
     </div>
 
     <script>
-        document.getElementById('registroForm').addEventListener('submit', function(event) {
+        document.getElementById('registro-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Evita el envío del formulario
 
             // Obtiene los datos del formulario

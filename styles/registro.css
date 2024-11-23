@@ -1,5 +1,7 @@
 body {
     font-family: Arial, sans-serif;
+    background-image: url("../img/Fondo nubes.png");
+    background-size: cover;
     background-color: hsl(30, 90%, 70%);
     margin: 0;
     padding: 0;
@@ -7,12 +9,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
 }
 
 form {
@@ -23,35 +19,79 @@ form {
 
 label {
     display: block;
-    margin-bottom: 10px;
+    margin-left: 20px;
     font-weight: bold;
-    color: #333;
+    text-align: left;
+    width: 100%;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: calc(100% - 22px); /* Ajusta el ancho para que coincida con el padding y el borde */
+    width: calc(100% - 22px);
+    height: 60px;
+
+    font-size: 20px;
+
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 0px;
+
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
-}
-
-input[type="submit"] {
-    width: calc(100% - 22px); /* Ajusta el ancho para que coincida con el padding y el borde */
-    padding: 10px;
-    background-color: orange;
-    color: white;
-    border: black;
-    border-radius: 5px;
-    cursor: pointer;
     box-sizing: border-box;
 }
 
+@keyframes colorFlow {
+    0% {
+        background-color: rgb(241, 109, 74);
+    }
+    50% {
+        background-color: #eb690c;
+    }
+    100% {
+        background-color: rgb(241, 109, 74);
+    }
+}
+
+input[type="submit"] {
+    width: calc(100% - 22px);
+
+    font-size: 30px;
+    font-family: "Berlin Sans FB";
+
+    padding: 10px;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    animation: colorFlow 7s infinite;
+}
+
 input[type="submit"]:hover {
-    background-color: orangered;
+    transform: scale(1.1);
+}
+
+#registro-form {
+    width: 500px;
+    height: 600px;
+
+    background-color: white;
+
+    font-size: 30px;
+
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recuadro h1 {
+    font-size: 70px;
 }
 
 .login-recuadro {
