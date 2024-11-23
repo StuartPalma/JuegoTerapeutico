@@ -1,8 +1,20 @@
 body {
-    /* Cambiar la fuente de letra */
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: hsl(30, 90%, 70%);
+    background-image: url("../img/Victoria.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 80px;
+    color: #688a38;
 }
 
 .ganador {
@@ -15,18 +27,25 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .contenido-ventana {
     background-color: antiquewhite;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 100%;
     max-width: 400px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.contenido-ventana p {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
 }
 
 .titulo-principal {
@@ -37,25 +56,24 @@ body {
 
 #totalMovimientos {
     font-size: 20px;
-    color: chartreuse;
+    color: green;
     margin-top: 10px;
 }
 
 .boton {
-    font-size: 20px;
+    font-size: 15px;
     display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.925);
-    color: rgb(59, 54, 54);
-    border: black 2px solid;
+    background-color: #688a38;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 .boton:hover {
-    background-color: #ddd;
+    background-color: rgba(89, 76, 76, 0.52);
     transform: scale(1.05);
 }

@@ -41,6 +41,10 @@
     border: 1px solid black;
 }
 
+.border-none {
+    border: none;
+}
+
 /* Fuentes */
 .font-berlin {
     font-family: "Berlin Sans FB";
@@ -62,6 +66,10 @@
     font-family: "Decorative Font Olivia";
 }
 
+.font-christmas-laugh {
+    font-family: "ChristmasLaugh";
+}
+
 .font-size-input {
     font-size: 20px;
 }
@@ -81,6 +89,11 @@
     src: url('../fonts/Woliu Maners Demo.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: ChristmasLaugh;
+    src: url('../fonts/ Christmas Laugh - Personal Use.otf') format('truetype');
+}
+
 /* Estilos */
 .ul-list-style-none {
     list-style: none;
@@ -88,4 +101,86 @@
 
 .d-flex {
     display: flex;
+}
+
+/* Animaciones */
+@keyframes colorFlow {
+    0% {
+        background-color: rgb(235, 105, 12);
+    }
+    50% {
+        background-color: #eb920c;
+    }
+    100% {
+        background-color: rgb(235, 105, 12);
+    }
+}
+
+@keyframes tambalear-fuerte {
+    0% { transform: rotateY(180deg) translateX(0); }
+    25% { transform: rotateY(180deg) translateX(-10px); }
+    50% { transform: rotateY(180deg) translateX(10px); }
+    75% { transform: rotateY(180deg) translateX(-10px); }
+    100% { transform: rotateY(180deg) translateX(0); }
+}
+
+.tambalear-f-2s {
+    animation: tambalear-fuerte 2s infinite;
+}
+
+@keyframes tambalear-pausa {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(0px); }
+    100% { transform: translateX(0); }
+}
+
+.tambalear-p-4s {
+    animation: tambalear-pausa 4s infinite;
+}
+
+@keyframes tambalear-boton {
+    0% { transform: perspective(500px) rotateZ(0deg); }
+    25% { transform: perspective(500px) rotateZ(5deg); }
+    50% { transform: perspective(500px) rotateZ(0deg); }
+    75% { transform: perspective(500px) rotateZ(-5deg); }
+    100% { transform: perspective(500px) rotateZ(0deg); }
+}
+
+.hover-box-shadow {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-box-shadow:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Clases propias */
+.boton-regresar {
+    width: 150px;
+    height: 60px;
+
+    font-size: 20px;
+    font-family: "Berlin Sans FB";
+
+    color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: colorFlow 7s infinite;
+}
+
+.boton-regresar:hover {
+    transform: scale(1.1);
+}
+
+.boton-regresar img {
+    width: 30px;
+    height: 30px;
+    margin: 0px 15px 0px 0px;
+    animation: tambalear-pausa 4s infinite;
 }

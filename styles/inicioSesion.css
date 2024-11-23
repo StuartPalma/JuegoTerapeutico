@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -54,13 +55,13 @@ input[type="password"] {
 
 @keyframes colorFlow {
     0% {
-        background-color: rgb(241, 109, 74);
+        background-color: rgb(243, 144, 116);
     }
     50% {
         background-color: #eb690c;
     }
     100% {
-        background-color: rgb(241, 109, 74);
+        background-color: rgb(243, 144, 116);
     }
 }
 
@@ -70,7 +71,7 @@ input[type="submit"] {
     font-size: 30px;
     padding: 10px;
     color: white;
-    border: 2px solid black;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     box-sizing: border-box;
@@ -135,4 +136,11 @@ input[type="submit"]:hover {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.recuadro-boton {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 10px 0px;
 }
