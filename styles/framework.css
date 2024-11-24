@@ -132,6 +132,10 @@
     align-items: center;
 }
 
+.height-100vh {
+    height: 100vh;
+}
+
 /* Animaciones */
 @keyframes colorFlow {
     0% {

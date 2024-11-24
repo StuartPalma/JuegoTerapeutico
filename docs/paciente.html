@@ -47,21 +47,23 @@
         });
     </script>
 </head>
-<body class="background-image margin-0 d-flex flex-direction-column justify-content-center items-center">
-<div class="barra back-color-secondary font-berlin color-primary">
-    <h1>Bienvenido<span id="nombre-terapeuta"></span></h1>
-    <div id="boton-cerrar-sesion" class="back-color-primary margin-0 "
-         onclick="document.getElementById('enlace-cerrar-sesion').click()">
-        <a id="enlace-cerrar-sesion" class="color-secondary hover-a font-impact" href="inicioSesion.html">Cerrar Sesión</a>
+<header>
+    <div class="barra back-color-secondary font-berlin color-primary">
+        <h1>Bienvenido<span id="nombre-terapeuta"></span></h1>
+        <div id="boton-cerrar-sesion" class="back-color-primary margin-0 "
+             onclick="document.getElementById('enlace-cerrar-sesion').click()">
+            <a id="enlace-cerrar-sesion" class="color-secondary hover-a font-impact" href="inicioSesion.html">Cerrar Sesión</a>
+        </div>
     </div>
-</div>
+</header>
+<body class="background-image margin-0">
 <div class="recuadro d-flex">
     <div class="recuadro-img d-flex flex-1">
         <img src="../img/Pacientes.png" alt="">
     </div>
     <div class="recuadro-opciones-pacientes back-color-primary border-1-black d-flex flex-1 flex-direction-column hover-box-shadow">
         <h2 class="terapeuta">Selecciona una de las siguientes opciones:</h2>
-        <a href="idPaciente.html" class="boton back-color-cuaternary color-tertiary">Ingresar cédula del paciente</a>
+        <a href="loginPaciente.html" class="boton back-color-cuaternary color-tertiary">Ingresar cédula del paciente</a>
         <a href="registroPaciente.html" class="boton back-color-cuaternary color-tertiary">Registrar nuevo paciente</a>
     </div>
 </div>
