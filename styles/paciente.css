@@ -2,65 +2,114 @@ body {
     background-color: hsl(30, 90%, 70%);
 }
 
-.titulo-principal {
-    font-size: 60px;
-    display: block;
+.barra {
+    height: 70px;
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barra h1 {
+    font-size: 40px;
+
+    margin: 0px 20px;
+
+    display: inline;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: #333;
 }
 
-.terapeuta {
-    font-size: 20px;
-    text-align: left;
-    color: #333;
-}
+#boton-cerrar-sesion {
+    height: 70px;
 
-.boton {
-    font-size: 20px;
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-weight: bold;
-    background-color: rgba(241, 191, 82, 0.925);
-    color: rgb(59, 54, 54);
+    font-size: 25px;
+
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.boton:hover {
-    background-color: rgb(235, 164, 12);
-    /* Cambia el color de fondo al hacer hover */
-    transform: scale(1.05);
-    /* Aumenta ligeramente el tamaño del botón */
+#boton-cerrar-sesion a {
+    width: 100%;
+    height: 100%;
+
+    padding: 20px;
+
+    margin: 0px;
+
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: inherit;
+
+    box-sizing: border-box;
 }
 
 .recuadro {
-    border: 2px solid black;
+    width: 70%;
+    margin: 0px;
     padding: 20px;
-    margin: 20px auto;
-    width: 200px;
-    text-align: center;
-    background-color: white;
+
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Añade una sombra ligera */
-    transition: box-shadow 0.3s ease;
-    /* Añade una transición suave */
+    justify-content: center;
+    align-items: center;
 }
 
-.recuadro:hover {
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    /* Aumenta la sombra al hacer hover */
+.recuadro-img {
+    width: 50%;
+    height: 50%;
+
+    margin: 0px 20px;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
 }
 
-.titulo-recuadro {
+.recuadro-opciones-pacientes {
+    margin: 20px;
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.recuadro-opciones-pacientes a {
+    text-decoration: none;
+    font-family: "Segoe UI";
+}
+
+.boton {
+    width: 250px;
+    height: inherit;
+    font-size: 18px;
+    display: block;
+    margin: 5px auto;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
     text-align: center;
-    width: 75%;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: white;
+}
+
+.boton:hover {
+    background-color: hsl(20, 100%, 60%);
+    /* Cambia el color de fondo al hacer hover */
+    transform: scale(1.05);
+    /* Aumenta ligeramente el tamaño del botón */
+    animation: tambalear-boton 0.5s infinite;
+}
+
+.terapeuta {
+    font-family: "Segoe UI";
 }

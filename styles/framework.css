@@ -21,12 +21,21 @@
 
 /*Colores*/
 .color-primary {
-    color: hsl(0, 0%, 13%);
+    color: hsl(0, 0%, 100%);
 }
 
 .color-secondary {
-    color: hsl(0, 0%, 100%);
+    color: hsl(20, 100%, 60%);
 }
+
+.color-tertiary {
+    color: hsl(0, 0%, 13%);
+}
+
+.color-cuaternary {
+    color: hsl(33, 88%, 66%);
+}
+
 
 .padding-0 {
     padding: 0;
@@ -103,6 +112,26 @@
     display: flex;
 }
 
+.flex-1 {
+    flex: 1;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
 /* Animaciones */
 @keyframes colorFlow {
     0% {
@@ -156,6 +185,14 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
+.hover-a {
+    transition: color 0.3s ease;
+}
+
+.hover-a:hover {
+    color: hsl(125, 65%, 40%);
+}
+
 /* Clases propias */
 .boton-regresar {
     width: 150px;
@@ -183,4 +220,11 @@
     height: 30px;
     margin: 0px 15px 0px 0px;
     animation: tambalear-pausa 4s infinite;
+}
+
+.background-image {
+    background-image: url('../img/Fondo nubes.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }

@@ -63,14 +63,21 @@
 
 
             } catch (error) {
-                alert('Error al registrar: ' + error.message);
+                if (error.code === 'auth/email-already-in-use') {
+                    alert('El correo ya está registrado. Redirigiendo a la página de inicio de sesión...');
+                    setTimeout(function () {
+                        window.location.href = "inicioSesion.html";
+                    }, 2000); // 2 segundos de retraso
+                } else {
+                    alert('Error al registrar: ' + error.message);
+                }
             }
         });
     </script>
 </head>
 <body>
 
-<div class="recuadro font-berlin color-primary">
+<div class="recuadro font-berlin color-tertiary">
     <h1>Registro de Terapeuta</h1>
     <div class="recuadro-boton">
         <button id="boton-r" class="boton-regresar border-none back-color-secondary">

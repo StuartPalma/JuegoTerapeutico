@@ -67,7 +67,7 @@ a {
     text-align: center;
     justify-content: center;
     width: 80%;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: white;
 }
 
@@ -80,7 +80,6 @@ a {
 .terapeuta {
     font-size: 30px;
     text-align: left;
-    color: #333;
 }
 
 .boton {
@@ -90,7 +89,7 @@ a {
     padding: 10px 20px;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
@@ -109,7 +108,7 @@ a {
     width: 200px;
     text-align: center;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* Añade una sombra ligera */
     transition: box-shadow 0.3s ease;
@@ -172,7 +171,7 @@ a {
 }
 
 .footer-enlaces a:hover {
-    color: hsl(125, 100%, 60%);
+    color: hsl(125, 65%, 40%);
 }
 
 .footer-enlaces ul {

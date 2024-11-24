@@ -3,16 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingreso Paciente</title>
+    <title>TASE: Fortalece el músculo cerebral</title>
     <link rel="stylesheet" href="../styles/paciente.css">
+    <link rel="stylesheet" href="../styles/framework.css">
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import {getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import {getFirestore, doc, getDoc} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+
+        // Get the therapist's name and display it
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const userId = user.uid;
+                const docRef = doc(db, 'terapeutas', userId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const nombre = docSnap.data().nombre;
+                    document.getElementById('nombre-terapeuta').textContent = nombre;
+                } else {
+                    console.log("No such document!");
+                }
+            } else {
+                console.log("No user is signed in.");
+            }
+        });
+    </script>
 </head>
-<body>
-    <div class="titulo-recuadro">
-        <h1 class="titulo-principal">Bienvenido</h1>
+<body class="background-image margin-0 d-flex flex-direction-column justify-content-center items-center">
+<div class="barra back-color-secondary font-berlin color-primary">
+    <h1>Bienvenido<span id="nombre-terapeuta"></span></h1>
+    <div id="boton-cerrar-sesion" class="back-color-primary margin-0 "
+         onclick="document.getElementById('enlace-cerrar-sesion').click()">
+        <a id="enlace-cerrar-sesion" class="color-secondary hover-a font-impact" href="inicioSesion.html">Cerrar Sesión</a>
     </div>
-    <div class="recuadro">
-        <h2 class="terapeuta">Porfavor selecciona una de las siguientes opciones:</h2>
-        <a href="idPaciente.html" class="boton">Ingresar CI paciente</a>
-        <a href="registroPaciente.html" class="boton">Registrar nuevo paciente</a>
+</div>
+<div class="recuadro d-flex">
+    <div class="recuadro-img d-flex flex-1">
+        <img src="../img/Pacientes.png" alt="">
+    </div>
+    <div class="recuadro-opciones-pacientes back-color-primary border-1-black d-flex flex-1 flex-direction-column hover-box-shadow">
+        <h2 class="terapeuta">Selecciona una de las siguientes opciones:</h2>
+        <a href="idPaciente.html" class="boton back-color-cuaternary color-tertiary">Ingresar cédula del paciente</a>
+        <a href="registroPaciente.html" class="boton back-color-cuaternary color-tertiary">Registrar nuevo paciente</a>
+    </div>
+</div>
 </body>
 </html>
