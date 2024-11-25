@@ -1,40 +1,77 @@
-body{
+body {
     /* cambiar la fuente de letra*/
-    font-family: Arial, sans-serif;
+    font-family: "Berlin Sans FB", sans-serif;
     text-align: center;
-    background-color: hsl(30, 90%, 70%);
+    background-image: url("../img/Fondo nubes.png");
+    background-size: cover;
+    background-attachment: fixed;
 }
+
 .container {
     margin-top: 50px;
 }
+
+.titulo-principal {
+    font-size: 50px;
+    color: black;
+}
+
+.subtitulo {
+    font-size: 40px;
+    color: black;
+}
+
+#contador {
+    font-size: 30px;
+    color: black;
+}
+
+#cronometro {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
 /* Aqui es el area del juego*/
-.game-area{
+.game-area {
     display: flex;
+
     justify-content: center;
     gap: 10px;
     margin-bottom: 25px;
     font-size: 30px;
 }
+
+#dropArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.bloques {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 /* aqui es donde van los objetos del juego*/
 .object {
     width: 150px;
     height: 50px;
     border: 2px solid #333;
     display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: aliceblue;
     cursor: grab; /*cambiamos a un amanita el mouse*/
     font-weight: bold; /* Resaltar el peso */
 }
-.message{
+
+.message {
     font-size: 20px;
-    color:chartreuse;
+    color: chartreuse;
     margin-top: 20px;
 }
 
 .ganador {
-    display : none;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -43,6 +80,7 @@ body{
     height: 100%;
     background-color: chartreuse;
 }
+
 .contenido-ventana {
     background-color: antiquewhite;
     margin: 15% auto;
@@ -52,6 +90,7 @@ body{
     text-align: center;
     border-radius: 10px;
 }
+
 .cerrar {
     color: #aaa;
     float: right;
@@ -59,14 +98,12 @@ body{
     font-weight: bold;
     cursor: pointer;
 }
-.cerrar:hover, .cerrar:focus{
+
+.cerrar:hover, .cerrar:focus {
     color: black;
     text-decoration: none;
 }
-.titulo-principal{
-    font-size: 30px;
-    color: black;
-}
+
 .boton {
     font-size: 20px;
     display: block;
@@ -80,16 +117,14 @@ body{
     cursor: pointer;
 }
 
-#cronometro {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
 #pausarBtn {
-    font-size: 18px;
-    padding: 10px 15px;
+    width: 200px;
+    height: 50px;
+
+    font-size: 30px;
+    font-family: "Impact";
+
+    padding: 10px;
     background-color: #f44336;
     color: white;
     border: none;
@@ -101,13 +136,18 @@ body{
 /* Estilos del modal */
 .modal {
     display: none; /* Oculto por defecto */
+
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
+
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+
+    font-size: 30px;
+
+    background-color: rgba(255, 255, 255, 0.94); /* Fondo oscuro semitransparente */
     display: flex; /* Usar flexbox para centrar el modal */
     justify-content: center; /* Centrando horizontalmente */
     align-items: center; /* Centrando verticalmente */
@@ -128,7 +168,7 @@ body{
 .modal button {
     margin: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 25px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
@@ -141,6 +181,14 @@ body{
 .modal button:hover {
     background-color: #0056b3; /* Fondo azul oscuro al hacer hover */
     color: #ffffff; /* Texto blanco al hacer hover */
+}
+
+#botonSalirJuego {
+    background-color: #dc3545; /* Botón rojo */
+}
+
+#botonSalirJuego:hover {
+    background-color: #bd2130; /* Fondo rojo oscuro al hacer hover */
 }
 
 /* Estilo del texto dentro del modal */
