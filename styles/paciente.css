@@ -30,7 +30,7 @@ body {
     align-items: center;
 }
 
-.barra h1 {
+.barra p {
     font-size: 40px;
 
     margin: 0px 20px;
@@ -44,7 +44,7 @@ body {
 
     font-size: 25px;
 
-    border: none;
+    border: 1px solid hsl(20, 100%, 60%);
     cursor: pointer;
 
     box-sizing: border-box;
@@ -64,7 +64,7 @@ body {
     display: block;
     text-decoration: none;
     text-align: center;
-    line-height: inherit;
+    line-height: 30px;
 
     box-sizing: border-box;
 }
