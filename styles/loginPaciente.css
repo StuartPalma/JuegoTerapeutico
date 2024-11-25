@@ -1,21 +1,34 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
-
 body {
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Cambiado de center a flex-start */
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.contenedor-login {
+    width: 600px;
+    height: 300px;
+
+    padding: 0px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(0, 0%, 100%); /* White background with 80% opacity */
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease
 }
 
 h1 {
-    text-align: center;
     margin-bottom: 20px;
-    color: #333;
 }
 
 form {
@@ -23,16 +36,17 @@ form {
     border-radius: 10px;
     width: 100%;
 }
+
 label {
     display: block;
     margin-left: 20px;
-
+    font-size: 30px;
     font-weight: bold;
     text-align: left;
     width: 100%;
 }
-input[type="email"],
-input[type="password"] {
+
+input[type="text"] {
     width: calc(100% - 22px);
     height: 60px;
     font-size: 20px;
@@ -45,15 +59,6 @@ input[type="password"] {
     background-position: right 10px center;
     background-size: 50px;
 }
-
-input[type="email"] {
-    background-image: url('../img/Icono_Correo.png');
-}
-
-input[type="password"] {
-    background-image: url('../img/Icono_Llave.png');
-}
-
 
 @keyframes colorFlow {
     0% {
@@ -86,60 +91,16 @@ input[type="submit"]:hover {
     transform: scale(1.1);
 }
 
-#titulo-inicio-sesion {
-    font-size: 80px;
-    text-align: center;
-}
-
-.recuadro {
-    width: 600px;
-    height: 700px;
-
-    margin-bottom: 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    background-color: hsl(0, 0%, 100%); /* White background with 80% opacity */
-
-    border-radius: 10px;
-    transition: box-shadow 0.3s ease
-}
-
-.recuadro:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+#error {
+    color: red;
+    margin-top: 15px;
 }
 
 #form-login {
-    width: 500px;
-    height: 375px;
-
-    font-size: 30px;
-
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-
-#login-img {
-    width: 250px;
-    height: 250px;
-    padding: 10px 0px;
-}
-
-#login-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
 }
 
 .recuadro-boton {
@@ -148,4 +109,3 @@ input[type="submit"]:hover {
     align-items: center;
     margin: 10px 0px;
 }
-

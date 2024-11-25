@@ -1,0 +1,131 @@
+header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.barra {
+    height: 70px;
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barra p {
+    font-size: 40px;
+
+    margin: 0px 20px;
+
+    display: inline;
+    text-align: center;
+}
+
+#boton-cerrar-sesion {
+    height: 70px;
+
+    font-size: 25px;
+
+    border: 1px solid hsl(20, 100%, 60%);
+    cursor: pointer;
+
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#boton-cerrar-sesion a {
+    width: 100%;
+    height: 100%;
+
+    padding: 20px;
+
+    margin: 0px;
+
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 30px;
+
+    box-sizing: border-box;
+}
+
+.recuadro {
+    width: 70%;
+    margin: 0px;
+    padding: 20px;
+
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.recuadro-img {
+    width: 50%;
+    height: 50%;
+
+    margin: 0px 20px;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.recuadro-opciones-pacientes {
+    margin: 20px;
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.recuadro-opciones-pacientes a {
+    text-decoration: none;
+    font-family: "Segoe UI";
+}
+
+.boton {
+    width: 250px;
+    height: inherit;
+    font-size: 18px;
+    display: block;
+    margin: 5px auto;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.boton:hover {
+    background-color: hsl(20, 100%, 60%);
+    /* Cambia el color de fondo al hacer hover */
+    transform: scale(1.05);
+    /* Aumenta ligeramente el tamaño del botón */
+    animation: tambalear-boton 0.5s infinite;
+}
+
+.terapeuta {
+    font-family: "Segoe UI";
+}

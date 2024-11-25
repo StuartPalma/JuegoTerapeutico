@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tablero de Juegos</title>
+    <link rel="stylesheet" href="../styles/tableroJuegos.css">
+    <link rel="stylesheet" href="../styles/framework.css">
+</head>
+<header class="back-color-secondary  color-primary">
+    <div class="barra">
+        <p class="font-berlin">
+            Saludos, [nombre del terapeuta]
+            <br>
+            Paciente: [nombre del paciente]
+        </p>
+        <div id="boton-elegir-paciente" class="boton-elegir-paciente back-color-primary margin-0"
+             onclick="document.getElementById('enlace-elegir-paciente').click()">
+            <a id="enlace-elegir-paciente" class="color-secondary hover-a font-impact" href="paciente.html">Elegir otro
+                paciente</a>
+        </div>
+    </div>
+</header>
+<body class="background-image">
+<h1 class="titulo-tablero font-hartsfolk">
+    Tablero de Juegos
+</h1>
+<div class="recuadros-juegos">
+    <div class="recuadro-juego">
+        <h2>Juego 1</h2>
+        <img src="../img/Ejemplo_juego.png" alt="">
+        <p> Descripción del juego 1 </p>
+        <a class="boton-jugar" href="juego.html">Jugar</a>
+    </div>
+    <div class="recuadro-juego">
+        <h2>Juego 2</h2>
+        <img src="../img/Ejemplo_juego.png" alt="">
+        <p> Descripción del juego 2 </p>
+        <a class="boton-jugar" href="">Jugar</a>
+    </div>
+    <div class="recuadro-juego">
+        <h2>Juego 3</h2>
+        <img src="../img/Ejemplo_juego.png" alt="">
+        <p> Descripción del juego 3 </p>
+        <a class="boton-jugar" href="">Jugar</a>
+    </div>
+</div>
+</body>
+</html>

@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar un terapeuta</title>
+    <title>Registrarse</title>
     <link rel="stylesheet" href="../styles/registro.css">
-</head>
-<body>
-    <div class="recuadro">
-        <h1>Registro de Terapeuta</h1>
-        <form id="registroForm">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
-            <br>
-            <label for="apellido">Apellido:</label>
-            <input type="text" name="apellido" id="apellido" placeholder="Ej: Zapata" required>
-            <br>
-            <label for="correo">Correo:</label>
-            <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
-            <br>
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" name="contrasena" id="contrasena" required>
-            <br>
-            <input type="submit" value="Registrarse">
-        </form>
-        <p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de sesión...</p>
-    </div>
+    <link rel="stylesheet" href="../styles/framework.css">
+    <!-- Firebase Configuration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import {getFirestore, doc, setDoc} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-    <script>
-        document.getElementById('registroForm').addEventListener('submit', function(event) {
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore();
+
+        document.getElementById('registroForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Evita el envío del formulario
 
             // Obtiene los datos del formulario
@@ -37,21 +41,76 @@
             const correo = document.getElementById('correo').value;
             const contrasena = document.getElementById('contrasena').value;
 
-            // Aquí puedes agregar lógica para almacenar los datos en el almacenamiento local o en una base de datos simulada
-            // Por ejemplo, usando localStorage (esto es solo un ejemplo y no es seguro para datos sensibles)
-            localStorage.setItem('nombre', nombre);
-            localStorage.setItem('apellido', apellido);
-            localStorage.setItem('correo', correo);
-            localStorage.setItem('contrasena', contrasena);
+            try {
+                // Registra al usuario con Firebase Authentication
+                const credenciales = await createUserWithEmailAndPassword(auth, correo, contrasena);
+                const userId = credenciales.user.uid;
 
-            // Muestra un mensaje de éxito
-            document.getElementById('mensaje').style.display = 'block';
+                // Almacena los datos adicionales en Firestore
+                await setDoc(doc(db, 'terapeutas', userId), {
+                    nombre: nombre,
+                    apellido: apellido,
+                    correo: correo
+                });
 
-            // Redirige a la página de inicio de sesión después de un breve retraso
-            setTimeout(function() {
-                window.location.href = "inicioSesion.html";
-            }, 2000); // 2 segundos de retraso
+                // Muestra un mensaje de éxito
+                document.getElementById('mensaje').style.display = 'block';
+
+                // Redirige a la página de inicio de sesión después de un breve retraso
+                setTimeout(function () {
+                    window.location.href = "inicioSesion.html";
+                }, 2000); // 2 segundos de retraso
+
+
+            } catch (error) {
+                if (error.code === 'auth/email-already-in-use') {
+                    alert('El correo ya está registrado. Redirigiendo a la página de inicio de sesión...');
+                    setTimeout(function () {
+                        window.location.href = "inicioSesion.html";
+                    }, 2000); // 2 segundos de retraso
+                } else {
+                    alert('Error al registrar: ' + error.message);
+                }
+            }
         });
     </script>
+</head>
+<body class="background-image">
+
+<div class="recuadro font-berlin color-tertiary">
+    <h1>Registro de Terapeuta</h1>
+    <div class="recuadro-boton">
+        <button id="boton-r" class="boton-regresar border-none back-color-secondary">
+
+                <img src="../img/Flecha_blanca.png" alt="">
+
+            Regresar
+        </button>
+    </div>
+    <form id="form-registro" class="hover-box-shadow">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
+        <br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" placeholder="Ej: Zapata" required>
+        <br>
+        <label for="correo">Correo:</label>
+        <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
+        <br>
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" name="contrasena" id="contrasena" required>
+        <br>
+        <p id="mensaje" style="color: green; display: none;">Registro exitoso. Redirigiendo a la página de inicio de
+            sesión...</p>
+        <input type="submit" value="Registrarse">
+    </form>
+</div>
+
+<script>
+    document.getElementById('boton-r').addEventListener('click', function () {
+        window.location.href = "../index.html";
+    });
+</script>
+
 </body>
 </html>

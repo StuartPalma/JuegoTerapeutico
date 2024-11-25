@@ -1,163 +1,333 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- para qye se la pagina se ajuste al dispositivo-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale=1.0">
-     <!-- colocar un mejor nombre -->
-    <title>Ordena objetos por pesos</title>
-    <!-- estilos de la pagina-->
+    <title>Juego 1</title>
     <link rel="stylesheet" href="../styles/juego.css">
+    <link rel="stylesheet" href="../styles/framework.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="titulo-principal"> Ordena los Objetos del Más Liviano al Más Pesado</h1>
-        <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
+<div class="container">
+    <h1 class="titulo-principal"> Ordena los objetos del más liviano al más pesado</h1>
+    <h2 class="subtitulo">Arrastra y suelta los objetos en el orden correcto</h2>
+    <p id="contador">Movimientos: 0</p>
+    <p id="cronometro">Time: 00:00</p>
+    <button id="pausarBtn">Pausa</button>
 
-        <!-- Área de juego donde se mostrarán los objetos -->
-         <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
-        <div class="game-area" id="gameArea1">
-    <div class="object" draggable="true" id="item1" data-weight="1">Papel (1 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="3">Cortina (3 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="2">Globo (2 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="4">Zapato (4 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="5">Teléfono (5 kg)</div>
-</div>
-    <div class="game-area" id="gameArea2">
-    <div class="object" draggable="true" id="item1" data-weight="5">Cobija (5 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="1">Esfero (1 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="2">Almohada (2 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="3">Pera (3 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="4">Flauta (4 kg)</div>
-</div>
-    <div class="game-area" id="gameArea3">
-    <div class="object" draggable="true" id="item1" data-weight="4">Tenedor (4 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="3">Bolillo (3 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="1">Alfiler (1 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="5">Licuadora (5 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="2">Grosella (2 kg)</div>
-</div>
-    <div class="game-area" id="gameArea4">
-    <div class="object" draggable="true" id="item1" data-weight="2">Guantes (2 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="3">Libreta (3 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="1">Foco (1 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="4">Guitarra (4 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="5">Reloj (5 kg)</div>
-</div>
-    <div class="game-area" id="gameArea">
-    <div class="object" draggable="true" id="item1" data-weight="5">Autobús (5 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="1">Zarcillos (1 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="3">Sandía (3 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="2">Diadema (2 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="4">Calabaza (4 kg)</div>
-</div>
-    <div class="game-area" id="gameArea">
-    <div class="object" draggable="true" id="item1" data-weight="5">Taza (5 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="2">Tijeras (2 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="1">Algodón (1 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="3">Cartera (3 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="4">Kiwi (4 kg)</div>
-</div>
-    <div class="game-area" id="gameArea">
-    <div class="object" draggable="true" id="item1" data-weight="1">Corbata (1 kg)</div>
-    <div class="object" draggable="true" id="item2" data-weight="3">Manzana (3 kg)</div>
-    <div class="object" draggable="true" id="item3" data-weight="2">Pincel (2 kg)</div>
-    <div class="object" draggable="true" id="item4" data-weight="5">Plancha (5 kg)</div>
-    <div class="object" draggable="true" id="item5" data-weight="4">Grapadora (4 kg)</div>
-</div>
-        <!-- Mensaje de feedback -->
-        <div class="message" id="message"></div>
+    <!-- Área de juego donde se mostrarán los objetos -->
+    <!-- le pondremos nombre y un peso específico que haga referencia a que es liviano o pesado -->
+    <div class="game-area" id="gameArea1">
+        <div class="object" draggable="true" id="item1" data-weight="7">Papel</div>
+        <div class="object" draggable="true" id="item2" data-weight="13">Cortina</div>
+        <div class="object" draggable="true" id="item3" data-weight="6">Globo</div>
+        <div class="object" draggable="true" id="item4" data-weight="25">Zapato</div>
+        <div class="object" draggable="true" id="item5" data-weight="23">Teléfono</div>
+
+        <div class="object" draggable="true" id="item6" data-weight="24">Cobija</div>
+        <div class="object" draggable="true" id="item7" data-weight="4">Esfero</div>
+        <div class="object" draggable="true" id="item8" data-weight="12">Almohada</div>
+        <div class="object" draggable="true" id="item9" data-weight="15">Pera</div>
+        <div class="object" draggable="true" id="item10" data-weight="21">Flauta</div>
+
+        <div class="object" draggable="true" id="item11" data-weight="18">Tenedor</div>
+        <div class="object" draggable="true" id="item12" data-weight="16">Bolillo</div>
+        <div class="object" draggable="true" id="item13" data-weight="1">Alfiler</div>
+        <div class="object" draggable="true" id="item14" data-weight="29">Licuadora</div>
+        <div class="object" draggable="true" id="item15" data-weight="8">Grosella</div>
+
+        <div class="object" draggable="true" id="item16" data-weight="11">Guantes</div>
+        <div class="object" draggable="true" id="item17" data-weight="20">Libreta</div>
+        <div class="object" draggable="true" id="item18" data-weight="5">Foco</div>
+        <div class="object" draggable="true" id="item19" data-weight="26">Guitarra</div>
+        <div class="object" draggable="true" id="item20" data-weight="30">Reloj</div>
+
+        <div class="object" draggable="true" id="item21" data-weight="32">Autobús</div>
+        <div class="object" draggable="true" id="item22" data-weight="6">Arcillos</div>
+        <div class="object" draggable="true" id="item23" data-weight="17">Sandía</div>
+        <div class="object" draggable="true" id="item24" data-weight="9">Diadema</div>
+        <div class="object" draggable="true" id="item25" data-weight="22">Calabaza</div>
+
+        <div class="object" draggable="true" id="item26" data-weight="28">Taza</div>
+        <div class="object" draggable="true" id="item27" data-weight="10">Tijeras</div>
+        <div class="object" draggable="true" id="item28" data-weight="2">Algodón</div>
+        <div class="object" draggable="true" id="item29" data-weight="14">Cartera</div>
+        <div class="object" draggable="true" id="item30" data-weight="19">Kiwi</div>
+
+        <div class="object" draggable="true" id="item31" data-weight="3">Corbata</div>
+        <div class="object" draggable="true" id="item32" data-weight="17">Manzana</div>
+        <div class="object" draggable="true" id="item33" data-weight="10">Pincel</div>
+        <div class="object" draggable="true" id="item34" data-weight="31">Plancha</div>
+        <div class="object" draggable="true" id="item35" data-weight="27">Grapadora</div>
     </div>
 
-    <!-- crear ventanita ganadora-->
-     <div id="ventanaGanadora" class="ganador">
-        <div class="contenido-ventana">;
-            <span class="cerrar">&times;</span>
-            <h2> ¡Felicidades! </h2>
-            <p> Has ordenado correctamente</p>
+    <div class="game-area" id="dropArea" style="width: 100%; height: 200px;
+        border: 2px dashed #ccc; margin-top: 20px; background-color: white; display: flex;
+         justify-content: center; align-items: center;">
+        <p>Arrastra aquí las palabras</p>
+        <div class="bloques">
+        <div class="object" draggable="true" id="bloque1"></div>
+            <div class="object" draggable="true" id="bloque2"></div>
+            <div class="object" draggable="true" id="bloque3"></div>
+            <div class="object" draggable="true" id="bloque4"></div>
+            <div class="object" draggable="true" id="bloque5"></div>
         </div>
-     </div>
+        <!--<div class="object" draggable="true" id="bloque6" ></div>
+        <div class="object" draggable="true" id="bloque7" ></div>-->
+    </div>
+</div>
 
-    <script>
-        let draggedItem = null; // Objeto que se está arrastrando
-    
-        // Habilitamos el arrastre y soltado en los objetos
-        document.querySelectorAll('.object').forEach(item => {
-            item.addEventListener('dragstart', function (e) {
-                draggedItem = this; // Guardamos el objeto arrastrado
-                setTimeout(() => this.style.visibility = 'hidden', 0); // Ocultar temporalmente el objeto
-            });
-    
-            item.addEventListener('dragend', function (e) {
-                setTimeout(() => this.style.visibility = 'visible', 0); // Volver a mostrar el objeto
-                draggedItem = null; // Limpiamos la referencia del objeto arrastrado
-            });
-    
-            item.addEventListener('dragover', function (e) {
-                e.preventDefault(); // Permitir soltar el objeto aquí
-            });
-    
-            item.addEventListener('drop', function (e) {
-                e.preventDefault(); // Evitar comportamiento por defecto
-    
-                if (draggedItem !== this) {
+
+<!-- Mensaje de feedback -->
+<div class="message" id="message"></div>
+</div>
+
+
+<div id="pausa" class="modal" style="display: none;">
+    <div class="modal_content">
+        <h2>EL juego está en pausa</h2>
+        <p id="tiempo">Tiempo transcurrido: 00:00</p>
+        <button onclick="volverAlJuego()">Volver al Juego</button>
+        <button id="botonSalirJuego" onclick="salirDelJuego()">Salir</button>
+    </div>
+</div>
+
+<script>
+    let draggedItem = null; // Objeto que se está arrastrando
+    let movimiento = 0;//contador
+    let segundos = 0;
+    let minutos = 0; // Minutos del cronómetro
+    let cronometroInterval; // Intervalo del cronómetro
+    let cronometroPausado = false; // Estado del cronómetro (pausado o no)
+    iniciarCronometro();
+
+    const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
+
+    function mostraritems() {
+        // Ocultar todos los items inicialmente
+        Items.forEach(item => item.style.display = 'none');
+
+        // Seleccionar aleatoriamente 5 items de entre todos los disponibles
+        const itemsAleatorios = Items.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+        // Ordenar los items seleccionados por su peso para mantener el orden correcto
+        const itemRandom = itemsAleatorios.sort((a, b) => a.getAttribute('data-weight') - b.getAttribute('data-weight'));
+
+        // Mostrar los items seleccionados en la parte superior y asignar sus posiciones correctas
+        itemRandom.forEach((item, index) => {
+            item.style.display = 'block';
+            document.getElementById(`bloque${index + 1}`).setAttribute('data-correct-position', item.getAttribute('data-weight'));
+            document.getElementById(`bloque${index + 1}`).innerHTML = "";
+        });
+    }
+
+    mostraritems();
+
+
+    // Habilitamos el arrastre y soltado en los objetos
+    document.querySelectorAll('.object').forEach(item => {
+        item.addEventListener('dragstart', function (e) {
+            draggedItem = this; // Guardamos el objeto arrastrado
+            setTimeout(() => this.style.visibility = 'hidden', 0); // Ocultar temporalmente el objeto
+        });
+
+        item.addEventListener('dragend', function (e) {
+            setTimeout(() => this.style.visibility = 'visible', 0); // Volver a mostrar el objeto
+            draggedItem = null; // Limpiamos la referencia del objeto arrastrado
+        });
+
+        const dropArea = document.getElementById('dropArea');
+
+        item.addEventListener('dragover', function (e) {
+            e.preventDefault(); // Permitir soltar el objeto aquí
+        });
+
+        item.addEventListener('drop', function (e) {
+            e.preventDefault(); // Evitar comportamiento por defecto
+
+            if (draggedItem !== this) {
+                //incremenatr el movimietno
+                movimiento++;
+                document.getElementById('contador').innerText = `Movimientos: ${movimiento}`;
+                // Intercambiamos los objetos arrastrados
+                const tempHTML = this.innerHTML;
+                const tempWeight = this.getAttribute('data-weight');
+                const tempId = this.id;
+
+                // Intercambiamos contenido y atributos
+                this.innerHTML = draggedItem.innerHTML;
+                this.setAttribute('data-weight', draggedItem.getAttribute('data-weight'));
+                this.id = draggedItem.id;
+
+                draggedItem.innerHTML = tempHTML;
+                draggedItem.setAttribute('data-weight', tempWeight);
+                draggedItem.id = tempId;
+            }
+
+            // Verificamos el orden automáticamente después de soltar
+            ordenCorrecto();
+        });
+        // Eventos para dispositivos móviles
+        item.addEventListener('touchstart', function (e) {
+            draggedItem = this;
+            setTimeout(() => this.style.visibility = 'hidden', 0);
+            e.preventDefault();
+        });
+
+        item.addEventListener('touchend', function (e) {
+            setTimeout(() => this.style.visibility = 'visible', 0);
+            if (draggedItem !== null) {
+                // Incrementar el movimiento al soltar
+                movimiento++;
+                document.getElementById('contador').innerText = `Movimientos: ${movimiento}`;
+                // Encontrar el elemento debajo del toque final
+                const touchLocation = e.changedTouches[0];
+                const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+                if (element && element.classList.contains('object') && element !== draggedItem) {
                     // Intercambiamos los objetos arrastrados
-                    const tempHTML = this.innerHTML;
-                    const tempWeight = this.getAttribute('data-weight');
-                    const tempId = this.id;
-    
+                    const tempHTML = element.innerHTML;
+                    const tempWeight = element.getAttribute('data-weight');
+                    const tempId = element.id;
+
                     // Intercambiamos contenido y atributos
-                    this.innerHTML = draggedItem.innerHTML;
-                    this.setAttribute('data-weight', draggedItem.getAttribute('data-weight'));
-                    this.id = draggedItem.id;
-    
+                    element.innerHTML = draggedItem.innerHTML;
+                    element.setAttribute('data-weight', draggedItem.getAttribute('data-weight'));
+                    element.id = draggedItem.id;
+
                     draggedItem.innerHTML = tempHTML;
                     draggedItem.setAttribute('data-weight', tempWeight);
                     draggedItem.id = tempId;
                 }
-    
-                // Verificamos el orden automáticamente después de soltar
-                ordenCorrecto();
-            });
-        });
-        // TODO: Verificar la victoria con los 7 conjuntos y un check cuando un conjunto esté bien ordenado.
-    
-        // Función para verificar si los objetos están en el orden correcto
-        function ordenCorrecto() {
-            const objetos = Array.from(document.querySelectorAll('.object'));
-            const pesos = objetos.map(obj => parseInt(obj.getAttribute('data-weight')));
-    
-            // Verificar si los pesos están en orden ascendente
-            const esCorrecta = pesos.every((peso, index) => {
-                return index === 0 || peso >= pesos[index - 1];
-            });
-    
-            const message = document.getElementById('message');
-            if (esCorrecta) {
-                //message.innerHTML = '';
-               abrirVentanaGanadora();
-            } 
-
-        }
-        function abrirVentanaGanadora(){
-            const modal = document.getElementById('ventanaGanadora');
-            modal.style.display= 'block';
-        }
-
-         // Cerrar el modal al hacer clic en la 'X'
-         document.querySelector('.cerrar').addEventListener('click', () => {
-            document.getElementById('ventanaGanadora').style.display = 'none';
+            }
+            draggedItem = null;
+            // Verificamos el orden automáticamente después de soltar
+            ordenCorrecto();
         });
 
-        // Cerrar el modal si se hace clic fuera del contenido del modal
-        window.addEventListener('click', (event) => {
-            const modal = document.getElementById('ventanaGanadora');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+        item.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        });
+
+
+    });
+    // TODO: Verificar la victoria con los 7 conjuntos y un check cuando un conjunto esté bien ordenado.
+
+    // Función para verificar si los objetos están en el orden correcto
+    function ordenCorrecto() {
+        const bloques = Array.from(document.getElementById('dropArea').querySelectorAll('.object')).filter(obj => obj.style.display !== 'none' && obj.hasAttribute('data-weight'));
+        let correctos = 0;
+
+        bloques.forEach((bloque, index) => {
+            const correctWeight = bloque.getAttribute('data-correct-position');
+            const currentWeight = bloque.getAttribute('data-weight');
+            if (!bloque.id.startsWith(`item`)) {
+                bloque.style.backgroundColor = 'white'
+            } else if (correctWeight && currentWeight && correctWeight === currentWeight) {
+                correctos++;
+                bloque.style.backgroundColor = 'lightgreen';
+            } else {
+                bloque.style.backgroundColor = '#D53032';
             }
         });
-    </script>
-    
+
+        // Si todos están correctos
+        if (correctos === 5) {
+            limpiarCronometro();
+            window.location.href = "ventanaGanadora.html?movimientos=" + movimiento;
+        }
+    }
+
+    //cargar cornometro
+    window.onload = function () {
+        if (localStorage.getItem('minutos') && localStorage.getItem('segundos')) {
+            minutos = parseInt(localStorage.getItem('minutos'), 10);
+            segundos = parseInt(localStorage.getItem('segundos'), 10);
+        }
+        iniciarCronometro();
+        document.getElementById('pausarBtn').addEventListener('click', pausarBoton);
+    }
+
+    //guardar el tiempo
+    function guardarTiempoenlocalstorage() {
+        //guardar el tiempo
+        localStorage.setItem('minutos', minutos);
+        localStorage.setItem('segundos', segundos);
+    }
+
+    //cronometro
+    function iniciarCronometro() {
+        if (cronometroInterval !== null) {
+            clearInterval(cronometroInterval);
+        }
+        cronometroInterval = setInterval(() => {
+            if (!cronometroPausado) {
+                segundos++;
+                if (segundos == 60) {
+                    minutos++;
+                    segundos = 0;
+                }
+                document.getElementById('cronometro').innerText =
+                    `Tiempo: ${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+                guardarTiempoenlocalstorage();
+
+            }
+        }, 1000)
+    }
+
+    iniciarCronometro();
+
+    //detener cronometro
+    function pausarCronometro() {
+        cronometroPausado = true;
+    }
+
+    //reanudar cronometro
+    function reanudarCronmetro() {
+        if (cronometroPausado == true) {
+            cronometroPausado = false;
+        }
+    }
+
+    //limpiar Cronometro
+    function limpiarCronometro() {
+        clearInterval(cronometroInterval);
+        cronometroInterval = null;
+        segundos = 0;
+        minutos = 0;
+        document.getElementById("cronometro").innerText = 'Tiempo: 00:00';
+        //limpiar local storage
+        localStorage.removeItem('minutos');
+        localStorage.removeItem('segundos');
+    }
+
+    //boton de pausa
+    function pausarBoton() {
+        pausarCronometro();
+        // Mostrar el modal de pausa
+        const modal = document.getElementById('pausa');
+        modal.style.display = "flex";
+
+        // Mostrar el tiempo transcurrido en el modal
+        document.getElementById('tiempo').innerText =
+            `Tiempo transcurrido: ${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+    }
+
+    function volverAlJuego() {
+        const modal = document.getElementById('pausa');
+        modal.style.display = "none"
+        reanudarCronmetro()
+
+    }
+
+    function salirDelJuego() {
+        limpiarCronometro();
+        window.location.href = "tableroJuegos.html"
+    }
+
+
+</script>
+
 </body>
 
 </html>
