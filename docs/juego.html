@@ -8,6 +8,67 @@
     <title>Ordena objetos por pesos</title>
     <!-- estilos de la pagina-->
     <link rel="stylesheet" href="../styles/juego.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    
+    <script>
+        //configuarcion de firebase
+        const firebaseConfig ={
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebasestorage.app",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"            
+        };
+        //iniciar firebsae
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // funcio para almacenar los datos de jyuego 
+        function guardarDatosJuego(movimientos, tiempo, fecha) {
+            db.collection("juegos").add({
+                movimientos: movimientos,
+                tiempo: tiempo,
+                fecha: fecha
+            })
+            .then((docRef) => {
+                console.log("Documento escrito con ID: ", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Error añadiendo documento: ", error);
+            });
+        }      
+        // Llama a esta función cuando necesites guardar los datos
+        function finalizarJuego() {
+            const movimientos = movimiento; // Asumiendo que 'movimiento' es una variable global
+            const tiempo = `${minutos}:${segundos}`;
+            const fecha = new Date().toISOString();
+
+            guardarDatosJuego(movimientos, tiempo, fecha);
+        }  
+
+        // obtener datos del paciente 
+        function obtenerDatosPacientes() {
+            db.collection("pacientes").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log(`${doc.id} => ${doc.data()}`);
+                });
+            });
+        }      
+        window.onload = function() {
+            if(localStorage.getItem('minutos') && localStorage.getItem('segundos')) {
+                minutos = parseInt(localStorage.getItem('minutos'), 10);
+                segundos = parseInt(localStorage.getItem('segundos'), 10);
+            }
+            iniciarCronometro();
+            document.getElementById('pausarBtn').addEventListener('click', pausarBoton);
+            obtenerDatosPacientes();
+        }  
+    </script>
 </head>
 <body>
     <div class="container">
@@ -240,20 +301,6 @@
             }
         }
 
-        //registrar datos
-        function enviarDatosRegistro(){
-            const idPaciente = localStorage.getItem('idPaciente');
-            const tiempo = `${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2, '0')}`;
-            const progreso = "Excelente";
-
-            window.parent.postMessage({
-                tipo: 'finPartida',
-                idPaciente: idPaciente,
-                movimiento: movimiento,
-                tiempo: tiempo,
-                progreso: progreso
-            },'*')
-        }
 
         //cargar cornometro 
         window.onload=function(){
