@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Paciente</title>
+    <link rel="stylesheet" href="../styles/pacienteDatos.css">
+    <!-- Firebase App (Core SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos del Paciente</h1>
+        <div id="paciente-info">
+            <!-- Aquí se mostrarán los datos del paciente -->
+        </div>
+
+        <h2>Juegos Completados: <span id="total-juegos">0</span></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Movimientos</th>
+                    <th>Tiempo</th>
+                    <th>Rango de Calidad</th>
+                </tr>
+            </thead>
+            <tbody id="juegos-lista">
+                <!-- Aquí se agregarán los datos de los juegos -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="pacienteDatos.js"></script>
+</body>
+</html>
