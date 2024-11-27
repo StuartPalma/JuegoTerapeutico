@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Felicidades!</title>
     <link rel="stylesheet" href="../styles/ventanaGanadora.css">
+    <!-- Firebase App (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="ganador">
@@ -12,18 +16,58 @@
             <h2>¡Felicidades!</h2>
             <p>Has ordenado correctamente</p>
             <p id="totalMovimientos"></p>
+            <p id="tiempoJuego"></p>
             <button onclick="volverAlJuego()">Volver al juego</button>
+            <button onclick="guardarDatos()">Guardar</button>
         </div>
     </div>
 
     <script>
-        // Obtener el número de movimientos de la URL
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "TU_AUTH_DOMAIN",
+            projectId: "TU_PROJECT_ID",
+            storageBucket: "TU_STORAGE_BUCKET",
+            messagingSenderId: "TU_MESSAGING_SENDER_ID",
+            appId: "TU_APP_ID"
+        };
+
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
+
+        // Obtener los parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const movimientos = urlParams.get('movimientos');
-        document.getElementById('totalMovimientos').innerText = `Total movimientos: ${movimientos}`;
+        const tiempo = urlParams.get('tiempo');
 
+        // Mostrar los datos en la página
+        document.getElementById('totalMovimientos').innerText = `Total movimientos: ${movimientos}`;
+        document.getElementById('tiempoJuego').innerText = `Tiempo de juego: ${tiempo}`;
+
+        // Función para volver al juego
         function volverAlJuego() {
-            window.location.href = "juego.html"; // Cambia "index.html" por el nombre de tu archivo principal del juego
+            window.location.href = "juego.html";
+        }
+
+        // Función para guardar los datos en Firebase
+        async function guardarDatos() {
+            try {
+                const datosJuego = {
+                    movimientos: parseInt(movimientos),
+                    tiempo: tiempo,
+                    fecha: new Date().toISOString(),
+                };
+
+                // Guardar datos en Firestore
+                await db.collection('juegos').add(datosJuego);
+
+                alert('Datos guardados exitosamente en Firebase');
+            } catch (error) {
+                console.error("Error al guardar los datos: ", error);
+                alert('Hubo un error al guardar los datos. Inténtalo de nuevo.');
+            }
         }
     </script>
 </body>

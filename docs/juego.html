@@ -235,8 +235,10 @@
     
             // Si todos están correctos
             if (correctos === 5) {
+                
+                const tiempoActual = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
                 limpiarCronometro();
-                window.location.href = "ventanaGanadora.html?movimientos=" + movimiento;
+                window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}`;
             }
         }
         //cargar cornometro 
