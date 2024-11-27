@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro de Juego</title>
+        <link rel="stylesheet" href="../styles/registroJuego.css">
+        <!-- configuracion para firebase-->
+         <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        //configuracion de firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebaseapp.com",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // inicializar firebase
+        const app= initializeApp(firebaseConfig);
+        const db= getFirestore();
+        
+        //funcion de registro de datos de juego 
+
+        async function registrarPartida(idPaciente, movimiento, tiempo, progreso) {
+            try{
+                const docRef = await addDoc(collection(db, "partidas"), {
+                    idPaciente : idPaciente,
+                    movimientos: movimientos,
+                    tiempo : tiempo,
+                    progreso : progreso,
+                    fecha : new Date().toISOString()
+                });
+                console.log("Documento registrado con ID", docRef.id);
+            }catch (error){
+                console.error("Error al registrar la partida: ", error);
+            }
+        }
+
+        // escuchar el evento de finalizacion de partidas desde el juego
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.tipo === 'finPartida') {
+                const { idPaciente, movimientos, tiempo, progreso } = event.data;
+                registrarPartida(idPaciente, movimientos, tiempo, progreso);
+            }
+        });
+         </script>
+    </head>
+
+    <body>
+        <div class="registro-contenedor">
+            <h1> Registro de Partida</h1>
+            <p>Los datos de la partida se registraran automaticamente una vez finalice el jeugo</p>
+        </div>
+    </body>
+</html>

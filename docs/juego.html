@@ -239,6 +239,22 @@
                 window.location.href = "ventanaGanadora.html?movimientos=" + movimiento;
             }
         }
+
+        //registrar datos
+        function enviarDatosRegistro(){
+            const idPaciente = localStorage.getItem('idPaciente');
+            const tiempo = `${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2, '0')}`;
+            const progreso = "Excelente";
+
+            window.parent.postMessage({
+                tipo: 'finPartida',
+                idPaciente: idPaciente,
+                movimiento: movimiento,
+                tiempo: tiempo,
+                progreso: progreso
+            },'*')
+        }
+
         //cargar cornometro 
         window.onload=function(){
             if(localStorage.getItem('minutos')&& localStorage.getItem('segundos')){
