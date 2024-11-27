@@ -72,27 +72,49 @@
                     return;
                 }
 
+                // Determinar el rango basado en los movimientos
+                const movimientosNum = parseInt(movimientos);
+                let evaluacion;
+
+                if (movimientosNum >= 5 && movimientosNum <= 9) {
+                    evaluacion = "Excelente";
+                } else if (movimientosNum >= 10 && movimientosNum <= 12) {
+                    evaluacion = "Regular";
+                } else if (movimientosNum > 12) {
+                    evaluacion = "Pésimo";
+                } else {
+                    evaluacion = "Desconocido"; // Por si ocurre un error inesperado
+                }
+
                 // Construye los datos a guardar en Firestore
                 const datosJuego = {
                     idPaciente: idPaciente, // Incluye el ID del paciente
-                    movimientos: parseInt(movimientos),
+                    movimientos: movimientosNum,
                     tiempo: tiempo,
+                    evaluacion: evaluacion, // Incluye la evaluación en los datos
                     fecha: new Date().toISOString(),
                 };
 
                 // Guarda los datos en Firestore
                 await db.collection('juegos').add(datosJuego);
 
-                alert('Datos guardados exitosamente en Firebase');
+                alert(`Datos guardados exitosamente. Evaluación: ${evaluacion}`);
             } catch (error) {
                 console.error("Error al guardar los datos en Firebase:", error);
                 alert('Hubo un error al guardar los datos. Inténtalo de nuevo.');
             }
         }
 
+
         function cerrarSesion() {
             localStorage.removeItem('idPaciente');
             window.location.href = "loginPaciente.html"; // Redirige al inicio de sesión
+        }
+        const idPaciente = localStorage.getItem('idPaciente');
+        if (!idPaciente) {
+            console.warn('No se encontró el ID del paciente en localStorage.');
+        } else {
+            console.log(`ID del paciente recuperado: ${idPaciente}`);
         }
     </script>
 </body>
