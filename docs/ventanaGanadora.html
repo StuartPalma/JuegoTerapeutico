@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js"></script>
 </head>
+
 <body>
     <div class="ganador">
         <div class="contenido-ventana">
@@ -23,20 +25,6 @@
     </div>
 
     <script>
-        // Configuración de Firebase
-        const firebaseConfig = {
-            apiKey: "TU_API_KEY",
-            authDomain: "TU_AUTH_DOMAIN",
-            projectId: "TU_PROJECT_ID",
-            storageBucket: "TU_STORAGE_BUCKET",
-            messagingSenderId: "TU_MESSAGING_SENDER_ID",
-            appId: "TU_APP_ID"
-        };
-
-        // Inicializar Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
-
         // Obtener los parámetros de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const movimientos = urlParams.get('movimientos');
@@ -65,10 +53,26 @@
 
                 alert('Datos guardados exitosamente en Firebase');
             } catch (error) {
-                console.error("Error al guardar los datos: ", error);
+                console.error("Error al guardar los datos:", error);
                 alert('Hubo un error al guardar los datos. Inténtalo de nuevo.');
             }
         }
+
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "TU_AUTH_DOMAIN",
+            projectId: "TU_PROJECT_ID",
+            storageBucket: "TU_STORAGE_BUCKET",
+            messagingSenderId: "TU_MESSAGING_SENDER_ID",
+            appId: "TU_APP_ID"
+        };
+
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
     </script>
 </body>
+
 </html>
