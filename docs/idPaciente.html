@@ -47,6 +47,7 @@
                         if (docSnap.exists()) {
                             // Si el paciente existe, redirigir al juego
                             console.log('Inicio de sesión exitoso');
+                            localStorage.getItem('idPaciente', idPaciente);
                             // Redirige a la página de inicio de sesión después de un breve retraso
                             setTimeout(function() {
                                 window.location.href = "juego.html";
@@ -71,6 +72,9 @@
                 }
             });
         });
+
+
+
     </script>
 </head>
 <body>
