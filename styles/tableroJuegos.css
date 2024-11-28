@@ -1,0 +1,137 @@
+header {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Cambiado de center a flex-start */
+    align-items: center;
+}
+
+.barra {
+    height: 100%;
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barra p {
+    font-size: 40px;
+
+    margin: 0px 20px;
+
+    display: inline;
+    text-align: left;
+}
+
+.boton-elegir-paciente {
+    height: inherit;
+
+    font-size: 25px;
+
+    border: 1px solid hsl(20, 100%, 60%);
+    cursor: pointer;
+
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-elegir-paciente a {
+    width: 100%;
+    height: 100%;
+
+    padding: 0px 20px;
+    margin: 0px;
+
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 120px;
+
+    box-sizing: border-box;
+
+}
+
+.titulo-tablero {
+    font-size: 45px;
+    display: block;
+    text-align: center;
+}
+
+.recuadros-juegos {
+    width: 100%;
+    height: 500px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.recuadro-juego {
+    width: 400px;
+    min-height: 500px;
+
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+}
+
+.recuadro-juego h2 {
+    font-size: 30px;
+    font-family: "Berlin Sans FB";
+    margin: 0px;
+}
+
+.recuadro-juego img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.boton-jugar {
+    width: inherit;
+
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    font-family: "Berlin Sans FB";
+
+    border-radius: 5px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: colorFlow 1s infinite;
+}
+

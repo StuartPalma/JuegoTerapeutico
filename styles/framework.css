@@ -1,0 +1,234 @@
+/* Framework */
+
+.back-color-primary {
+    background-color: white;
+}
+
+.back-color-secondary {
+    /*background-color: hsl(334, 59%, 8%);*/
+    background-color: hsl(20, 100%, 60%);
+    /*background-color: hsl(189, 66%, 8%);*/
+}
+
+.back-color-tertiary {
+    /*background-color: hsl(189, 66%, 8%);*/
+    background-color: hsl(0, 0%, 13%);
+}
+
+.back-color-cuaternary {
+    background-color: hsl(33, 88%, 66%);
+}
+
+/*Colores*/
+.color-primary {
+    color: hsl(0, 0%, 100%);
+}
+
+.color-secondary {
+    color: hsl(20, 100%, 60%);
+}
+
+.color-tertiary {
+    color: hsl(0, 0%, 13%);
+}
+
+.color-cuaternary {
+    color: hsl(33, 88%, 66%);
+}
+
+
+.padding-0 {
+    padding: 0;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+/* Bordes */
+.border-1-black {
+    border: 1px solid black;
+}
+
+.border-none {
+    border: none;
+}
+
+/* Fuentes */
+.font-berlin {
+    font-family: "Berlin Sans FB";
+}
+
+.font-impact {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.font-hartsfolk {
+    font-family: 'Hartsfolk';
+}
+
+.font-woliu {
+    font-family: 'Woliu Maners';
+}
+
+.font-olivia {
+    font-family: "Decorative Font Olivia";
+}
+
+.font-christmas-laugh {
+    font-family: "ChristmasLaugh";
+}
+
+.font-size-input {
+    font-size: 20px;
+}
+
+@font-face {
+    font-family: "Decorative Font Olivia";
+    src: url('../fonts/Decorative Font Olivia.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Hartsfolk';
+    src: url('../fonts/Hartsfolk.otf') format('truetype');
+}
+
+@font-face {
+    font-family: "Woliu Maners";
+    src: url('../fonts/Woliu Maners Demo.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: ChristmasLaugh;
+    src: url('../fonts/ Christmas Laugh - Personal Use.otf') format('truetype');
+}
+
+/* Estilos */
+.ul-list-style-none {
+    list-style: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.height-100vh {
+    height: 100vh;
+}
+
+/* Animaciones */
+@keyframes colorFlow {
+    0% {
+        background-color: rgb(235, 105, 12);
+    }
+    50% {
+        background-color: #eb920c;
+    }
+    100% {
+        background-color: rgb(235, 105, 12);
+    }
+}
+
+@keyframes tambalear-fuerte {
+    0% { transform: rotateY(180deg) translateX(0); }
+    25% { transform: rotateY(180deg) translateX(-10px); }
+    50% { transform: rotateY(180deg) translateX(10px); }
+    75% { transform: rotateY(180deg) translateX(-10px); }
+    100% { transform: rotateY(180deg) translateX(0); }
+}
+
+.tambalear-f-2s {
+    animation: tambalear-fuerte 2s infinite;
+}
+
+@keyframes tambalear-pausa {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(0px); }
+    100% { transform: translateX(0); }
+}
+
+.tambalear-p-4s {
+    animation: tambalear-pausa 4s infinite;
+}
+
+@keyframes tambalear-boton {
+    0% { transform: perspective(500px) rotateZ(0deg); }
+    25% { transform: perspective(500px) rotateZ(5deg); }
+    50% { transform: perspective(500px) rotateZ(0deg); }
+    75% { transform: perspective(500px) rotateZ(-5deg); }
+    100% { transform: perspective(500px) rotateZ(0deg); }
+}
+
+.hover-box-shadow {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-box-shadow:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.hover-a {
+    transition: color 0.3s ease;
+}
+
+.hover-a:hover {
+    color: hsl(125, 65%, 40%);
+}
+
+/* Clases propias */
+.boton-regresar {
+    width: 150px;
+    height: 60px;
+
+    font-size: 20px;
+    font-family: "Berlin Sans FB";
+
+    color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: colorFlow 7s infinite;
+}
+
+.boton-regresar:hover {
+    transform: scale(1.1);
+}
+
+.boton-regresar img {
+    width: 30px;
+    height: 30px;
+    margin: 0px 15px 0px 0px;
+    animation: tambalear-pausa 4s infinite;
+}
+
+.background-image {
+    background-image: url('../img/Fondo nubes.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}

@@ -1,19 +1,85 @@
+a {
+    text-decoration: none;
+}
+
+
+
+/* Animaciones */
+
+
+
+
+/* Clases propias */
 body {
-    background-color: hsl(30, 90%, 70%);
+    background-color: white;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.barra {
+    height: 70px;
+    width: 100%;
+}
+
+.bienvenida {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-image: url("../img/Fondo nubes.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.imagen-index {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen-index img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transform: rotateY(180deg);
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.titulo-login {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.titulo-TASE {
+    font-size: 120px;
+    margin: 0px;
+}
+
+.titulo-recuadro {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    border-radius: 15px;
+    background-color: white;
 }
 
 .titulo-principal {
-    font-size: 60px;
+    font-size: 45px;
     display: block;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: #333;
 }
 
 .terapeuta {
     font-size: 30px;
     text-align: left;
-    color: #333;
 }
 
 .boton {
@@ -22,45 +88,102 @@ body {
     margin: 10px auto;
     padding: 10px 20px;
     font-weight: bold;
-    background-color: rgba(241, 191, 82, 0.925);
-    color: rgb(59, 54, 54);
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
 .boton:hover {
-    background-color: rgb(235, 164, 12);
+    background-color: hsl(20, 100%, 60%);
     /* Cambia el color de fondo al hacer hover */
     transform: scale(1.05);
     /* Aumenta ligeramente el tamaño del botón */
+    animation: tambalear-boton 0.5s infinite;
 }
 
-.recuadro {
-    border: 2px solid black;
+.login-recuadro {
+    display: inline-block;
     padding: 20px;
     margin: 20px auto;
     width: 200px;
     text-align: center;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* Añade una sombra ligera */
     transition: box-shadow 0.3s ease;
     /* Añade una transición suave */
 }
 
-.recuadro:hover {
+.login-recuadro:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     /* Aumenta la sombra al hacer hover */
 }
 
-.titulo-recuadro {
+.barra-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 140px;
+}
+
+.informacion-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: ghostwhite;
+    font-size: 20px;
+}
+
+.informacion-footer h2 {
+    margin: 0px 0px 10px 30px;
+}
+
+.informacion-footer ul {
+}
+
+.informacion-footer ul li {
+    margin: 0px 0px 5px 0px;
+}
+
+.footer-imagen {
+    display: flex;
+    height: 70px;
+    object-fit: contain;
+}
+
+.footer-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer {
+    padding: 20px;
     text-align: center;
-    width: 75%;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: white;
+}
+
+.footer-enlaces a {
+    text-decoration: none;
+    color: #442400;
+}
+
+.footer-enlaces a:hover {
+    color: hsl(125, 65%, 40%);
+}
+
+.footer-enlaces ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.footer-enlaces ul li {
+    display: inline;
+    margin: 0px 10px;
+}
+
+.footer-fondo {
+    margin: 10px 0px;
 }

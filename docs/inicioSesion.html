@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesion de Terapeuta</title>
+    <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="../styles/inicioSesion.css">
+    <link rel="stylesheet" href="../styles/framework.css">
     <!-- Firebase Configuration -->
     <script type="module">
         // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import {getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -26,14 +27,14 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
 
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Evita el envío del formulario
 
             // Obtiene los datos del formulario y elimina espacios innecesarios
             const correo = document.getElementById('correo').value.trim();
             const contrasena = document.getElementById('contrasena').value;
 
-            console.log('Datos de inicio de sesión:', { correo, contrasena });
+            console.log('Datos de inicio de sesión:', {correo, contrasena});
 
             signInWithEmailAndPassword(auth, correo, contrasena)
                 .then((userCredential) => {
@@ -56,19 +57,35 @@
         });
     </script>
 </head>
-<body>
-    <div class="recuadro">
-        <h1>Inicio de Sesion de Terapeuta</h1>
-        <form id="loginForm">
+<body class="background-image">
+<div class="recuadro-boton">
+        <button id="boton-r" class="boton-regresar border-none back-color-secondary">
+            <img src="../img/Flecha_blanca.png" alt="">
+            Regresar</button>
+</div>
+<div>
+    <div class="recuadro font-berlin">
+        <div id="login-img">
+            <img src="../img/Login%20Persona.png" alt="">
+        </div>
+        <form id="form-login">
             <label for="correo">Correo:</label>
             <input type="email" name="correo" id="correo" placeholder="Ej: alguien@ejemplo.com" required>
             <br>
             <label for="contrasena">Contraseña:</label>
             <input type="password" name="contrasena" id="contrasena" required>
             <br>
-            <input type="submit" value="Iniciar Sesion">
+            <input type="submit" value="Iniciar Sesión">
         </form>
         <p id="error" style="color: red; display: none;">Correo o contraseña incorrectos.</p>
     </div>
+</div>
+
+<script>
+    document.getElementById('boton-r').addEventListener('click', function () {
+        window.location.href = "../index.html";
+    });
+</script>
+
 </body>
 </html>
