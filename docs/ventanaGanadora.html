@@ -16,8 +16,8 @@
 
 <body>
     <div class="ganador">
-        <div class="contenido-ventana font-berlin">
-            <h1 class="font-christmas-laugh">¡Felicidades!</h1>
+        <div class="contenido-ventana">
+            <h2>¡Felicidades!</h2>
             <p>Has ordenado correctamente</p>
             <p id="totalMovimientos"></p>
             <p id="tiempoJuego"></p>
@@ -115,10 +115,6 @@
             console.warn('No se encontró el ID del paciente en localStorage.');
         } else {
             console.log(`ID del paciente recuperado: ${idPaciente}`);
-        }
-
-        function volverAlTablero() {
-            window.location.href = "tableroJuegos.html"; // Cambia "index.html" por el nombre de tu archivo principal del juego
         }
     </script>
 </body>
