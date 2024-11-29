@@ -21,9 +21,9 @@
             <p>Has ordenado correctamente</p>
             <p id="totalMovimientos"></p>
             <p id="tiempoJuego"></p>
-            <button onclick="volverAlJuego()">Registro</button>
+            <button onclick="irARegistro()">Registro</button>
             <button onclick="guardarDatos()">Guardar</button>
-            <button class="boton" onclick="volverAlJuego()">Volver al juego</button>
+            <button class="boton" onclick="volverASala()">Volver a inicio</button>
             <button class="boton back-color-secondary" onclick="volverAlTablero()">Volver al tablero </button>
         </div>
     </div>
@@ -56,10 +56,16 @@
         document.getElementById('totalMovimientos').innerText = `Total movimientos: ${movimientos}`;
         document.getElementById('tiempoJuego').innerText = `Tiempo de juego: ${tiempo}`;
 
+        //funcion de ir a registro
+        function irARegistro(){
+            window.location.href = "pantallaDeRegistro.html";
+        }
+
+
         // Función para volver al juego
-        function volverAlJuego() {
-            //cerrarSesion();
-            window.location.href = "pantallaDeRegistros.html";
+        function volverASala() {
+            cerrarSesion();
+            window.location.href = "paciente.html";
         }
 
         // Función para guardar los datos en Firebase
