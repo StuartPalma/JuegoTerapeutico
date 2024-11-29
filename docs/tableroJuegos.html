@@ -58,6 +58,12 @@
             localStorage.removeItem('idPaciente');
             window.location.href = "loginPaciente.html"; // Redirige al inicio de sesión
         }
+        const idPaciente = localStorage.getItem('idPaciente');
+        if (!idPaciente) {
+            console.warn('No se encontró el ID del paciente en localStorage.');
+        } else {
+            console.log(`ID del paciente recuperado: ${idPaciente}`);
+        }
 </script>
 </body>
 </html>
