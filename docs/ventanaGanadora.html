@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +11,20 @@
     <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics-compat.js"></script>
     <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="../styles/framework.css">
 </head>
 
 <body>
     <div class="ganador">
-        <div class="contenido-ventana">
-            <h2>¡Felicidades!</h2>
+        <div class="contenido-ventana font-berlin">
+            <h1 class="font-christmas-laugh">¡Felicidades!</h1>
             <p>Has ordenado correctamente</p>
             <p id="totalMovimientos"></p>
             <p id="tiempoJuego"></p>
             <button onclick="volverAlJuego()">Registro</button>
             <button onclick="guardarDatos()">Guardar</button>
+            <button class="boton" onclick="volverAlJuego()">Volver al juego</button>
+            <button class="boton back-color-secondary" onclick="volverAlTablero()">Volver al tablero </button>
         </div>
     </div>
 
@@ -115,6 +117,10 @@
             console.warn('No se encontró el ID del paciente en localStorage.');
         } else {
             console.log(`ID del paciente recuperado: ${idPaciente}`);
+        }
+
+        function volverAlTablero() {
+            window.location.href = "tableroJuegos.html"; // Cambia "index.html" por el nombre de tu archivo principal del juego
         }
     </script>
 </body>

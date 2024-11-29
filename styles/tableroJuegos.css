@@ -43,8 +43,15 @@ body {
     text-align: left;
 }
 
+.contenedor-botones {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .boton-elegir-paciente {
-    height: inherit;
 
     font-size: 25px;
 
@@ -64,7 +71,7 @@ body {
     padding: 0px 20px;
     margin: 0px;
 
-    display: block;
+    display: inline-block;
     text-decoration: none;
     text-align: center;
     line-height: 120px;
