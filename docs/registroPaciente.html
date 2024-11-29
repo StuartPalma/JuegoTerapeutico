@@ -30,7 +30,7 @@
         const auth = getAuth();
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('registroForm').addEventListener('submit', async function (event) {
+            document.getElementById('form-registro').addEventListener('submit', async function (event) {
                 event.preventDefault(); // Evitar envío del formulario
 
                 // Obtener los datos del formulario
@@ -51,13 +51,13 @@
                             registradoPor: auth.currentUser.uid // Guarda el UID del terapeuta que registra al paciente
                         });
                         alert('Registro exitoso');
-                        document.getElementById('registroForm').reset();
+                        document.getElementById('form-registro').reset();
                         // Muestra un mensaje de éxito
                         document.getElementById('mensaje').style.display = 'block';
 
                         // Redirige a la página de inicio de sesión después de un breve retraso
                         setTimeout(function () {
-                            window.location.href = "idPaciente.html";
+                            window.location.href = "loginPaciente.html";
                         }, 2000); // 2 segundos de retraso
 
 

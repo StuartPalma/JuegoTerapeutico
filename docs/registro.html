@@ -32,7 +32,7 @@
         const auth = getAuth();
         const db = getFirestore();
 
-        document.getElementById('registroForm').addEventListener('submit', async function (event) {
+        document.getElementById('registroForm').addEventListener('submit', async function(event) {
             event.preventDefault(); // Evita el envío del formulario
 
             // Obtiene los datos del formulario
@@ -57,20 +57,12 @@
                 document.getElementById('mensaje').style.display = 'block';
 
                 // Redirige a la página de inicio de sesión después de un breve retraso
-                setTimeout(function () {
+                setTimeout(function() {
                     window.location.href = "inicioSesion.html";
                 }, 2000); // 2 segundos de retraso
 
-
             } catch (error) {
-                if (error.code === 'auth/email-already-in-use') {
-                    alert('El correo ya está registrado. Redirigiendo a la página de inicio de sesión...');
-                    setTimeout(function () {
-                        window.location.href = "inicioSesion.html";
-                    }, 2000); // 2 segundos de retraso
-                } else {
-                    alert('Error al registrar: ' + error.message);
-                }
+                alert('Error al registrar: ' + error.message);
             }
         });
     </script>
@@ -87,7 +79,7 @@
             Regresar
         </button>
     </div>
-    <form id="form-registro" class="hover-box-shadow">
+    <form id="registroForm" class="hover-box-shadow">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre" placeholder="Ej: Carlos" required>
         <br>

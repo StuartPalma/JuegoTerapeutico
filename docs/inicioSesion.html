@@ -27,7 +27,7 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
 
-        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+        document.getElementById('form-login').addEventListener('submit', async function (event) {
             event.preventDefault(); // Evita el envío del formulario
 
             // Obtiene los datos del formulario y elimina espacios innecesarios
