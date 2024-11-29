@@ -21,7 +21,7 @@
                     estadísitcas</a>
             </div>
             <div id="boton-elegir-paciente" class="boton-elegir-paciente back-color-primary margin-0"
-                 onclick="document.getElementById('enlace-elegir-paciente').click()">
+                 onclick="cerrarSecion(); document.getElementById('enlace-elegir-paciente').click()">
                 <a id="enlace-elegir-paciente" class="color-secondary hover-a font-impact" href="paciente.html">Elegir
                     otro
                     paciente</a>
@@ -53,5 +53,11 @@
         <a class="boton-jugar" href="">Jugar</a>
     </div>
 </div>
+<script>
+        function cerrarSesion() {
+            localStorage.removeItem('idPaciente');
+            window.location.href = "loginPaciente.html"; // Redirige al inicio de sesión
+        }
+</script>
 </body>
 </html>

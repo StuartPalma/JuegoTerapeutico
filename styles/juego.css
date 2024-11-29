@@ -44,7 +44,7 @@ body {
 
 #dropArea {
     display: flex;
-    flex-direction: column;
+    flex-direction: horizontal;
 }
 
 .bloques {
