@@ -49,29 +49,28 @@ function cargarPalabras() {
             return response.json();
         })
         .then(data => {
-            // Seleccionar 5 palabras aleatorias
             const palabraRandom = [];
-            const shuffled = data.sort(() => 0.5 - Math.random()); // Mezclar las palabras aleatoriamente
+            const shuffled = data.sort(() => 0.5 - Math.random());
             for (let i = 0; i < 5; i++) {
                 palabraRandom.push(shuffled[i]);
             }
 
-            // Insertar palabras en el área de juego
             const gameArea = document.getElementById('gameArea1');
-            palabraRandom.forEach(palabra => {
+            palabraRandom.forEach((palabra, index) => {
                 const palabraDiv = document.createElement('div');
                 palabraDiv.classList.add('object');
                 palabraDiv.setAttribute('draggable', 'true');
                 palabraDiv.setAttribute('data-weight', palabra.id);
+                palabraDiv.setAttribute('data-correct-position', index); // Posición correcta
                 palabraDiv.textContent = palabra.name;
                 gameArea.appendChild(palabraDiv);
             });
 
-            // Asignar eventos a los nuevos elementos
             asignarEventosArrastrar();
         })
         .catch(error => console.error('Error al cargar la palabra:', error));
 }
+
 
 // Asignar eventos de arrastrar y soltar
 function asignarEventosArrastrar() {
@@ -95,6 +94,13 @@ function asignarEventosArrastrar() {
             if (draggedItem) {
                 movimiento++;
                 document.getElementById('contador').innerText = `Movimientos: ${movimiento}`;
+
+                // asignar longitud de la palabra
+                const palabra1 = this.innerHTML;
+                const palabra2 = draggedItem.innerHTML
+                console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
+                console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
+
                 // Intercambiar contenido y atributos
                 const tempHTML = this.innerHTML;
                 const tempWeight = this.getAttribute('data-weight');
@@ -104,13 +110,124 @@ function asignarEventosArrastrar() {
 
                 draggedItem.innerHTML = tempHTML;
                 draggedItem.setAttribute('data-weight', tempWeight);
+                
+                //verificar orden 
+                //ordenCorrecto();
             } else {
                 console.error('draggedItem es null, no se puede realizar el intercambio.');
             }
+
+            ordenCorrecto();
         });
+        item.addEventListener('touchstart', function (e) {
+            draggedItem = this;
+            setTimeout(() => this.style.visibility = 'hidden', 0);
+            e.preventDefault();
+        });
+
+        item.addEventListener('touchend', function (e) {
+            setTimeout(() => this.style.visibility = 'visible', 0);
+            if (draggedItem !== null) {
+                // Incrementar el movimiento al soltar
+                movimiento++;
+                document.getElementById('contador').innerText = `Movimientos: ${movimiento}`;
+                // Encontrar el elemento debajo del toque final
+                const touchLocation = e.changedTouches[0];
+                const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+                if (element && element.classList.contains('object') && element !== draggedItem) {
+                    
+                    //verificar longitud de la palabra
+                    const palabra1 = this.innerHTML;
+                    const palabra2 = draggedItem.innerHTML
+                    console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
+                    console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
+                    // Intercambiamos los objetos arrastrados
+                    const tempHTML = element.innerHTML;
+                    const tempWeight = element.getAttribute('data-weight');
+                    const tempId = element.id;
+
+                    // Intercambiamos contenido y atributos
+                    element.innerHTML = draggedItem.innerHTML;
+                    element.setAttribute('data-weight', draggedItem.getAttribute('data-weight'));
+                    element.id = draggedItem.id;
+
+                    draggedItem.innerHTML = tempHTML;
+                    draggedItem.setAttribute('data-weight', tempWeight);
+                    draggedItem.id = tempId;
+                }
+            }
+            draggedItem = null;
+            // Verificamos el orden automáticamente después de soltar
+            ordenCorrecto();
+        });
+
+        item.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        });
+        
     });
+
 }
 
+//funcion para verificar el orden de las palabras 
+function ordenCorrecto() {
+    const dropArea = document.getElementById('dropArea'); // Contenedor de palabras
+    const bloques = Array.from(dropArea.querySelectorAll('.object'))
+        .filter(obj => obj.style.visibility !== 'hidden' && obj.hasAttribute('data-weight'));
+
+    if (bloques.length === 0) {
+        console.error('No hay bloques en dropArea para verificar.');
+        return;
+    }
+
+    let correctos = 0;
+
+    // Iterar por los bloques en su posición actual dentro de dropArea
+    bloques.forEach((bloque, index) => {
+        const correctPosition = bloque.getAttribute('data-correct-position'); // Posición esperada
+        const currentWeight = bloque.getAttribute('data-weight'); // Peso actual asignado
+        const palabra = bloque.innerHTML.trim(); // Palabra actual en el bloque
+
+        if (!correctPosition || !currentWeight) {
+            console.warn(`El bloque en la posición ${index} no tiene atributos correctos.`);
+            bloque.style.backgroundColor = '#D53032'; // Rojo si no cumple
+            return;
+        }
+
+        // Verificar si la posición actual coincide con la esperada
+        if (parseInt(correctPosition) === index) {
+            correctos++;
+            bloque.style.backgroundColor = 'lightgreen'; // Verde si es correcto
+        } else {
+            bloque.style.backgroundColor = '#D53032'; // Rojo si es incorrecto
+        }
+    });
+
+    console.log(`Total correctos: ${correctos}, Bloques necesarios: ${bloques.length}`);
+
+    // Si todos los bloques están en la posición correcta
+    if (correctos === bloques.length) {
+        const tiempoActual = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        limpiarCronometro();
+        window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}`;
+    }
+}
+
+
+// Verificar la longitud de las palabras
+function verificarLongitudPalabra(palabra) {
+    return palabra.trim().length; // Asegurarse de ignorar espacios adicionales
+}
+
+
+
+
+
+
+//funcion para verificar la longitud
+function verificarLongitudPalabra(palabra){
+    return palabra.length;
+}
 // Funciones del cronómetro
 function pausarCronometro() {
     cronometroPausado = true;
