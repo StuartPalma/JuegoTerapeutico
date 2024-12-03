@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- para qye se la pagina se ajuste al dispositivo-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+     <!-- colocar un mejor nombre -->
+    <title>Ordena objetos por pesos</title>
+    <!-- estilos de la pagina-->
+    <link rel="stylesheet" href="../styles/juego.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo-principal"> Ordena los objetos por la palabra mas corta a la mas larga</h1>
+        <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
+        <p id="contador">movimientos: 0</p>
+        <p id="cronometro">Time: 00:00</p>
+        <button id="pausarBtn"></button>
+
+        <!-- Área de juego donde se mostrarán los objetos -->
+         <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
+         <div class="game-area" id="gameArea1" style="width: 100%; height: 200px; 
+         border: 2px dashed #ccc; margin-top: 20px; background-color: white; display: flex;
+          justify-content: center; align-items: center;">
+
+        </div>
+
+        <div class="game-area" id="dropArea" style="width: 100%; height: 200px; 
+        border: 2px dashed #ccc; margin-top: 20px; background-color: white; display: flex;
+         justify-content: center; align-items: center;">
+            <p>Arrastra aquí las palabras</p>
+            <div class="object" draggable="true" id="bloque1" ></div>
+            <div class="object" draggable="true" id="bloque2" ></div>
+            <div class="object" draggable="true" id="bloque3" ></div>
+            <div class="object" draggable="true" id="bloque4" ></div>
+            <div class="object" draggable="true" id="bloque5" ></div>
+            <!--<div class="object" draggable="true" id="bloque6" ></div>
+            <div class="object" draggable="true" id="bloque7" ></div>-->
+        </div>
+        </div>
+
+
+        <!-- Mensaje de feedback -->
+        <div class="message" id="message"></div>
+    </div>
+
+
+
+    <div id="pausa" class="modal" style="display: none;" >
+        <div class="modal_content">
+            <h2>EL juego está en pausa</h2>
+            <p id="tiempo">Tiempo transcurrido: 00:00</p>
+            <button onclick="volverAlJuego()">Volver al Juego</button>
+            <button onclick="salirDelJuego()">Salir</button>
+            
+        </div>
+    </div>
+
+<script src="juego3.js"></script>
+    
+</body>
+
+</html>
