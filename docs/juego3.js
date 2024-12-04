@@ -169,7 +169,7 @@ function asignarEventosArrastrar() {
             }
             draggedItem = null;
             // Verificamos el orden automáticamente después de soltar
-            ordenCorrecto();
+            verificarOrdenCorrecto();
         });
 
         item.addEventListener('touchmove', function (e) {
