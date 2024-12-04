@@ -197,13 +197,13 @@ body {
 }
 
 .correcto {
-    background-color: green;
-    color: white; /* Para que el texto sea visible */
+    background-color: lightgreen;
+    color: black; /* Para que el texto sea visible */
 }
 
 .incorrecto {
-    background-color: red;
-    color: white;
+    background-color: #D53032;
+    color: black;
 }
 .vacio{ 
     background-color: white;

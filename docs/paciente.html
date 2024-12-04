@@ -38,6 +38,7 @@
                 if (docSnap.exists()) {
                     const nombre = docSnap.data().nombre;
                     document.getElementById('nombre-terapeuta').textContent = nombre;
+                    localStorage.setItem('nombreTerapeuta', nombre); // Guardar en localStorage
                 } else {
                     console.log("No such document!");
                 }
