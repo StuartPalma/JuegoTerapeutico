@@ -44,12 +44,10 @@ body {
 
 #dropArea {
     display: flex;
-    flex-direction: horizontal;
 }
 
 .bloques {
     display: flex;
-    flex-direction: row;
     gap: 10px;
 }
 
@@ -62,6 +60,8 @@ body {
     background-color: aliceblue;
     cursor: grab; /*cambiamos a un amanita el mouse*/
     font-weight: bold; /* Resaltar el peso */
+    justify-content: center;
+    align-items: center;
 }
 
 .message {
@@ -194,18 +194,4 @@ body {
 /* Estilo del texto dentro del modal */
 .modal-content h2, .modal-content p {
     color: #333; /* Texto en gris oscuro para buen contraste sobre fondo blanco */
-}
-
-.correcto {
-    background-color: lightgreen;
-    color: black; /* Para que el texto sea visible */
-}
-
-.incorrecto {
-    background-color: #D53032;
-    color: black;
-}
-.vacio{ 
-    background-color: white;
-    color: black;
 }

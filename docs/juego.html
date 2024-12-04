@@ -8,14 +8,15 @@
     <title>Ordena objetos por pesos</title>
     <!-- estilos de la pagina-->
     <link rel="stylesheet" href="../styles/juego.css">
+    <link rel="stylesheet" href="../styles/framework.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="titulo-principal"> Ordena los objetos del más liviano al más pesado</h1>
+        <h1 class="titulo-principal"> Ordena los objetos del más liviano al más pesado.</h1>
         <h2>Arrastra y suelta los objetos en el orden correcto.</h2>
-        <p id="contador">movimientos: 0</p>
-        <p id="cronometro">Time: 00:00</p>
-        <button id="pausarBtn"></button>
+        <p id="contador" class="font-woliu">Movimientos: 0</p>
+        <p id="cronometro" class="font-woliu">Tiempo: 00:00</p>
+        <button id="pausarBtn">Pausar</button>
 
         <!-- Área de juego donde se mostrarán los objetos -->
         <!-- le pondremos nombre y un peso especifico que haga referencia a que es liviano o pesado -->
@@ -82,10 +83,10 @@
 
     <div id="pausa" class="modal" style="display: none;" >
         <div class="modal_content">
-            <h2>EL juego está en pausa</h2>
+            <h2>El juego está en pausa</h2>
             <p id="tiempo">Tiempo transcurrido: 00:00</p>
             <button onclick="volverAlJuego()">Volver al Juego</button>
-            <button onclick="salirDelJuego()">Salir</button>
+            <button id="botonSalirJuego" onclick="salirDelJuego()">Salir</button>
         </div>
     </div>
 
