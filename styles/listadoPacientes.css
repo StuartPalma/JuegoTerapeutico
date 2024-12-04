@@ -74,3 +74,19 @@ h1 {
     color: #666;
     margin-top: 20px;
 }
+.boton-regreso-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.boton-regreso {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.boton-regreso:hover {
+    background-color: #0056b3;
+}

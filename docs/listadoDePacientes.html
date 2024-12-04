@@ -97,7 +97,7 @@
             const filas = document.querySelectorAll(".tabla-pacientes tbody tr");
             filas.forEach(fila => {
                 const nombre = fila.querySelector("td:nth-child(1)").textContent.toLowerCase();
-                const cedula = fila.querySelector("td:nth-child(2) a").textContent.toLowerCase();
+                const cedula = fila.querySelector("td:nth-child(3) a").textContent.toLowerCase();
                 if (nombre.includes(filtro) || cedula.includes(filtro)) {
                     fila.style.display = "";
                 } else {
@@ -110,7 +110,9 @@
 <body>
     <div class="contenedor">
         <h1>Listado de Pacientes por Terapeuta</h1>
-        
+        <div class="boton-regreso-container">
+            <button onclick="window.history.back();" class="boton-regreso">Regresar</button>
+        </div>
         <div class="buscador-container">
             <input type="text" id="buscadorPacientes" placeholder="Buscar por nombre o cédula" onkeyup="filtrarPacientes()">
         </div>
@@ -118,6 +120,7 @@
         <div id="pacientesContainer" class="pacientes-container">
             <!-- Aquí se mostrará la lista de pacientes -->
         </div>
+        
     </div>
 </body>
 </html>
