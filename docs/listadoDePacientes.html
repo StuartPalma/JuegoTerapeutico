@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Pacientes por Terapeuta</title>
+    <link rel="stylesheet" href="../styles/listadoPacientes.css">
+    <!-- Firebase Configuration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
+            authDomain: "juegoterrapeuticoepn.firebaseapp.com",
+            projectId: "juegoterrapeuticoepn",
+            storageBucket: "juegoterrapeuticoepn.firebaseapp.com",
+            messagingSenderId: "537931533464",
+            appId: "1:537931533464:web:789d18eddff759799d14ed",
+            measurementId: "G-WB9KER4NJB"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+
+        // Función para obtener los pacientes según el ID del terapeuta
+        async function obtenerPacientesPorTerapeuta(idTerapeuta) {
+            try {
+                const q = query(collection(db, "pacientes"), where("registradoPor", "==", idTerapeuta));
+                const querySnapshot = await getDocs(q);
+
+                const pacientesContainer = document.getElementById("pacientesContainer");
+                pacientesContainer.innerHTML = "";
+                const tablaPacientes = document.createElement('table');
+                tablaPacientes.className = 'tabla-pacientes';
+                tablaPacientes.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            <th>Edad</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                `;
+                pacientesContainer.appendChild(tablaPacientes);
+
+                if (querySnapshot.empty) {
+                    pacientesContainer.innerHTML = "<p>No se encontraron pacientes para este terapeuta.</p>";
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        const paciente = doc.data();
+                        const filaPaciente = document.createElement('tr');
+                        filaPaciente.innerHTML = `
+                            <td>${paciente.nombre}</td>
+                            <td>${paciente.apellido}</td>
+                            <td><a href="tableroJuegos.html?id=${doc.id}" class="link-paciente" data-cedula="${paciente.id}">${doc.id}</a></td>
+                            <td>${paciente.edad}</td>
+                            
+                        `;
+
+                        // Añadir un evento para almacenar la cédula cuando se haga clic en el enlace del paciente
+                        filaPaciente.querySelector('.link-paciente').addEventListener('click', (event) => {
+                            event.preventDefault();
+                            const cedulaPaciente = event.target.getAttribute('data-cedula');
+                            console.log('Cédula a guardar:', cedulaPaciente); // Verificar el valor a guardar
+                            localStorage.setItem('cedulaPaciente', cedulaPaciente);
+                            window.location.href = event.target.href;
+                        });
+
+                        tablaPacientes.querySelector('tbody').appendChild(filaPaciente);
+                    });
+                }
+            } catch (error) {
+                console.error("Error al obtener los pacientes: ", error);
+            }
+        }
+
+        // Lógica para obtener el ID del terapeuta y mostrar los pacientes
+        document.addEventListener('DOMContentLoaded', () => {
+            const idTerapeuta = localStorage.getItem('idTerapeuta');
+            if (idTerapeuta) {
+                obtenerPacientesPorTerapeuta(idTerapeuta);
+            } else {
+                alert("No se encontró un ID de terapeuta en sesión. Por favor, inicie sesión nuevamente.");
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Listado de Pacientes por Terapeuta</h1>
+        
+        <div id="pacientesContainer" class="pacientes-container">
+            <!-- Aquí se mostrará la lista de pacientes -->
+        </div>
+    </div>
+</body>
+</html>

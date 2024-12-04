@@ -8,24 +8,20 @@
     <link rel="stylesheet" href="../styles/tableroJuegos.css">
     <link rel="stylesheet" href="../styles/framework.css">
 </head>
-<header class="back-color-secondary  color-primary">
+<header class="back-color-secondary color-primary">
     <div class="barra">
         <p class="font-berlin">
-            Saludos doctor <span id="nombre-terapeuta"></span>
+            Saludos Dr/a <span id="nombre-terapeuta"></span>
             <br>
             Paciente: <span id="idPaciente"></span>
         </p>
         <div class="contenedor-botones">
-            <div class="boton-elegir-paciente back-color-primary margin-0"
-                onclick="document.getElementById('enlace-estadisticas').click()">
-                <a id="enlace-estadisticas" class="color-secondary hover-a font-impact"
-                    href="pantallaDeRegistros.html">Ver
-                    estadísitcas</a>
+            <div class="boton-elegir-paciente back-color-primary margin-0" onclick="document.getElementById('enlace-estadisticas').click()">
+                <a id="enlace-estadisticas" class="color-secondary hover-a font-impact" href="pantallaDeRegistros.html">Ver
+                    estadísticas</a>
             </div>
-            <div id="boton-elegir-paciente" class="boton-elegir-paciente back-color-primary margin-0"
-                onclick="cerrarSecion(); document.getElementById('enlace-elegir-paciente').click()">
-                <a id="enlace-elegir-paciente" class="color-secondary hover-a font-impact" href="paciente.html">Elegir
-                    otro
+            <div id="boton-elegir-paciente" class="boton-elegir-paciente back-color-primary margin-0" onclick="cerrarSesion(); document.getElementById('enlace-elegir-paciente').click()">
+                <a id="enlace-elegir-paciente" class="color-secondary hover-a font-impact" href="paciente.html">Elegir otro
                     paciente</a>
             </div>
         </div>
@@ -40,45 +36,46 @@
         <div class="recuadro-juego">
             <h2>Juego 1</h2>
             <img src="../img/Ejemplo_juego.png" alt="">
-            <p> Descripción del juego 1 </p>
+            <p>Descripción del juego 1</p>
             <a class="boton-jugar" href="juego.html">Jugar</a>
         </div>
         <div class="recuadro-juego">
             <h2>Juego 2</h2>
             <img src="../img/Ejemplo_juego.png" alt="">
-            <p> Descripción del juego 2 </p>
+            <p>Descripción del juego 2</p>
             <a class="boton-jugar" href="juego2.html">Jugar</a>
         </div>
         <div class="recuadro-juego">
             <h2>Juego 3</h2>
             <img src="../img/Ejemplo_juego.png" alt="">
-            <p> Descripción del juego 3 </p>
+            <p>Descripción del juego 3</p>
             <a class="boton-jugar" href="juego3.html">Jugar</a>
         </div>
     </div>
     <script>
         function cerrarSesion() {
-            localStorage.removeItem('idPaciente');
+            localStorage.removeItem('cedulaPaciente');
             localStorage.removeItem('nombreTerapeuta');
             window.location.href = "loginPaciente.html"; // Redirige al inicio de sesión
         }
-        const idPaciente = localStorage.getItem('idPaciente');
+
+        // Obtener el ID del paciente del localStorage y mostrarlo
+        const idPaciente = localStorage.getItem('cedulaPaciente');
         if (!idPaciente) {
             console.warn('No se encontró el ID del paciente en localStorage.');
         } else {
             console.log(`ID del paciente recuperado: ${idPaciente}`);
             document.getElementById('idPaciente').textContent = idPaciente;
         }
+
+        // Obtener el nombre del terapeuta del localStorage y mostrarlo
         const nombreTerapeuta = localStorage.getItem('nombreTerapeuta');
         if (nombreTerapeuta) {
             console.log('Nombre del terapeuta:', nombreTerapeuta);
-            // Puedes usar el nombre del terapeuta aquí
             document.getElementById('nombre-terapeuta').textContent = nombreTerapeuta;
         } else {
             console.log('No se encontró el nombre del terapeuta en localStorage.');
         }
-
-        
     </script>
 </body>
 

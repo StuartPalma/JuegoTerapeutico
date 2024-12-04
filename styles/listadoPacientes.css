@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #007BFF;
+}
+
+.tabla-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-pacientes th, .tabla-pacientes td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.tabla-pacientes th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.tabla-pacientes tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla-pacientes tr:hover {
+    background-color: #f1f1f1;
+}
+
+.link-paciente {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.link-paciente:hover {
+    text-decoration: underline;
+}
+
+.pacientes-container p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 20px;
+}

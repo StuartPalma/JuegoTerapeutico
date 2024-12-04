@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Obtener el ID del paciente desde localStorage
-const idPaciente = localStorage.getItem('idPaciente');
+const idPaciente = localStorage.getItem('cedulaPaciente');
 if (!idPaciente) {
     alert('No se encontró el ID del paciente. Por favor, inicia sesión nuevamente.');
     window.location.href = "loginPaciente.html";
