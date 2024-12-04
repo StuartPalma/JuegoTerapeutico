@@ -1,17 +1,31 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.contenedor {
+    width: 1200px;
+    height: 300px;
+
+    padding: 0px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(0, 0%, 100%); /* White background with 80% opacity */
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease
 }
 
 h1, h2 {
@@ -23,16 +37,17 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+    font-family: "Berlin Sans FB Demi", sans-serif;
 }
 
 table th, table td {
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     padding: 8px;
     text-align: center;
 }
 
 table th {
-    background-color: #f4f4f4;
+    background-color: #f6cb99;
     color: #333;
 }
 
