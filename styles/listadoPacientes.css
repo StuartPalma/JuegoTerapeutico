@@ -1,27 +1,42 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .contenedor {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    width: 600px;
+    height: 300px;
+
+    padding: 0px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(0, 0%, 100%); /* White background with 80% opacity */
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease
 }
 
 h1 {
-    text-align: center;
-    color: #007BFF;
+    margin-bottom: 20px;
 }
 
 .buscador-container {
-    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
     text-align: center;
 }
 
@@ -74,19 +89,4 @@ h1 {
     color: #666;
     margin-top: 20px;
 }
-.boton-regreso-container {
-    text-align: center;
-    margin-top: 20px;
-}
-.boton-regreso {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.boton-regreso:hover {
-    background-color: #0056b3;
-}
+

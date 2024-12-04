@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Pacientes por Terapeuta</title>
     <link rel="stylesheet" href="../styles/listadoPacientes.css">
+    <link rel="stylesheet" href="../styles/framework.css">
     <!-- Firebase Configuration -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -107,11 +108,14 @@
         }
     </script>
 </head>
-<body>
+<body class="background-image">
     <div class="contenedor">
-        <h1>Listado de Pacientes por Terapeuta</h1>
-        <div class="boton-regreso-container">
-            <button onclick="window.history.back();" class="boton-regreso">Regresar</button>
+        <h1 class="font-berlin">Listado de Pacientes por Terapeuta</h1>
+        <div class="recuadro-boton">
+            <button id="boton-r" class="boton-regresar border-none back-color-secondary">
+                <img src="../img/Flecha_blanca.png" alt="">
+                Regresar
+            </button>
         </div>
         <div class="buscador-container">
             <input type="text" id="buscadorPacientes" placeholder="Buscar por nombre o cédula" onkeyup="filtrarPacientes()">
@@ -123,4 +127,9 @@
         
     </div>
 </body>
+<script>
+    document.getElementById('boton-r').addEventListener('click', function () {
+        window.location.href = "paciente.html";
+    });
+</script>
 </html>
