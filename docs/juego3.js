@@ -4,6 +4,7 @@ let segundos = 0;
 let minutos = 0; // Minutos del cronómetro
 let cronometroInterval; // Intervalo del cronómetro
 let cronometroPausado = false; // Estado del cronómetro (pausado o no)
+const juego = "Juego3"; 
 
 // Función principal para iniciar el cronómetro
 function iniciarCronometro() {
@@ -42,6 +43,7 @@ window.onload = function () {
 };
 
 // Cargar palabras desde JSON
+// Cargar palabras desde JSON
 function cargarPalabras() {
     fetch('palabra.json')
         .then(response => {
@@ -64,7 +66,15 @@ function cargarPalabras() {
                 palabraDiv.setAttribute('data-correct-position', index); // Posición correcta
                 palabraDiv.textContent = palabra.name;
                 gameArea.appendChild(palabraDiv);
+
+                // Verificar la longitud de la palabra
+                const longitud = verificarLongitudPalabra(palabra.name);
+                console.log(`Palabra: ${palabra.name} - Longitud: ${longitud}`);
             });
+
+            // Guardar palabras ordenadas globalmente
+            window.palabrasOrdenadas = ordenarLongitudesPalabras(palabraRandom);
+            console.log('Palabras ordenadas por longitud:', window.palabrasOrdenadas);
 
             asignarEventosArrastrar();
         })
@@ -83,6 +93,7 @@ function asignarEventosArrastrar() {
         item.addEventListener('dragend', function (e) {
             setTimeout(() => this.style.visibility = 'visible', 0);
             draggedItem = null;
+            
         });
 
         item.addEventListener('dragover', function (e) {
@@ -112,12 +123,12 @@ function asignarEventosArrastrar() {
                 draggedItem.setAttribute('data-weight', tempWeight);
                 
                 //verificar orden 
-                //ordenCorrecto();
+                verificarOrdenCorrecto();
             } else {
                 console.error('draggedItem es null, no se puede realizar el intercambio.');
             }
 
-            ordenCorrecto();
+            
         });
         item.addEventListener('touchstart', function (e) {
             draggedItem = this;
@@ -170,48 +181,6 @@ function asignarEventosArrastrar() {
 }
 
 //funcion para verificar el orden de las palabras 
-function ordenCorrecto() {
-    const dropArea = document.getElementById('dropArea'); // Contenedor de palabras
-    const bloques = Array.from(dropArea.querySelectorAll('.object'))
-        .filter(obj => obj.style.visibility !== 'hidden' && obj.hasAttribute('data-weight'));
-
-    if (bloques.length === 0) {
-        console.error('No hay bloques en dropArea para verificar.');
-        return;
-    }
-
-    let correctos = 0;
-
-    // Iterar por los bloques en su posición actual dentro de dropArea
-    bloques.forEach((bloque, index) => {
-        const correctPosition = bloque.getAttribute('data-correct-position'); // Posición esperada
-        const currentWeight = bloque.getAttribute('data-weight'); // Peso actual asignado
-        const palabra = bloque.innerHTML.trim(); // Palabra actual en el bloque
-
-        if (!correctPosition || !currentWeight) {
-            console.warn(`El bloque en la posición ${index} no tiene atributos correctos.`);
-            bloque.style.backgroundColor = '#D53032'; // Rojo si no cumple
-            return;
-        }
-
-        // Verificar si la posición actual coincide con la esperada
-        if (parseInt(correctPosition) === index) {
-            correctos++;
-            bloque.style.backgroundColor = 'lightgreen'; // Verde si es correcto
-        } else {
-            bloque.style.backgroundColor = '#D53032'; // Rojo si es incorrecto
-        }
-    });
-
-    console.log(`Total correctos: ${correctos}, Bloques necesarios: ${bloques.length}`);
-
-    // Si todos los bloques están en la posición correcta
-    if (correctos === bloques.length) {
-        const tiempoActual = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-        limpiarCronometro();
-        window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}`;
-    }
-}
 
 
 // Verificar la longitud de las palabras
@@ -219,9 +188,68 @@ function verificarLongitudPalabra(palabra) {
     return palabra.trim().length; // Asegurarse de ignorar espacios adicionales
 }
 
+// Función para ordenar las longitudes de las palabras
+function ordenarLongitudesPalabras(palabras) {
+    // Crear un array de objetos con la palabra y su longitud
+    const palabrasConLongitud = palabras.map(palabra => ({
+        palabra: palabra,
+        longitud: verificarLongitudPalabra(palabra.name)
+    }));
 
+    // Ordenar el array por longitud
+    palabrasConLongitud.sort((a, b) => a.longitud - b.longitud);
 
+    // Devolver solo las palabras ordenadas
+    return palabrasConLongitud.map(item => item.palabra);
+}
 
+//verificar el orden
+function verificarOrdenCorrecto() {
+    const gameArea = document.getElementById('dropArea');
+    // Filtrar solo los elementos con la clase 'object'
+    const palabrasActuales = Array.from(gameArea.querySelectorAll('.object'))
+        .map(child => child.textContent.trim().toLowerCase());
+    
+    // Verificar que palabrasOrdenadas esté definido
+    if (!window.palabrasOrdenadas) {
+        console.error('palabrasOrdenadas no está definido.');
+        return;
+    }
+    
+    const palabrasCorrectas = window.palabrasOrdenadas.map(p => p.name.trim().toLowerCase());
+
+    // Comparar los arrays y cambiar el color de las palabras correctas
+    let esCorrecto = true;
+    palabrasActuales.forEach((palabra, index) => {
+        const elemento = gameArea.querySelectorAll('.object')[index];
+        if (palabra === '') {
+            elemento.classList.add('vacio');
+            elemento.classList.remove('correcto', 'incorrecto');
+            console.log(`Bloque vacío en posición ${index}`);
+            esCorrecto = false; // Si hay un bloque vacío, no es correcto
+        } else if (palabra === palabrasCorrectas[index]) {
+            elemento.classList.add('correcto');
+            elemento.classList.remove('incorrecto', 'vacio');
+            console.log(`Palabra correcta: ${palabra} en posición ${index}`);
+        } else {
+            elemento.classList.add('incorrecto');
+            elemento.classList.remove('correcto', 'vacio');
+            console.log(`Palabra incorrecta: ${palabra} en posición ${index}`);
+            esCorrecto = false; // Si hay una palabra incorrecta, no es correcto
+        }
+    });
+
+    // Verificar si todas las palabras están correctas
+    if (esCorrecto && palabrasActuales.length === 5) {
+        const tiempoActual = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+                limpiarCronometro();
+                window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}&juego=${juego}`;
+    } else {
+        console.log('El orden aún no es correcto.');
+        console.log('Actual:', palabrasActuales);
+        console.log('Correcto:', palabrasCorrectas);
+    }
+}
 
 
 //funcion para verificar la longitud

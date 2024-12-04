@@ -45,6 +45,7 @@ async function cargarDatosPaciente() {
             <p><strong>Nombre:</strong> ${pacienteData.nombre}</p>
             <p><strong>Apellido:</strong> ${pacienteData.apellido}</p>
             <p><strong>Edad:</strong> ${pacienteData.edad}</p>
+
             
         `;
 
@@ -67,6 +68,7 @@ async function cargarDatosPaciente() {
                     <td>${juego.movimientos}</td>
                     <td>${juego.tiempo}</td>
                     <td>${calcularRango(juego.movimientos)}</td>
+                    <td>${juego.juego}</td>
                 </tr>
             `;
         });

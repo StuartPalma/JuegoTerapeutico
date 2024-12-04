@@ -195,3 +195,17 @@ body {
 .modal-content h2, .modal-content p {
     color: #333; /* Texto en gris oscuro para buen contraste sobre fondo blanco */
 }
+
+.correcto {
+    background-color: green;
+    color: white; /* Para que el texto sea visible */
+}
+
+.incorrecto {
+    background-color: red;
+    color: white;
+}
+.vacio{ 
+    background-color: white;
+    color: black;
+}

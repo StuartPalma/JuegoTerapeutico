@@ -96,6 +96,7 @@
         let minutos = 0; // Minutos del cronómetro
         let cronometroInterval; // Intervalo del cronómetro
         let cronometroPausado = false; // Estado del cronómetro (pausado o no)
+        const juego = "Juego1";
         iniciarCronometro();
 
         const Items = Array.from(document.querySelectorAll('.object')).filter(item => !item.id.startsWith('bloque'));
@@ -234,7 +235,7 @@
                 
                 const tiempoActual = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
                 limpiarCronometro();
-                window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}`;
+                window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}&juego=${juego}`;
             }
         }
         //cargar cornometro 

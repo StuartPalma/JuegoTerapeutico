@@ -51,6 +51,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const movimientos = urlParams.get('movimientos');
         const tiempo = urlParams.get('tiempo');
+        const juego = urlParams.get('juego');
 
         // Mostrar los datos en la página
         document.getElementById('totalMovimientos').innerText = `Total movimientos: ${movimientos}`;
@@ -58,7 +59,7 @@
 
         //funcion de ir a registro
         function irARegistro(){
-            window.location.href = "pantallaDeRegistro.html";
+            window.location.href = "pantallaDeRegistros.html";
         }
 
 
@@ -97,6 +98,7 @@
                 // Construye los datos a guardar en Firestore
                 const datosJuego = {
                     idPaciente: idPaciente, // Incluye el ID del paciente
+                    juego: juego,
                     movimientos: movimientosNum,
                     tiempo: tiempo,
                     evaluacion: evaluacion, // Incluye la evaluación en los datos
