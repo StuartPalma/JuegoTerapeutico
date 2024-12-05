@@ -11,6 +11,11 @@ body {
     margin-top: 50px;
 }
 
+.container h2 {
+    font-size: 30px;
+    color: black;
+}
+
 .titulo-principal {
     font-size: 50px;
     color: black;
