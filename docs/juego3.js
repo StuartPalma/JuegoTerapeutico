@@ -69,12 +69,12 @@ function cargarPalabras() {
 
                 // Verificar la longitud de la palabra
                 const longitud = verificarLongitudPalabra(palabra.name);
-                console.log(`Palabra: ${palabra.name} - Longitud: ${longitud}`);
+                //e.log(`Palabra: ${palabra.name} - Longitud: ${longitud}`);
             });
 
             // Guardar palabras ordenadas globalmente
             window.palabrasOrdenadas = ordenarLongitudesPalabras(palabraRandom);
-            console.log('Palabras ordenadas por longitud:', window.palabrasOrdenadas);
+            //console.log('Palabras ordenadas por longitud:', window.palabrasOrdenadas);
 
             asignarEventosArrastrar();
         })
@@ -109,8 +109,8 @@ function asignarEventosArrastrar() {
                 // asignar longitud de la palabra
                 const palabra1 = this.innerHTML;
                 const palabra2 = draggedItem.innerHTML
-                console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
-                console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
+                //console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
+                //console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
 
                 // Intercambiar contenido y atributos
                 const tempHTML = this.innerHTML;
@@ -125,7 +125,7 @@ function asignarEventosArrastrar() {
                 //verificar orden 
                 verificarOrdenCorrecto();
             } else {
-                console.error('draggedItem es null, no se puede realizar el intercambio.');
+                //e.error('draggedItem es null, no se puede realizar el intercambio.');
             }
 
             
@@ -150,8 +150,8 @@ function asignarEventosArrastrar() {
                     //verificar longitud de la palabra
                     const palabra1 = this.innerHTML;
                     const palabra2 = draggedItem.innerHTML
-                    console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
-                    console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
+                    //console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
+                    //console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
                     // Intercambiamos los objetos arrastrados
                     const tempHTML = element.innerHTML;
                     const tempWeight = element.getAttribute('data-weight');
@@ -225,16 +225,16 @@ function verificarOrdenCorrecto() {
         if (palabra === '') {
             elemento.classList.add('vacio');
             elemento.classList.remove('correcto', 'incorrecto');
-            console.log(`Bloque vacío en posición ${index}`);
+            //console.log(`Bloque vacío en posición ${index}`);
             esCorrecto = false; // Si hay un bloque vacío, no es correcto
         } else if (palabra === palabrasCorrectas[index]) {
             elemento.classList.add('correcto');
             elemento.classList.remove('incorrecto', 'vacio');
-            console.log(`Palabra correcta: ${palabra} en posición ${index}`);
+            //console.log(`Palabra correcta: ${palabra} en posición ${index}`);
         } else {
             elemento.classList.add('incorrecto');
             elemento.classList.remove('correcto', 'vacio');
-            console.log(`Palabra incorrecta: ${palabra} en posición ${index}`);
+            //console.log(`Palabra incorrecta: ${palabra} en posición ${index}`);
             esCorrecto = false; // Si hay una palabra incorrecta, no es correcto
         }
     });
@@ -245,9 +245,9 @@ function verificarOrdenCorrecto() {
                 limpiarCronometro();
                 window.location.href = `ventanaGanadora.html?movimientos=${movimiento}&tiempo=${tiempoActual}&juego=${juego}`;
     } else {
-        console.log('El orden aún no es correcto.');
-        console.log('Actual:', palabrasActuales);
-        console.log('Correcto:', palabrasCorrectas);
+        //console.log('El orden aún no es correcto.');
+        //console.log('Actual:', palabrasActuales);
+        //console.log('Correcto:', palabrasCorrectas);
     }
 }
 
