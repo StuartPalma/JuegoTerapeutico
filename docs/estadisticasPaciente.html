@@ -12,15 +12,15 @@
 </head>
 <body class="background-image">
     <div class="contenedor">
-        <h1 class="font-berlin">Datos del Paciente</h1>
-        <div id="paciente-info">
-            <!-- Aquí se mostrarán los datos del paciente -->
-        </div>
         <div class="recuadro-boton">
             <button id="boton-r" class="boton-regresar border-none back-color-secondary">
                 <img src="../img/Flecha_blanca.png" alt="">
                 Regresar
             </button>
+        </div>
+        <h1 class="font-berlin">Datos del Paciente</h1>
+        <div id="paciente-info">
+            <!-- Aquí se mostrarán los datos del paciente -->
         </div>
         <h2 class="font-woliu">Juegos Completados: <span id="total-juegos">0</span></h2>
         <table>
@@ -39,6 +39,11 @@
         </table>
     </div>
 
-    <script src="pacienteDatos.js"></script>
+    <script src="pacienteDatos.js">    </script>
+    <script>
+        document.getElementById('boton-r').addEventListener('click', function () {
+            window.location.href = "tableroJuegos.html";
+        });
+    </script>
 </body>
 </html>

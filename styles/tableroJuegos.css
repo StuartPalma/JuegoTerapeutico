@@ -125,6 +125,12 @@ body {
     object-fit: contain;
 }
 
+.recuadro-juego p {
+    font-size: 25px;
+    font-family: "Berlin Sans FB";
+    margin: 0px;
+}
+
 .boton-jugar {
     width: inherit;
 

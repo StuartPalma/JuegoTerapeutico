@@ -11,7 +11,7 @@ body {
 
 .contenedor {
     width: 1200px;
-    height: 300px;
+    min-height: 450px;
 
     padding: 0px 20px;
 
@@ -53,4 +53,9 @@ table th {
 
 p {
     margin: 5px 0;
+}
+
+#paciente-info {
+    font-family: "Berlin Sans FB Demi", sans-serif;
+   font-size: 20px;
 }

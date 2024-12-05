@@ -10,7 +10,7 @@ body {
 
 .contenedor {
     width: 600px;
-    height: 300px;
+    min-height: 400px;
 
     padding: 0px 20px;
 
@@ -29,6 +29,10 @@ body {
 
 h1 {
     margin-bottom: 20px;
+}
+
+.contenedor p {
+    margin: 5px 0;
 }
 
 .buscador-container {
@@ -62,12 +66,15 @@ h1 {
 }
 
 .tabla-pacientes th {
-    background-color: #007BFF;
-    color: white;
+    background-color: #f6cb99;
+    color: black;
+    border: 1px solid black;
+    font-weight: bold;
 }
 
 .tabla-pacientes tr:nth-child(even) {
     background-color: #f9f9f9;
+    border: 1px solid black;
 }
 
 .tabla-pacientes tr:hover {
