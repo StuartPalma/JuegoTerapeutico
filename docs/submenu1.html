@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control de Pacientes</title>
+    <link rel="stylesheet" href="../styles/paciente.css">
+    <link rel="stylesheet" href="../styles/framework.css">
+
+</head>
+<header>
+
+</header>
+
+<body class="background-image margin-0">
+    <div class="recuadro-boton">
+        <button id="boton-r" class="boton-regresar border-none back-color-secondary">
+            <img src="../img/Flecha_blanca.png" alt="">
+            Regresar
+        </button>
+    </div>
+    <div class="recuadro d-flex">
+
+        <div
+            class="recuadro-opciones-pacientes back-color-primary border-1-black d-flex flex-1 flex-direction-column hover-box-shadow">
+            <h2 class="terapeuta">Selecciona una de las siguientes opciones:</h2>
+            <a href="juego.html" class="boton back-color-cuaternary color-tertiary">Juego 1</a>
+            <a href="juego1Asistido.html" class="boton back-color-cuaternary color-tertiary">Juego 1 con pesos</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('boton-r').addEventListener('click', function () {
+            window.location.href = "tableroJuegos.html";
+        });
+    </script>
+</body>
+
+</html>

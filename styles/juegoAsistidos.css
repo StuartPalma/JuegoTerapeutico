@@ -1,0 +1,216 @@
+body {
+    /* cambiar la fuente de letra*/
+    font-family: "Berlin Sans FB", sans-serif;
+    text-align: center;
+    background-image: url("../img/Fondo nubes.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.container h2 {
+    font-size: 30px;
+    color: black;
+}
+
+.titulo-principal {
+    font-size: 50px;
+    color: black;
+}
+
+.subtitulo {
+    font-size: 40px;
+    color: black;
+}
+
+#contador {
+    font-size: 30px;
+    color: black;
+}
+
+#cronometro {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Aqui es el area del juego*/
+.game-area {
+    display: flex;
+
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+#dropArea {
+    display: flex;
+}
+
+.bloques {
+    display: flex;
+    gap: 10px;
+}
+
+/* aqui es donde van los objetos del juego*/
+.object {
+    width: 150px;
+    height: 70px;
+    border: 2px solid #333;
+    display: flex;
+    background-color: aliceblue;
+    cursor: grab; /*cambiamos a un amanita el mouse*/
+    font-weight: bold; /* Resaltar el peso */
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    font-size: 20px;
+    color: chartreuse;
+    margin-top: 20px;
+}
+
+.ganador {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: chartreuse;
+}
+
+.contenido-ventana {
+    background-color: antiquewhite;
+    margin: 15% auto;
+    padding: 20%;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cerrar:hover, .cerrar:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.boton {
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.925);
+    color: rgb(59, 54, 54);
+    border: black 2px solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#pausarBtn {
+    width: 200px;
+    height: 50px;
+
+    font-size: 30px;
+    font-family: "Impact";
+
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    font-size: 30px;
+
+    background-color: rgba(255, 255, 255, 0.94); /* Fondo oscuro semitransparente */
+    display: flex; /* Usar flexbox para centrar el modal */
+    justify-content: center; /* Centrando horizontalmente */
+    align-items: center; /* Centrando verticalmente */
+}
+
+/* Contenedor del contenido del modal */
+.modal-content {
+    background-color: #ffffff; /* Fondo blanco para buen contraste */
+    padding: 20px;
+    border: 2px solid #333; /* Borde más oscuro para darle contraste */
+    width: 300px; /* Ventana de tamaño pequeño */
+    text-align: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra para darle un efecto emergente */
+    border-radius: 15px; /* Bordes redondeados */
+}
+
+/* Estilos para los botones dentro del modal */
+.modal button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF; /* Botones azules */
+    color: #ffffff; /* Texto blanco */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto hover para los botones del modal */
+.modal button:hover {
+    background-color: #0056b3; /* Fondo azul oscuro al hacer hover */
+    color: #ffffff; /* Texto blanco al hacer hover */
+}
+
+#botonSalirJuego {
+    background-color: #dc3545; /* Botón rojo */
+}
+
+#botonSalirJuego:hover {
+    background-color: #bd2130; /* Fondo rojo oscuro al hacer hover */
+}
+
+/* Estilo del texto dentro del modal */
+.modal-content h2, .modal-content p {
+    color: #333; /* Texto en gris oscuro para buen contraste sobre fondo blanco */
+}
+
+.correcto {
+    background-color: lightgreen;
+    color: black; /* Para que el texto sea visible */
+}
+
+.incorrecto {
+    background-color: #D53032;
+    color: black;
+}
+.vacio{
+    background-color: white;
+    color: black;
+}
