@@ -181,6 +181,26 @@
     100% { transform: perspective(500px) rotateZ(0deg); }
 }
 
+@keyframes girar-rapido {
+    0% {
+        transform: rotate(0deg);
+    }
+    90% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.recuadro-integrante img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid black;
+    animation: girar-rapido 10s linear infinite;
+}
+
 .hover-box-shadow {
     transition: box-shadow 0.3s ease;
 }
