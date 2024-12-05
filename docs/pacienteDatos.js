@@ -27,6 +27,30 @@ function calcularRango(movimientos) {
     return "Pésimo";
 }
 
+// Función para registrar un juego
+async function registrarJuego(movimientos, tiempo, nombreDelJuego) {
+    try {
+        // Obtener la fecha actual
+        const fechaActual = new Date();
+        const fechaFormateada = fechaActual.toISOString(); // Formato ISO
+
+        // Guardar el juego en Firestore
+        await db.collection('juegos').add({
+            idPaciente: idPaciente,
+            movimientos: movimientos,
+            tiempo: tiempo,
+            juego: nombreDelJuego,
+            fecha: fechaFormateada // Almacenar la fecha actual
+        });
+
+        console.log('Juego registrado con éxito.');
+        alert('Juego registrado exitosamente.');
+    } catch (error) {
+        console.error('Error al registrar el juego:', error);
+        alert('Hubo un error al registrar el juego. Por favor, inténtalo de nuevo.');
+    }
+}
+
 // Cargar los datos del paciente y los juegos
 async function cargarDatosPaciente() {
     try {
@@ -45,8 +69,6 @@ async function cargarDatosPaciente() {
             <p><strong>Nombre:</strong> ${pacienteData.nombre}</p>
             <p><strong>Apellido:</strong> ${pacienteData.apellido}</p>
             <p><strong>Edad:</strong> ${pacienteData.edad}</p>
-
-            
         `;
 
         // Obtener juegos relacionados con el paciente
@@ -69,6 +91,7 @@ async function cargarDatosPaciente() {
                     <td>${juego.tiempo}</td>
                     <td>${calcularRango(juego.movimientos)}</td>
                     <td>${juego.juego}</td>
+                    <td>${new Date(juego.fecha).toLocaleDateString()}</td> <!-- Mostrar la fecha -->
                 </tr>
             `;
         });
