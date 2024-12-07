@@ -59,3 +59,7 @@ p {
     font-family: "Berlin Sans FB Demi", sans-serif;
    font-size: 20px;
 }
+
+#juegos-lista {
+    margin: 20px 0px;
+}
