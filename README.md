@@ -11,6 +11,7 @@ Este proyecto es un juego diseñado con fines terapéuticos, orientado a ayudar 
 - [Uso](#uso)
 - [Para desarrolladores](#para-desarrolladores)
   - [Herramientas utilizadas](#herramientas-utilizadas)
+  - [Explicación de la estructura de archivos](#explicación-de-la-estructura-de-archivos)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
 - [Contacto](#contacto)
@@ -72,6 +73,12 @@ Para clonar el repositorio, sigue estos pasos:
 - **Microsoft Edge**: Navegador web.
 - **Opera**: Navegador web.
 
+### Explicación de la estructura de archivos
+- raíz: En ninguna carpeta, en el nodo raíz del directorio se encuentra el archivo index.html.
+- docs: Contiene los archivos HTML y JS, para la programación de las páginas web.
+- styles: Contiene los archivos CSS, para la presentación de las páginas web.
+- img: Contiene las imágenes utilizadas en el proyecto.
+- fonts: Contiene las fuentes utilizadas en el proyecto.
 
 ## Licencia
 
