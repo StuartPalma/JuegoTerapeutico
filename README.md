@@ -2,6 +2,23 @@
 
 Este proyecto es un juego diseñado con fines terapéuticos, orientado a ayudar a pacientes que padecen Alzheimer, funcionando como un refuerzo para la mente del paciente además de ser un soporte para las personas encargadas del cuidado del paciente, con el fin de ayudar en el monitoreo del rendimiento y permitirles sacar conclusiones de manera más rápida y práctica.
 
+## Tabla de Contenidos
+
+- [Equipo de Desarrollo](#equipo-de-desarrollo)
+- [Descripción](#descripción)
+- [Características](#características)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Para desarrolladores](#para-desarrolladores)
+  - [Herramientas utilizadas](#herramientas-utilizadas)
+- [Contribución](#contribución)
+- [Licencia](#licencia)
+- [Contacto](#contacto)
+
+## Equipo de Desarrollo:
+
+![EvoLogic](/img/Logo%20EvoLogic%20TASE.png)
+
 ## Descripción
 
 El Juego Terapéutico es una aplicación interactiva que tiene como objetivo mejorar la memoria semántica y de trabajo del paciente con Alzheimer, con la finalidad de ofrecer un refuerzo mental mediante un juego de ordenamiento de palabras por su peso, de menor a mayor. El objetivo es ayudar a reducir el avance rápido de la enfermedad en el paciente. Está desarrollado utilizando una página web basada en HTML, con el uso de CSS y JavaScript para la programación, además de un servidor en la nube (Cloudflare) para permitir que el juego sea utilizado en otras computadoras.
@@ -20,7 +37,7 @@ Para utilizar el juego localmente, sigue estos pasos:
 1. Copia el siguiente enlace en el navegador:  
    `https://juegoterapeutico.pages.dev/`
 2. Ingresa a la sección de registro de usuario.
-3. Después de ingresar y logearte, podrás probar el juego.
+3. Después de ingresar e iniciar sesión, podrás probar el juego.
 
 ## Uso
 
@@ -29,6 +46,32 @@ Una vez registrado tu usuario, solo necesitarás hacer clic en "Iniciar sesión"
 ## Contribución
 
 Si deseas contribuir al desarrollo del Juego Terapéutico, por favor déjanos tu opinión sobre en qué podemos mejorar, en el archivo de opiniones.
+
+## Para desarrolladores
+
+Si deseas revisar el código fuente del proyecto, puedes clonar el repositorio en cualquier IDE, como recomendación, Visual Studio Code o algún editor de JetBrains.
+Para clonar el repositorio, sigue estos pasos:
+
+1. Abre la terminal de tu IDE.
+2. Clona el repositorio con el siguiente comando:  
+   `git clone https://github.com/StuartPalma/JuegoTerapeutico.git`
+3. Abre el proyecto en tu IDE y comienza a trabajar en él.
+
+### Herramientas utilizadas
+
+- **HTML**: Lenguaje de marcado para la elaboración de páginas web.
+- **CSS**: Lenguaje de estilos para la presentación de páginas web.
+- **JavaScript**: Lenguaje de programación para la creación de páginas web interactivas.
+- **Firebase**: Plataforma de desarrollo de aplicaciones móviles y web, la base de datos está alojada en Firebase.
+- **Git**: Sistema de control de versiones.
+- **GitHub**: Plataforma de desarrollo colaborativo.
+- **Visual Studio Code**: Editor de código fuente.
+- **JetBrains**: Suite de herramientas de desarrollo.
+- **Google Chrome**: Navegador web.
+- **Mozilla Firefox**: Navegador web.
+- **Microsoft Edge**: Navegador web.
+- **Opera**: Navegador web.
+
 
 ## Licencia
 
