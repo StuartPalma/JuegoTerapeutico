@@ -6,106 +6,119 @@
     <title>Listado de Pacientes por Terapeuta</title>
     <link rel="stylesheet" href="../styles/listadoPacientes.css">
     <link rel="stylesheet" href="../styles/framework.css">
-    <!-- Firebase Configuration -->
+    
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
         import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-        // Configuración de Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCx9LP5qF7Ce55QxcGIKskvppiQGYfYYL0",
             authDomain: "juegoterrapeuticoepn.firebaseapp.com",
             projectId: "juegoterrapeuticoepn",
-            storageBucket: "juegoterrapeuticoepn.firebaseapp.com",
+            storageBucket: "juegoterrapeuticoepn.appspot.com",
             messagingSenderId: "537931533464",
-            appId: "1:537931533464:web:789d18eddff759799d14ed",
-            measurementId: "G-WB9KER4NJB"
+            appId: "1:537931533464:web:789d18eddff759799d14ed"
         };
 
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore();
 
-        // Función para obtener los pacientes según el ID del terapeuta
-        async function obtenerPacientesPorTerapeuta(idTerapeuta) {
+        let pacientes = [];
+        let paginaActual = 1;
+        const registrosPorPagina = 6;
+
+        function cargarPagina(pagina) {
+            const inicio = (pagina - 1) * registrosPorPagina;
+            const fin = inicio + registrosPorPagina;
+            const pacientesPagina = pacientes.slice(inicio, fin);
+
+            const tbody = document.querySelector(".tabla-pacientes tbody");
+            tbody.innerHTML = "";
+
+            pacientesPagina.forEach(paciente => {
+                const fila = `
+                    <tr>
+                        <td>${paciente.nombre}</td>
+                        <td>${paciente.apellido}</td>
+                        <td><a href="tableroJuegos.html?id=${paciente.cedula}" class="link-paciente">${paciente.cedula}</a></td>
+                        <td>${paciente.edad}</td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML("beforeend", fila);
+            });
+
+            actualizarBotones();
+        }
+
+        function actualizarBotones() {
+            const totalPaginas = Math.ceil(pacientes.length / registrosPorPagina);
+            const contenedorBotones = document.getElementById("botones-paginacion");
+            contenedorBotones.innerHTML = "";
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                const boton = document.createElement("button");
+                boton.textContent = i;
+                boton.classList.add("boton-pagina");
+                if (i === paginaActual) boton.classList.add("activo");
+
+                boton.addEventListener("click", () => {
+                    paginaActual = i;
+                    cargarPagina(paginaActual);
+                });
+                contenedorBotones.appendChild(boton);
+            }
+        }
+
+        async function obtenerPacientesPorTerapeuta() {
+            const idTerapeuta = localStorage.getItem("idTerapeuta");
+
+            if (!idTerapeuta) {
+                alert("No se encontró un ID de terapeuta en sesión. Inicie sesión nuevamente.");
+                return;
+            }
+
             try {
                 const q = query(collection(db, "pacientes"), where("registradoPor", "==", idTerapeuta));
                 const querySnapshot = await getDocs(q);
 
-                const pacientesContainer = document.getElementById("pacientesContainer");
-                pacientesContainer.innerHTML = "";
-                const tablaPacientes = document.createElement('table');
-                tablaPacientes.className = 'tabla-pacientes';
-                tablaPacientes.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cédula</th>
-                            <th>Edad</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                `;
-                pacientesContainer.appendChild(tablaPacientes);
-
-                if (querySnapshot.empty) {
-                    pacientesContainer.innerHTML = "<p>No se encontraron pacientes para este terapeuta.</p>";
-                } else {
-                    querySnapshot.forEach((doc) => {
-                        const paciente = doc.data();
-                        const filaPaciente = document.createElement('tr');
-                        filaPaciente.innerHTML = `
-                            <td>${paciente.nombre}</td>
-                            <td>${paciente.apellido}</td>
-                            <td><a href="tableroJuegos.html?id=${doc.id}" class="link-paciente" data-cedula="${paciente.id}">${doc.id}</a></td>
-                            <td>${paciente.edad}</td>
-                            
-                        `;
-
-                        // Añadir un evento para almacenar la cédula cuando se haga clic en el enlace del paciente
-                        filaPaciente.querySelector('.link-paciente').addEventListener('click', (event) => {
-                            event.preventDefault();
-                            const cedulaPaciente = event.target.getAttribute('data-cedula');
-                            console.log('Cédula a guardar:', cedulaPaciente); // Verificar el valor a guardar
-                            localStorage.setItem('cedulaPaciente', cedulaPaciente);
-                            window.location.href = event.target.href;
-                        });
-
-                        tablaPacientes.querySelector('tbody').appendChild(filaPaciente);
+                pacientes = [];
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    pacientes.push({
+                        nombre: data.nombre,
+                        apellido: data.apellido,
+                        cedula: doc.id,
+                        edad: data.edad
                     });
+                });
+
+                if (pacientes.length > 0) {
+                    cargarPagina(1);
+                } else {
+                    document.getElementById("pacientesContainer").innerHTML = "<p>No hay pacientes registrados.</p>";
                 }
             } catch (error) {
                 console.error("Error al obtener los pacientes: ", error);
             }
         }
 
-        // Lógica para obtener el ID del terapeuta y mostrar los pacientes
-        document.addEventListener('DOMContentLoaded', () => {
-            const idTerapeuta = localStorage.getItem('idTerapeuta');
-            if (idTerapeuta) {
-                obtenerPacientesPorTerapeuta(idTerapeuta);
-            } else {
-                alert("No se encontró un ID de terapeuta en sesión. Por favor, inicie sesión nuevamente.");
-            }
-        });
+        document.addEventListener("DOMContentLoaded", obtenerPacientesPorTerapeuta);
 
-        // Función para filtrar pacientes (agregada al objeto window para hacerla global)
         window.filtrarPacientes = function() {
             const filtro = document.getElementById("buscadorPacientes").value.toLowerCase();
             const filas = document.querySelectorAll(".tabla-pacientes tbody tr");
+
             filas.forEach(fila => {
                 const nombre = fila.querySelector("td:nth-child(1)").textContent.toLowerCase();
-                const cedula = fila.querySelector("td:nth-child(3) a").textContent.toLowerCase();
+                const cedula = fila.querySelector("td:nth-child(3)").textContent.toLowerCase();
+
                 if (nombre.includes(filtro) || cedula.includes(filtro)) {
                     fila.style.display = "";
                 } else {
                     fila.style.display = "none";
                 }
             });
-        }
+        };
     </script>
 </head>
 <body class="background-image">
@@ -116,21 +129,35 @@
                 Regresar
             </button>
         </div>
+
         <h1 class="font-berlin">Listado de Pacientes por Terapeuta</h1>
         <p>Selecciona la cédula del paciente o busca por su nombre o cédula.</p>
+
         <div class="buscador-container">
             <input type="text" id="buscadorPacientes" placeholder="Buscar por nombre o cédula" onkeyup="filtrarPacientes()">
         </div>
 
         <div id="pacientesContainer" class="pacientes-container">
-            <!-- Aquí se mostrará la lista de pacientes -->
+            <table class="tabla-pacientes">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cédula</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
-        
+
+        <div id="botones-paginacion" class="botones-paginacion"></div>
     </div>
+
+    <script>
+        document.getElementById('boton-r').addEventListener('click', function () {
+            window.location.href = "paciente.html";
+        });
+    </script>
 </body>
-<script>
-    document.getElementById('boton-r').addEventListener('click', function () {
-        window.location.href = "paciente.html";
-    });
-</script>
 </html>
