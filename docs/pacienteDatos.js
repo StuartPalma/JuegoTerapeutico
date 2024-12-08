@@ -20,11 +20,29 @@ if (!idPaciente) {
     window.location.href = "loginPaciente.html";
 }
 
+//funcion de colocar el tiempo en segundos
+function convertirTiempoASegundos(tiempo) {
+    const [minutos, segundos] = tiempo.split(':').map(Number);
+    return minutos * 60 + segundos;
+}
+
+
 // Función para calcular el rango de calidad
-function calcularRango(movimientos) {
-    if (movimientos >= 5 && movimientos <= 9) return "Excelente";
-    if (movimientos >= 10 && movimientos <= 12) return "Regular";
-    return "Pésimo";
+function calcularRango(movimientos, tiempo) {
+    const tiempoEnSegundos = convertirTiempoASegundos(tiempo);
+
+    if (movimientos >= 5 && movimientos <= 7 && tiempoEnSegundos <= 90) return "Excelente";
+    if (movimientos >= 5 && movimientos <= 7 && tiempoEnSegundos > 90 && tiempoEnSegundos <= 120) return "Bueno";
+    if (movimientos >= 5 && movimientos <= 7 && tiempoEnSegundos > 120 && tiempoEnSegundos <= 150) return "Regular";
+    if (movimientos >= 5 && movimientos <= 7 && tiempoEnSegundos > 150) return "Prestarle más atención";
+    if (movimientos > 7 && movimientos <= 9 && tiempoEnSegundos <= 90) return "Bueno";
+    if (movimientos > 7 && movimientos <= 9 && tiempoEnSegundos > 90 && tiempoEnSegundos <= 120) return "Regular";
+    if (movimientos > 7 && movimientos <= 9 && tiempoEnSegundos > 120 && tiempoEnSegundos <= 150) return "Necesita Apoyo";
+    if (movimientos > 7 && movimientos <= 9 && tiempoEnSegundos > 150) return "Prestarle más atención";
+    if (movimientos > 9 && tiempoEnSegundos <= 90) return "Regular";
+    if (movimientos > 9 && tiempoEnSegundos > 90 && tiempoEnSegundos <= 120) return "Necesita apoyo";
+    if (movimientos > 9 && tiempoEnSegundos > 120) return "Prestarle más atención";
+    return "none";
 }
 
 // Función para registrar un juego
@@ -89,7 +107,7 @@ async function cargarDatosPaciente() {
                     <td>${contador++}</td>
                     <td>${juego.movimientos}</td>
                     <td>${juego.tiempo}</td>
-                    <td>${calcularRango(juego.movimientos)}</td>
+                    <td>${calcularRango(juego.movimientos, juego.tiempo)}</td>
                     <td>${juego.juego}</td>
                     <td>${new Date(juego.fecha).toLocaleDateString()}</td> <!-- Mostrar la fecha -->
                     <td>${new Date(juego.fecha).toLocaleTimeString()}</td>

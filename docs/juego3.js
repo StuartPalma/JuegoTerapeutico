@@ -52,9 +52,28 @@ function cargarPalabras() {
         })
         .then(data => {
             const palabraRandom = [];
+            const longitudesUsadas = new Set();
+
+            // Barajar las palabras
             const shuffled = data.sort(() => 0.5 - Math.random());
-            for (let i = 0; i < 5; i++) {
-                palabraRandom.push(shuffled[i]);
+
+            for (let i = 0; i < shuffled.length; i++) {
+                const palabra = shuffled[i];
+                const longitud = verificarLongitudPalabra(palabra.name);
+
+                // Verificar si la longitud ya fue usada
+                if (!longitudesUsadas.has(longitud)) {
+                    palabraRandom.push(palabra);
+                    longitudesUsadas.add(longitud); // Registrar la longitud usada
+
+                    // Si ya tenemos 5 palabras con longitudes únicas, salir del bucle
+                    if (palabraRandom.length === 5) break;
+                }
+            }
+
+            // Si no se encontraron suficientes palabras con longitudes únicas
+            if (palabraRandom.length < 5) {
+                console.warn('No se encontraron suficientes palabras con longitudes únicas.');
             }
 
             const gameArea = document.getElementById('gameArea1');
@@ -66,20 +85,15 @@ function cargarPalabras() {
                 palabraDiv.setAttribute('data-correct-position', index); // Posición correcta
                 palabraDiv.textContent = palabra.name;
                 gameArea.appendChild(palabraDiv);
-
-                // Verificar la longitud de la palabra
-                const longitud = verificarLongitudPalabra(palabra.name);
-                //e.log(`Palabra: ${palabra.name} - Longitud: ${longitud}`);
             });
 
             // Guardar palabras ordenadas globalmente
             window.palabrasOrdenadas = ordenarLongitudesPalabras(palabraRandom);
-            //console.log('Palabras ordenadas por longitud:', window.palabrasOrdenadas);
-
             asignarEventosArrastrar();
         })
         .catch(error => console.error('Error al cargar la palabra:', error));
 }
+
 
 
 // Asignar eventos de arrastrar y soltar
@@ -151,7 +165,7 @@ function asignarEventosArrastrar() {
                     const palabra1 = this.innerHTML;
                     const palabra2 = draggedItem.innerHTML
                     //console.log(`Palabra 1: ${palabra1} - ${verificarLongitudPalabra(palabra1)}`);
-                    //console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
+                    ///console.log(`Palabra 2: ${palabra2} - ${verificarLongitudPalabra(palabra2)}`);
                     // Intercambiamos los objetos arrastrados
                     const tempHTML = element.innerHTML;
                     const tempWeight = element.getAttribute('data-weight');
