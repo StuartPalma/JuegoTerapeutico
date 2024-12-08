@@ -17,7 +17,7 @@ const db = firebase.firestore();
 const idPaciente = localStorage.getItem('cedulaPaciente');
 if (!idPaciente) {
     alert('No se encontró el ID del paciente. Por favor, inicia sesión nuevamente.');
-    window.location.href = "loginPaciente.html";
+    window.location.href = "listadoPacientes.html";
 }
 
 //funcion de colocar el tiempo en segundos

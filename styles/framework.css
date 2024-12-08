@@ -254,3 +254,16 @@
     background-position: center;
     background-attachment: fixed;
 }
+
+.botones-paginacion {
+    margin: 20px 0;
+}
+
+.boton-pagina {
+    font-size: 15px;
+    background-color: #f6cb99;
+}
+
+.boton-pagina:hover {
+    background-color: #eb920c;
+}
