@@ -92,6 +92,7 @@ async function cargarDatosPaciente() {
                     <td>${calcularRango(juego.movimientos)}</td>
                     <td>${juego.juego}</td>
                     <td>${new Date(juego.fecha).toLocaleDateString()}</td> <!-- Mostrar la fecha -->
+                    <td>${new Date(juego.fecha).toLocaleTimeString()}</td>
                 </tr>
             `;
         });
