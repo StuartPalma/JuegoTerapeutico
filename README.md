@@ -75,6 +75,7 @@ Para clonar el repositorio, sigue estos pasos:
 
 ### Explicación de la estructura de archivos
 - raíz: En ninguna carpeta, en el nodo raíz del directorio se encuentra el archivo index.html.
+- documentacion: Contiene los archivos de documentación del proyecto.
 - docs: Contiene los archivos HTML y JS, para la programación de las páginas web.
 - styles: Contiene los archivos CSS, para la presentación de las páginas web.
 - img: Contiene las imágenes utilizadas en el proyecto.
