@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Pacientes por Terapeuta</title>
     <link rel="stylesheet" href="../styles/listadoPacientes.css">
     <link rel="stylesheet" href="../styles/framework.css">
-    
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
         import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
@@ -40,7 +41,7 @@
                     <tr>
                         <td>${paciente.nombre}</td>
                         <td>${paciente.apellido}</td>
-                        <td><a href="tableroJuegos.html?id=${paciente.cedula}" class="link-paciente">${paciente.cedula}</a></td>
+                        <td><a href="tableroJuegos.html?id=${paciente.cedula}" class="link-paciente"       onclick="localStorage.setItem('cedulaPaciente', '${paciente.cedula}')">       ${paciente.cedula}</a></td>
                         <td>${paciente.edad}</td>
                     </tr>
                 `;
@@ -104,7 +105,7 @@
 
         document.addEventListener("DOMContentLoaded", obtenerPacientesPorTerapeuta);
 
-        window.filtrarPacientes = function() {
+        window.filtrarPacientes = function () {
             const filtro = document.getElementById("buscadorPacientes").value.toLowerCase();
             const filas = document.querySelectorAll(".tabla-pacientes tbody tr");
 
@@ -121,6 +122,7 @@
         };
     </script>
 </head>
+
 <body class="background-image">
     <div class="contenedor">
         <div class="recuadro-boton">
@@ -134,7 +136,8 @@
         <p>Selecciona la cédula del paciente o busca por su nombre o cédula.</p>
 
         <div class="buscador-container">
-            <input type="text" id="buscadorPacientes" placeholder="Buscar por nombre o cédula" onkeyup="filtrarPacientes()">
+            <input type="text" id="buscadorPacientes" placeholder="Buscar por nombre o cédula"
+                onkeyup="filtrarPacientes()">
         </div>
 
         <div id="pacientesContainer" class="pacientes-container">
@@ -160,4 +163,5 @@
         });
     </script>
 </body>
+
 </html>
