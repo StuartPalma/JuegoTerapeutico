@@ -12,6 +12,7 @@ Este proyecto es un juego diseñado con fines terapéuticos, orientado a ayudar 
 - [Para desarrolladores](#para-desarrolladores)
   - [Herramientas utilizadas](#herramientas-utilizadas)
   - [Explicación de la estructura de archivos](#explicación-de-la-estructura-de-archivos)
+  - [Explicación de las ramas](#explicación-de-las-ramas)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
 - [Contacto](#contacto)
