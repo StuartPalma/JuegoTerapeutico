@@ -81,6 +81,13 @@ Para clonar el repositorio, sigue estos pasos:
 - img: Contiene las imágenes utilizadas en el proyecto.
 - fonts: Contiene las fuentes utilizadas en el proyecto.
 
+### Explicación de las ramas
+- **logicaJuego**: Rama principal del proyecto, contiene la versión estable del proyecto.
+- **version-1**: Rama que contiene la primera versión del producto.
+- **front-end**: Rama de desarrollo, contiene el front-end del proyecto.
+- **juego**: Rama en donde se desarrollaba el primer juego, para evitar problemas en la rama principal.
+- **main**: Antigua rama principal, a razón de que se quería guardar la versión anterior se prefirió usar logicaJuego como la principal.
+
 ## Licencia
 
 Este proyecto no posee licencias por el momento.
